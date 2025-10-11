@@ -1,4 +1,4 @@
-import { Card, CardSet } from '@/types';
+import { CardSet } from '@/types';
 
 interface IncomingCard {
   question: string;
@@ -24,7 +24,7 @@ export function normalizeIncomingSet(input: unknown): CardSet {
     return {
       id: generateId(),
       title: input.setName,
-      topic: input.setDescription,
+      description: input.setDescription,
       userId: input.userId,
       cards: input.cards.map(card => ({
         id: generateId(),

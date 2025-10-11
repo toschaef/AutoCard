@@ -3,7 +3,6 @@
 import { useState, useMemo, useEffect } from 'react';
 import { useParams } from 'next/navigation';
 import Link from 'next/link';
-import { CardSet } from '@/types';
 import { buildAnswers} from '../../../lib/game';
 import { yourSets, recentSets, draftSets } from '../../../lib/mockData';
 import AnswerGrid from '../../../components/Play/AnswerGrid';

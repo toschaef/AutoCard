@@ -48,7 +48,7 @@ export const yourSets: CardSet[] = [
     id: '1',
     title: 'JavaScript Fundamentals',
     userId: '1',
-    topic: 'Core JavaScript concepts and syntax',
+    description: 'Core JavaScript concepts and syntax',
     cards: [
       {
         id: '1-1',
@@ -63,7 +63,7 @@ export const yourSets: CardSet[] = [
     id: '2',
     title: 'React Hooks',
     userId: '1',
-    topic: 'Modern React development with hooks',
+    description: 'Modern React development with hooks',
     cards: [
       {
         id: '2-1',
@@ -78,7 +78,7 @@ export const yourSets: CardSet[] = [
     id: '3',
     title: 'TypeScript Basics',
     userId: '1',
-    topic: 'Type-safe JavaScript development',
+    description: 'Type-safe JavaScript development',
     cards: [
       {
         id: '3-1',
@@ -93,7 +93,7 @@ export const yourSets: CardSet[] = [
     id: '4',
     title: 'CSS Grid Layout',
     userId: '1',
-    topic: 'Modern CSS layout techniques',
+    description: 'Modern CSS layout techniques',
     cards: [
       {
         id: '4-1',
@@ -108,7 +108,7 @@ export const yourSets: CardSet[] = [
     id: '5',
     title: 'Node.js Backend',
     userId: '1',
-    topic: 'Server-side JavaScript development',
+    description: 'Server-side JavaScript development',
     cards: [
       {
         id: '5-1',
@@ -123,7 +123,7 @@ export const yourSets: CardSet[] = [
     id: '6',
     title: 'Database Design',
     userId: '1',
-    topic: 'Relational database concepts',
+    description: 'Relational database concepts',
     cards: [
       {
         id: '6-1',
@@ -138,7 +138,7 @@ export const yourSets: CardSet[] = [
     id: '7',
     title: 'API Development',
     userId: '1',
-    topic: 'RESTful API design and implementation',
+    description: 'RESTful API design and implementation',
     cards: [
       {
         id: '7-1',
@@ -157,7 +157,7 @@ export const recentSets: CardSet[] = [
     id: '8',
     title: 'Python Data Structures',
     userId: '2',
-    topic: 'Lists, dictionaries, and tuples in Python',
+    description: 'Lists, dictionaries, and tuples in Python',
     cards: [
       {
         id: '8-1',
@@ -172,7 +172,7 @@ export const recentSets: CardSet[] = [
     id: '9',
     title: 'Machine Learning Basics',
     userId: '2',
-    topic: 'Introduction to ML concepts',
+    description: 'Introduction to ML concepts',
     cards: [
       {
         id: '9-1',
@@ -187,7 +187,7 @@ export const recentSets: CardSet[] = [
     id: '10',
     title: 'Docker Containers',
     userId: '2',
-    topic: 'Containerization and deployment',
+    description: 'Containerization and deployment',
     cards: [
       {
         id: '10-1',
@@ -202,7 +202,7 @@ export const recentSets: CardSet[] = [
     id: '11',
     title: 'Git Version Control',
     userId: '2',
-    topic: 'Source code management',
+    description: 'Source code management',
     cards: [
       {
         id: '11-1',
@@ -217,7 +217,7 @@ export const recentSets: CardSet[] = [
     id: '12',
     title: 'AWS Cloud Services',
     userId: '2',
-    topic: 'Amazon Web Services fundamentals',
+    description: 'Amazon Web Services fundamentals',
     cards: [
       {
         id: '12-1',
@@ -232,7 +232,7 @@ export const recentSets: CardSet[] = [
     id: '13',
     title: 'GraphQL APIs',
     userId: '2',
-    topic: 'Query language for APIs',
+    description: 'Query language for APIs',
     cards: [
       {
         id: '13-1',
@@ -251,7 +251,7 @@ export const draftSets: CardSet[] = [
     id: '14',
     title: 'Vue.js Components',
     userId: '3',
-    topic: 'Component-based architecture in Vue',
+    description: 'Component-based architecture in Vue',
     cards: [],
     created: new Date('2024-02-22')
   },
@@ -259,7 +259,7 @@ export const draftSets: CardSet[] = [
     id: '15',
     title: 'MongoDB NoSQL',
     userId: '3',
-    topic: 'Document-based database concepts',
+    description: 'Document-based database concepts',
     cards: [],
     created: new Date('2024-02-21')
   },
@@ -267,7 +267,7 @@ export const draftSets: CardSet[] = [
     id: '16',
     title: 'Redis Caching',
     userId: '3',
-    topic: 'In-memory data structure store',
+    description: 'In-memory data structure store',
     cards: [],
     created: new Date('2024-02-20')
   },
@@ -275,7 +275,7 @@ export const draftSets: CardSet[] = [
     id: '17',
     title: 'Kubernetes Orchestration',
     userId: '3',
-    topic: 'Container orchestration platform',
+    description: 'Container orchestration platform',
     cards: [],
     created: new Date('2024-02-19')
   },
@@ -283,7 +283,7 @@ export const draftSets: CardSet[] = [
     id: '18',
     title: 'Microservices Architecture',
     userId: '3',
-    topic: 'Distributed system design patterns',
+    description: 'Distributed system design patterns',
     cards: [],
     created: new Date('2024-02-18')
   },
@@ -291,7 +291,7 @@ export const draftSets: CardSet[] = [
     id: '19',
     title: 'Security Best Practices',
     userId: '3',
-    topic: 'Web application security fundamentals',
+    description: 'Web application security fundamentals',
     cards: [],
     created: new Date('2024-02-17')
   },
@@ -299,7 +299,7 @@ export const draftSets: CardSet[] = [
     id: '20',
     title: 'Performance Optimization',
     userId: '3',
-    topic: 'Web performance and optimization techniques',
+    description: 'Web performance and optimization techniques',
     cards: [],
     created: new Date('2024-02-16')
   }

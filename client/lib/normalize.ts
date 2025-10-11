@@ -1,4 +1,4 @@
-import { Card, CardSet } from './types';
+import { Card, CardSet } from '@/types';
 
 interface IncomingCard {
   question: string;

@@ -1,5 +1,6 @@
+import { CardSet } from '@/types';
 import Link from 'next/link';
-import { CardSet } from '../lib/types';
+
 
 interface SetCardProps {
   item: CardSet;

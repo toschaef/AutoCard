@@ -1,4 +1,4 @@
-import { CardSet } from '../lib/types';
+import { CardSet } from '@/types';
 import SetCard from './SetCard';
 
 interface RowProps {

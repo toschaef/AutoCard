@@ -1,7 +1,7 @@
 // src/controllers/gameController.ts
 
 import { Socket, Server } from 'socket.io';
-import { GameSession, Player } from '../types';
+import { GameSession, Player } from '../../../types';
 import { getCardSets } from './cardSetController';
 
 // Dummy data store for game sessions

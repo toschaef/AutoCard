@@ -1,4 +1,4 @@
-import { CardSet } from './types';
+import { CardSet } from '@/types';
 import { normalizeIncomingSet } from './normalize';
 
 // Example using the provided C++ JSON through normalizeIncomingSet

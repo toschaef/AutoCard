@@ -127,6 +127,8 @@ __turbopack_context__.s([
     ()=>SetCard
 ]);
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/server/route-modules/app-page/vendored/rsc/react-jsx-dev-runtime.js [app-rsc] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/client/app-dir/link.js [app-rsc] (ecmascript)");
+;
 ;
 function SetCard({ item }) {
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -141,12 +143,12 @@ function SetCard({ item }) {
                     children: item.title
                 }, void 0, false, {
                     fileName: "[project]/components/SetCard.tsx",
-                    lineNumber: 16,
+                    lineNumber: 17,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/components/SetCard.tsx",
-                lineNumber: 15,
+                lineNumber: 16,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -154,7 +156,8 @@ function SetCard({ item }) {
                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                     className: "flex gap-3",
                     children: [
-                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["default"], {
+                            href: `/play/${item.id}`,
                             className: "px-6 py-3 bg-green-600 hover:bg-green-700 text-white font-medium rounded-md transition-colors focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2",
                             "data-testid": "btn-play",
                             "aria-label": `Play ${item.title}`,
@@ -162,7 +165,7 @@ function SetCard({ item }) {
                             children: "Play"
                         }, void 0, false, {
                             fileName: "[project]/components/SetCard.tsx",
-                            lineNumber: 24,
+                            lineNumber: 25,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -173,24 +176,24 @@ function SetCard({ item }) {
                             children: "Edit"
                         }, void 0, false, {
                             fileName: "[project]/components/SetCard.tsx",
-                            lineNumber: 32,
+                            lineNumber: 34,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/components/SetCard.tsx",
-                    lineNumber: 23,
+                    lineNumber: 24,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/components/SetCard.tsx",
-                lineNumber: 22,
+                lineNumber: 23,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/components/SetCard.tsx",
-        lineNumber: 9,
+        lineNumber: 10,
         columnNumber: 5
     }, this);
 }
@@ -321,11 +324,52 @@ const cppExample = (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$no
                 "run()",
                 "execute()"
             ]
+        },
+        {
+            "question": "Which keyword is used to declare a variable in C++?",
+            "correctAnswer": "int, char, float, etc.",
+            "incorrectAnswers": [
+                "var",
+                "let",
+                "const"
+            ]
+        },
+        {
+            "question": "What does #include do in C++?",
+            "correctAnswer": "Includes header files",
+            "incorrectAnswers": [
+                "Declares variables",
+                "Defines functions",
+                "Creates objects"
+            ]
+        },
+        {
+            "question": "Which operator is used for pointer dereferencing?",
+            "correctAnswer": "*",
+            "incorrectAnswers": [
+                "&",
+                "->",
+                "."
+            ]
+        },
+        {
+            "question": "What is the size of an int in C++?",
+            "correctAnswer": "4 bytes (typically)",
+            "incorrectAnswers": [
+                "2 bytes",
+                "8 bytes",
+                "Depends on compiler"
+            ]
         }
     ]
 });
+// Update the C++ example to have a stable ID
+const cppBasicsSet = {
+    ...cppExample,
+    id: "cpp-basics"
+};
 const yourSets = [
-    cppExample,
+    cppBasicsSet,
     {
         id: '1',
         title: 'JavaScript Fundamentals',

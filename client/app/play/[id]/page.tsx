@@ -3,8 +3,8 @@
 import { useState, useMemo, useEffect } from 'react';
 import { useParams } from 'next/navigation';
 import Link from 'next/link';
-import { CardSet } from '../../../lib/types';
-import { buildAnswers } from '../../../lib/game';
+import { CardSet } from '@/types';
+import { buildAnswers} from '../../../lib/game';
 import { yourSets, recentSets, draftSets } from '../../../lib/mockData';
 import AnswerGrid from '../../../components/Play/AnswerGrid';
 
@@ -102,7 +102,7 @@ export default function PlayPage() {
       <div className="flex-1 flex flex-col justify-center items-center px-4 py-8">
         <div className="text-center mb-12">
           <h1 className="text-4xl md:text-6xl font-bold text-slate-900 leading-tight">
-            {currentCard.question}
+            {currentCard?.question}
           </h1>
         </div>
 

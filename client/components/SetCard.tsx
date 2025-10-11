@@ -32,14 +32,15 @@ export default function SetCard({ item }: SetCardProps) {
           >
             Play
           </Link>
-          <button
+          <Link
+            href={`/set/${item.id}/edit`}
             className="px-6 py-3 bg-cyan-600 hover:bg-cyan-700 text-white font-medium rounded-md transition-colors focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:ring-offset-2"
             data-testid="btn-edit"
             aria-label={`Edit ${item.title}`}
             title={`Edit ${item.title}`}
           >
             Edit
-          </button>
+          </Link>
         </div>
       </div>
     </div>

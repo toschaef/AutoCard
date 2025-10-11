@@ -13,9 +13,16 @@ export interface CardSet {
   userId: string;
   title: string;
   description: string;
-  topic: string;
   cards: Card[];
   created: Date;
+}
+
+export interface User {
+  id: string;
+  email: string;
+  name: string;
+  avatar?: string;
+  createdAt: Date;
 }
 
 export interface Player {

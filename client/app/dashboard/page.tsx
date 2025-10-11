@@ -1,26 +1,52 @@
+'use client';
+
 /*
  * Quick Start:
  * 1. Install Tailwind CSS: npm install -D tailwindcss postcss autoprefixer
  * 2. Run development server: npm run dev
  * 3. Navigate to /dashboard
  * 
- * TODO: Wire up dynamic auth name from user context
  * TODO: Add navigation routing for Play/Edit buttons
  */
 
 import TopBar from '../../components/TopBar';
 import GreetingHero from '../../components/GreetingHero';
 import Row from '../../components/Row';
-import { rows } from '../../lib/mockData';
+import { yourSets, recentSets, draftSets } from '../../lib/mockData';
+import { useAuth } from '../../lib/auth';
 
 export default function DashboardPage() {
+  const { user } = useAuth();
+
+  // Filter sets based on current user
+  const getUserSets = () => {
+    if (!user) return [];
+    return yourSets.filter(set => set.userId === user.id);
+  };
+
+  const getRecentSets = () => {
+    if (!user) return [];
+    return recentSets.filter(set => set.userId === user.id);
+  };
+
+  const getDraftSets = () => {
+    if (!user) return [];
+    return draftSets.filter(set => set.userId === user.id);
+  };
+
+  const filteredRows = [
+    { title: "Your Sets", items: getUserSets() },
+    { title: "Recent", items: getRecentSets() },
+    { title: "Drafts", items: getDraftSets() },
+  ];
+
   return (
     <div className="min-h-screen bg-slate-50">
-      <TopBar name="Ali" />
-      <GreetingHero name="Ali" />
+      <TopBar />
+      <GreetingHero />
       
       <main className="max-w-7xl mx-auto">
-        {rows.map((row) => (
+        {filteredRows.map((row) => (
           <Row
             key={row.title}
             title={row.title}

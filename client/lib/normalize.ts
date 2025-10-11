@@ -9,6 +9,7 @@ interface IncomingCard {
 interface IncomingSet {
   setName: string;
   setDescription: string;
+  userId: string;
   cards: IncomingCard[];
 }
 
@@ -24,6 +25,7 @@ export function normalizeIncomingSet(input: unknown): CardSet {
       id: generateId(),
       title: input.setName,
       topic: input.setDescription,
+      userId: input.userId,
       cards: input.cards.map(card => ({
         id: generateId(),
         question: card.question,
@@ -56,7 +58,7 @@ function isIncomingSet(input: unknown): input is IncomingSet {
     'setName' in input &&
     'setDescription' in input &&
     'cards' in input &&
-    Array.isArray((input as any).cards)
+    Array.isArray((input as IncomingSet).cards)
   );
 }
 

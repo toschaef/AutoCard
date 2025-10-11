@@ -20,6 +20,8 @@ export interface CardSet {
 
 export interface Player {
   id: string;
+  email: string;
+  password: string;
   name: string;
   score: number;
 }

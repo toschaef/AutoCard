@@ -3,7 +3,7 @@
 import { useState, useMemo, useEffect } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import Link from 'next/link';
-import { CardSet } from '../../../lib/types';
+import { CardSet } from '@/types';
 import { buildAnswers, TIMER_SECONDS } from '../../../lib/game';
 import { yourSets, recentSets, draftSets } from '../../../lib/mockData';
 import ScoreBar from '../../../components/Play/ScoreBar';

@@ -1,4 +1,4 @@
-import { Card } from './types';
+import { Card } from '@/types';
 
 export const TIMER_SECONDS = 20;
 

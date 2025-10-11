@@ -10,13 +10,39 @@ const cppExample = normalizeIncomingSet({
       "question": "What is the entry point function of a C++ program?",
       "correctAnswer": "main()",
       "incorrectAnswers": ["start()", "run()", "execute()"]
+    },
+    {
+      "question": "Which keyword is used to declare a variable in C++?",
+      "correctAnswer": "int, char, float, etc.",
+      "incorrectAnswers": ["var", "let", "const"]
+    },
+    {
+      "question": "What does #include do in C++?",
+      "correctAnswer": "Includes header files",
+      "incorrectAnswers": ["Declares variables", "Defines functions", "Creates objects"]
+    },
+    {
+      "question": "Which operator is used for pointer dereferencing?",
+      "correctAnswer": "*",
+      "incorrectAnswers": ["&", "->", "."]
+    },
+    {
+      "question": "What is the size of an int in C++?",
+      "correctAnswer": "4 bytes (typically)",
+      "incorrectAnswers": ["2 bytes", "8 bytes", "Depends on compiler"]
     }
   ]
 });
 
+// Update the C++ example to have a stable ID
+const cppBasicsSet = {
+  ...cppExample,
+  id: "cpp-basics"
+};
+
 // Your Sets - 8 items
 export const yourSets: CardSet[] = [
-  cppExample,
+  cppBasicsSet,
   {
     id: '1',
     title: 'JavaScript Fundamentals',

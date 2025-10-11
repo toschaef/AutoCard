@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { CardSet } from '../lib/types';
 
 interface SetCardProps {
@@ -21,14 +22,15 @@ export default function SetCard({ item }: SetCardProps) {
       {/* Overlay with buttons */}
       <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 transition-opacity duration-300 grid place-items-center rounded-lg">
         <div className="flex gap-3">
-          <button
+          <Link
+            href={`/play/${item.id}`}
             className="px-6 py-3 bg-green-600 hover:bg-green-700 text-white font-medium rounded-md transition-colors focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2"
             data-testid="btn-play"
             aria-label={`Play ${item.title}`}
             title={`Play ${item.title}`}
           >
             Play
-          </button>
+          </Link>
           <button
             className="px-6 py-3 bg-cyan-600 hover:bg-cyan-700 text-white font-medium rounded-md transition-colors focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:ring-offset-2"
             data-testid="btn-edit"

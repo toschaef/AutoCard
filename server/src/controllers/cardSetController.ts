@@ -1,18 +1,31 @@
 // src/controllers/cardSetController.ts
 
 import { Request, Response } from 'express';
-import { CardSet, Card } from '../types';
+import { CardSet, Card } from '@types';
 
-// Dummy data store
-const cardSets: { [key: string]: CardSet } = {};
 
 // Create a new card set
 export const createCardSet = (req: Request, res: Response) => {
+  const {
+    user_id,
+    title,
+    topic,
+    description,
+    level,
+    context
+  } = req.params;
+
   const newSetId = `set-${Date.now()}`;
+  const date = new Date();
+
+  const cardSets = CardSetManager.getCardSets();
+
   const newSet: CardSet = {
     id: newSetId,
-    title: req.body.title || 'Untitled Set',
+    title: title || 'Untitled Set',
+    topic: topic || 'Untitled Topic',
     cards: [],
+    created: date,
   };
   cardSets[newSetId] = newSet;
   res.status(201).json(newSet);
@@ -33,51 +46,33 @@ export const getCardSetById = (req: Request, res: Response) => {
   res.json(cardSet);
 };
 
-// Add a new card to a set
-export const addCardToSet = (req: Request, res: Response) => {
+// Update a card set
+export const updateCardSet = (req: Request, res: Response) => {
   const { setId } = req.params;
   const cardSet = cardSets[setId];
   if (!cardSet) {
-    return res.status(404).send('Card set not found.');
+    return res.status(404).json({ error: 'Card set not found' });
   }
-  const newCardId = `card-${Date.now()}`;
-  const newCard: Card = {
-    id: newCardId,
-    question: req.body.question,
-    answer: req.body.answer,
+  
+  const updatedSet = {
+    ...cardSet,
+    title: req.body.title || cardSet.title,
+    topic: req.body.topic || cardSet.topic,
   };
-  cardSet.cards.push(newCard);
-  res.status(201).json(newCard);
+  
+  cardSets[setId] = updatedSet;
+  res.json(updatedSet);
 };
 
-// Update a card in a set
-export const updateCard = (req: Request, res: Response) => {
-  const { setId, cardId } = req.params;
+// Delete a card set
+export const deleteCardSet = (req: Request, res: Response) => {
+  const { setId } = req.params;
   const cardSet = cardSets[setId];
   if (!cardSet) {
-    return res.status(404).send('Card set not found.');
+    return res.status(404).json({ error: 'Card set not found' });
   }
-  const cardIndex = cardSet.cards.findIndex(c => c.id === cardId);
-  if (cardIndex === -1) {
-    return res.status(404).send('Card not found.');
-  }
-  const updatedCard = {
-    ...cardSet.cards[cardIndex],
-    question: req.body.question || cardSet.cards[cardIndex].question,
-    answer: req.body.answer || cardSet.cards[cardIndex].answer,
-  };
-  cardSet.cards[cardIndex] = updatedCard;
-  res.json(updatedCard);
-};
-
-// Delete a card from a set
-export const deleteCard = (req: Request, res: Response) => {
-  const { setId, cardId } = req.params;
-  const cardSet = cardSets[setId];
-  if (!cardSet) {
-    return res.status(404).send('Card set not found.');
-  }
-  cardSet.cards = cardSet.cards.filter(c => c.id !== cardId);
+  
+  delete cardSets[setId];
   res.status(204).send();
 };
 

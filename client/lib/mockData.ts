@@ -1,4 +1,4 @@
-import { CardSet } from '@/types';
+import { CardSet, User } from '@/types';
 import { normalizeIncomingSet } from './normalize';
 
 // Example using the provided C++ JSON through normalizeIncomingSet
@@ -34,10 +34,11 @@ const cppExample = normalizeIncomingSet({
   ]
 });
 
-// Update the C++ example to have a stable ID
+// Update the C++ example to have a stable ID and userId
 const cppBasicsSet = {
   ...cppExample,
-  id: "cpp-basics"
+  id: "cpp-basics",
+  userId: "1"
 };
 
 // Your Sets - 8 items
@@ -46,6 +47,7 @@ export const yourSets: CardSet[] = [
   {
     id: '1',
     title: 'JavaScript Fundamentals',
+    userId: '1',
     topic: 'Core JavaScript concepts and syntax',
     cards: [
       {
@@ -60,6 +62,7 @@ export const yourSets: CardSet[] = [
   {
     id: '2',
     title: 'React Hooks',
+    userId: '1',
     topic: 'Modern React development with hooks',
     cards: [
       {
@@ -74,6 +77,7 @@ export const yourSets: CardSet[] = [
   {
     id: '3',
     title: 'TypeScript Basics',
+    userId: '1',
     topic: 'Type-safe JavaScript development',
     cards: [
       {
@@ -88,6 +92,7 @@ export const yourSets: CardSet[] = [
   {
     id: '4',
     title: 'CSS Grid Layout',
+    userId: '1',
     topic: 'Modern CSS layout techniques',
     cards: [
       {
@@ -102,6 +107,7 @@ export const yourSets: CardSet[] = [
   {
     id: '5',
     title: 'Node.js Backend',
+    userId: '1',
     topic: 'Server-side JavaScript development',
     cards: [
       {
@@ -116,6 +122,7 @@ export const yourSets: CardSet[] = [
   {
     id: '6',
     title: 'Database Design',
+    userId: '1',
     topic: 'Relational database concepts',
     cards: [
       {
@@ -130,6 +137,7 @@ export const yourSets: CardSet[] = [
   {
     id: '7',
     title: 'API Development',
+    userId: '1',
     topic: 'RESTful API design and implementation',
     cards: [
       {
@@ -148,6 +156,7 @@ export const recentSets: CardSet[] = [
   {
     id: '8',
     title: 'Python Data Structures',
+    userId: '2',
     topic: 'Lists, dictionaries, and tuples in Python',
     cards: [
       {
@@ -162,6 +171,7 @@ export const recentSets: CardSet[] = [
   {
     id: '9',
     title: 'Machine Learning Basics',
+    userId: '2',
     topic: 'Introduction to ML concepts',
     cards: [
       {
@@ -176,6 +186,7 @@ export const recentSets: CardSet[] = [
   {
     id: '10',
     title: 'Docker Containers',
+    userId: '2',
     topic: 'Containerization and deployment',
     cards: [
       {
@@ -190,6 +201,7 @@ export const recentSets: CardSet[] = [
   {
     id: '11',
     title: 'Git Version Control',
+    userId: '2',
     topic: 'Source code management',
     cards: [
       {
@@ -204,6 +216,7 @@ export const recentSets: CardSet[] = [
   {
     id: '12',
     title: 'AWS Cloud Services',
+    userId: '2',
     topic: 'Amazon Web Services fundamentals',
     cards: [
       {
@@ -218,6 +231,7 @@ export const recentSets: CardSet[] = [
   {
     id: '13',
     title: 'GraphQL APIs',
+    userId: '2',
     topic: 'Query language for APIs',
     cards: [
       {
@@ -236,6 +250,7 @@ export const draftSets: CardSet[] = [
   {
     id: '14',
     title: 'Vue.js Components',
+    userId: '3',
     topic: 'Component-based architecture in Vue',
     cards: [],
     created: new Date('2024-02-22')
@@ -243,6 +258,7 @@ export const draftSets: CardSet[] = [
   {
     id: '15',
     title: 'MongoDB NoSQL',
+    userId: '3',
     topic: 'Document-based database concepts',
     cards: [],
     created: new Date('2024-02-21')
@@ -250,6 +266,7 @@ export const draftSets: CardSet[] = [
   {
     id: '16',
     title: 'Redis Caching',
+    userId: '3',
     topic: 'In-memory data structure store',
     cards: [],
     created: new Date('2024-02-20')
@@ -257,6 +274,7 @@ export const draftSets: CardSet[] = [
   {
     id: '17',
     title: 'Kubernetes Orchestration',
+    userId: '3',
     topic: 'Container orchestration platform',
     cards: [],
     created: new Date('2024-02-19')
@@ -264,6 +282,7 @@ export const draftSets: CardSet[] = [
   {
     id: '18',
     title: 'Microservices Architecture',
+    userId: '3',
     topic: 'Distributed system design patterns',
     cards: [],
     created: new Date('2024-02-18')
@@ -271,6 +290,7 @@ export const draftSets: CardSet[] = [
   {
     id: '19',
     title: 'Security Best Practices',
+    userId: '3',
     topic: 'Web application security fundamentals',
     cards: [],
     created: new Date('2024-02-17')
@@ -278,6 +298,7 @@ export const draftSets: CardSet[] = [
   {
     id: '20',
     title: 'Performance Optimization',
+    userId: '3',
     topic: 'Web performance and optimization techniques',
     cards: [],
     created: new Date('2024-02-16')
@@ -289,3 +310,35 @@ export const rows: { title: string; items: CardSet[] }[] = [
   { title: "Recent", items: recentSets },
   { title: "Drafts", items: draftSets },
 ];
+
+// Mock Users
+export const mockUsers: User[] = [
+  {
+    id: '1',
+    email: 'ali@example.com',
+    name: 'Ali',
+    avatar: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=32&h=32&fit=crop&crop=face',
+    createdAt: new Date('2024-01-01')
+  },
+  {
+    id: '2',
+    email: 'sarah@example.com',
+    name: 'Sarah',
+    avatar: 'https://images.unsplash.com/photo-1494790108755-2616b612b786?w=32&h=32&fit=crop&crop=face',
+    createdAt: new Date('2024-01-15')
+  },
+  {
+    id: '3',
+    email: 'ethan@example.com',
+    name: 'Ethan',
+    avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=32&h=32&fit=crop&crop=face',
+    createdAt: new Date('2024-02-01')
+  }
+];
+
+// Mock login credentials (in real app, this would be hashed passwords)
+export const mockCredentials = {
+  'ali@example.com': 'password123',
+  'sarah@example.com': 'password123',
+  'ethan@example.com': 'password123'
+};

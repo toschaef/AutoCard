@@ -7,19 +7,30 @@ import { useParams } from 'next/navigation';
 import { CardSet } from '@/types';
 import SetDetailsForm from '@/components/SetDetailsForm';
 import CardListEditor from '@/components/CardListEditor';
+import { yourSets, recentSets, draftSets } from '@/lib/mockData';
 
 // Mock function to simulate fetching data from an API
 const fetchSetById = async (id: string): Promise<CardSet> => {
   console.log(`Fetching data for set: ${id}`);
+  
+  // Combine all mock data arrays
+  const allSets = [...yourSets, ...recentSets, ...draftSets];
+  
+  // Find the set by ID
+  const foundSet = allSets.find(set => set.id === id);
+  
+  if (foundSet) {
+    return foundSet;
+  }
+  
+  // If not found, return a default set
   return {
-    id: 'history-101',
-    title: 'American Revolution',
-    topic: 'Key events and figures from 1765 to 1783.',
+    id: id,
+    title: 'Unknown Set',
+    userId: '1', // Default to user 1
+    topic: 'This set was not found in the mock data.',
     created: new Date(),
-    cards: [
-      { id: 'c1', question: 'What year did the Boston Tea Party happen?', correct_answer: '1773', incorrect_answers: ['1770', '1775'] },
-      { id: 'c2', question: 'Who was the primary author of the Declaration of Independence?', correct_answer: 'Thomas Jefferson', incorrect_answers: ['George Washington', 'John Adams'] },
-    ],
+    cards: []
   };
 };
 

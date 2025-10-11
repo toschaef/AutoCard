@@ -5,18 +5,17 @@ import {
   createCardSet,
   getAllCardSets,
   getCardSetById,
-  addCardToSet,
-  updateCard,
-  deleteCard,
+  updateCardSet,
+  deleteCardSet,
 } from '../controllers/cardSetController';
 
 const router = Router();
 
+// Card Set CRUD operations
 router.post('/', createCardSet);
 router.get('/', getAllCardSets);
 router.get('/:setId', getCardSetById);
-router.post('/:setId/cards', addCardToSet);
-router.put('/:setId/cards/:cardId', updateCard);
-router.delete('/:setId/cards/:cardId', deleteCard);
+router.put('/:setId', updateCardSet);
+router.delete('/:setId', deleteCardSet);
 
 export default router;

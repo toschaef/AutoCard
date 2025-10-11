@@ -2,6 +2,7 @@
 
 export interface Card {
   id: string;
+  userId: string;
   question: string;
   correct_answer: string;
   incorrect_answers: string[];
@@ -9,7 +10,9 @@ export interface Card {
   
 export interface CardSet {
   id: string;
+  userId: string;
   title: string;
+  description: string;
   topic: string;
   cards: Card[];
   created: Date;
@@ -35,9 +38,6 @@ export default interface CreateCardSetParams {
   initialCards: { front: string, back: string }[];
 }
 
-/**
- * Parameters required to delete a card set.
- */
 export default interface DeleteCardSetParams {
   cardSetId: string;
 }

@@ -28,3 +28,16 @@ export interface GameSession {
   state: 'waiting' | 'playing' | 'ended';
   currentQuestionIndex: number;
 }
+
+export default interface CreateCardSetParams {
+  name: string;
+  description: string;
+  initialCards: { front: string, back: string }[];
+}
+
+/**
+ * Parameters required to delete a card set.
+ */
+export default interface DeleteCardSetParams {
+  cardSetId: string;
+}

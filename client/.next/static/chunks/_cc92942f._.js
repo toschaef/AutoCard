@@ -596,7 +596,7 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist
 ;
 function AnswerButton(param) {
     let { label, disabled = false, state = "idle", onClick, "data-testid": dataTestId } = param;
-    const baseClasses = "w-full p-4 text-left font-medium rounded-xl border border-slate-200 bg-white shadow-sm transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-slate-400 min-h-[60px] flex items-center";
+    const baseClasses = "w-full p-4 text-left font-medium text-black rounded-xl border border-slate-200 bg-white shadow-sm transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-slate-400 min-h-[60px] flex items-center";
     const stateClasses = {
         idle: "hover:bg-slate-50",
         correct: "bg-green-600 text-white border-green-600",

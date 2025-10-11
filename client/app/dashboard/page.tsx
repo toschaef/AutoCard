@@ -9,14 +9,17 @@
  * TODO: Add navigation routing for Play/Edit buttons
  */
 
+import { useState } from 'react';
 import TopBar from '../../components/TopBar';
 import GreetingHero from '../../components/GreetingHero';
 import Row from '../../components/Row';
+import CreateSetModal from '../../components/CreateSetModal';
 import { yourSets, recentSets, draftSets } from '../../lib/mockData';
 import { useAuth } from '../../lib/auth';
 
 export default function DashboardPage() {
   const { user } = useAuth();
+  const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
 
   // Filter sets based on current user
   const getUserSets = () => {
@@ -40,10 +43,20 @@ export default function DashboardPage() {
     { title: "Drafts", items: getDraftSets() },
   ];
 
+  const handleCreateSet = async (setData: { title: string; description: string }) => {
+    // TODO: Implement actual set creation logic
+    console.log('Creating set:', setData);
+    
+    // For now, just simulate a delay
+    await new Promise(resolve => setTimeout(resolve, 1000));
+    
+    // TODO: Add the new set to the user's sets and refresh the dashboard
+  };
+
   return (
     <div className="min-h-screen bg-slate-50">
       <TopBar />
-      <GreetingHero />
+      <GreetingHero onCreateSetClick={() => setIsCreateModalOpen(true)} />
       
       <main className="max-w-7xl mx-auto">
         {filteredRows.map((row) => (
@@ -54,6 +67,13 @@ export default function DashboardPage() {
           />
         ))}
       </main>
+
+      {/* Create Set Modal */}
+      <CreateSetModal
+        isOpen={isCreateModalOpen}
+        onClose={() => setIsCreateModalOpen(false)}
+        onCreateSet={handleCreateSet}
+      />
     </div>
   );
 }

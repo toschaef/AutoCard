@@ -1,6 +1,5 @@
 import { Card } from '@/types';
 
-export const TIMER_SECONDS = 20;
 
 export function buildAnswers(card: Card): { text: string; isCorrect: boolean }[] {
   const allAnswers = [card.correct_answer, ...card.incorrect_answers];

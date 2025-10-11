@@ -20,6 +20,7 @@ server/server.js
 
 # next.js
 /.next/
+/client/.next/
 /out/
 /client/.next/
 
@@ -35,9 +36,6 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
-
-# env files (can opt-in for committing if needed)
-.env*
 
 # vercel
 .vercel

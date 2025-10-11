@@ -4,6 +4,8 @@ import { Request, Response } from 'express';
 import { Card, CardSet } from '../../../types';
 import { getCardSets } from './cardSetController';
 
+const dbManager = new DBManager();
+
 // Get all cards from a specific set
 export const getCardsBySetId = (req: Request, res: Response) => {
   const { setId } = req.params;

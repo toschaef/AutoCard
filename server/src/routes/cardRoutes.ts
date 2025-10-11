@@ -10,24 +10,25 @@ import {
   getCardCount,
 } from '../controllers/cardController';
 
-const router = Router();
+// This router needs to merge params from the parent router to access ':setId'
+const router = Router({ mergeParams: true });
 
-// Get all cards from a specific set
-router.get('/sets/:setId', getCardsBySetId);
+// GET /api/sets/:setId/cards/
+router.get('/', getCardsBySetId);
 
-// Get card count for a specific set
-router.get('/sets/:setId/count', getCardCount);
+// GET /api/sets/:setId/cards/count
+router.get('/count', getCardCount);
 
-// Get a single card by ID from a specific set
-router.get('/sets/:setId/cards/:cardId', getCardById);
+// POST /api/sets/:setId/cards/
+router.post('/', createCard);
 
-// Create a new card in a specific set
-router.post('/sets/:setId', createCard);
+// GET /api/sets/:setId/cards/:cardId
+router.get('/:cardId', getCardById);
 
-// Update an existing card
-router.put('/sets/:setId/cards/:cardId', updateCard);
+// PUT /api/sets/:setId/cards/:cardId
+router.put('/:cardId', updateCard);
 
-// Delete a card from a set
-router.delete('/sets/:setId/cards/:cardId', deleteCard);
+// DELETE /api/sets/:setId/cards/:cardId
+router.delete('/:cardId', deleteCard);
 
 export default router;

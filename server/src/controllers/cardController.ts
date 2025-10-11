@@ -1,7 +1,7 @@
 // src/controllers/cardController.ts
 
 import { Request, Response } from 'express';
-import { Card, CardSet } from '@/types';
+import { Card, CardSet } from '../../../types';
 import { getCardSets } from './cardSetController';
 
 // Get all cards from a specific set

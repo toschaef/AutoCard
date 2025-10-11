@@ -1,4 +1,4 @@
-import { CardSet } from '../lib/types';
+import { CardSet } from '@/types';
 
 interface SetCardProps {
   item: CardSet;

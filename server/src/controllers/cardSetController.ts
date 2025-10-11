@@ -1,7 +1,7 @@
 // src/controllers/cardSetController.ts
 
 import { Request, Response } from 'express';
-import { CardSet, Card } from '@types';
+import { CardSet, Card } from '../../../types';
 
 
 // Create a new card set

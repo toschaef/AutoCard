@@ -9,6 +9,7 @@ import {
   deleteCardSet,
 } from '../controllers/cardSetController';
 import cardRoutes from './cardRoutes'; // <-- Import card routes
+import aiRoutes from './AIRoutes';
 
 const router = Router();
 
@@ -37,5 +38,8 @@ router.delete('/sets/:setId', deleteCardSet);
 // --- Nest the card routes ---
 // Any request to /api/cards/**  will be handled by the cardRoutes router
 router.use('/cards', cardRoutes);
+
+// Any request to /api/ai/** will be handled by the aiRoutes router
+router.use('/ai', aiRoutes);
 
 export default router;

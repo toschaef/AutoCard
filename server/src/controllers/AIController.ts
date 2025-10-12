@@ -1,38 +1,51 @@
-// /server/src/helpers/initCardSet.ts
+import { Request, Response } from 'express';
+import { questionsFromCustomPrompt, questionsFromCustomPromptAndDocument } from '../middleware/final';
 
-import { Card } from '../types';
-
-// This is the data structure the generation function should return
-type GeneratedCardData = Omit<Card, 'id' | 'userId'>;
-
-/**
- * Generates a set of Kahoot-style questions based on a topic.
- * (This is the function your teammate will implement)
- * @param topic The topic for the quiz.
- * @param numberOfQuestions The number of questions to generate.
- * @returns A promise that resolves to an array of card data.
- */
-export const initCardSet = async (
-  topic: string,
-  numberOfQuestions: number
-): Promise<GeneratedCardData[]> => {
-  console.log(`[Helper] initCardSet called for topic "${topic}"...`);
-
-  // --- Your teammate's generation logic will go here ---
-  // For now, it returns mock data to ensure the rest of the app works.
-
-  await new Promise(resolve => setTimeout(resolve, 500)); // Simulate work
-
-  const mockCards: GeneratedCardData[] = Array.from({ length: numberOfQuestions }, (_, i) => ({
-    question: `Generated question about ${topic}? #${i + 1}`,
-    correct_answer: `Correct Answer #${i + 1}`,
-    incorrect_answers: [
-      `Incorrect Option A`,
-      `Incorrect Option B`,
-      `Incorrect Option C`,
-    ],
-  }));
-
-  console.log('[Helper] Card set generation finished.');
-  return mockCards;
+// Get all cards from a specific set
+export const createBatchOfCards = async (req: Request, res: Response) => {
+  try {
+    const { prompt, specificGenre, numProblemsPerGenre, difficulty } = req.body;
+    const response = await questionsFromCustomPrompt(prompt, specificGenre, numProblemsPerGenre, difficulty);
+    res.status(200).json(response);
+  } catch (error: any) {
+    console.error(error.message);
+    res.status(500).json({ message: 'Server Error' });
+  }
 };
+
+export const createBatchOfCardsFromFile = async (req: Request, res: Response) => {
+  try {
+    // Text fields are still in req.body
+    const { prompt, numProblemsPerGenre, difficulty } = req.body;
+    
+    // The file is now available on req.file, thanks to multer
+    if (!req.file) {
+      return res.status(400).json({ message: 'No file uploaded.' });
+    }
+
+    // 1. Convert the file's buffer to a Base64 string
+    const base64Data = req.file.buffer.toString('base64');
+
+    // 2. Get the file's MIME type (e.g., 'application/pdf')
+    const mimeType = req.file.mimetype;
+
+    // 3. Create the file payload object that your service function expects
+    const filePayload = {
+      data: base64Data,
+      mimeType: mimeType
+    };
+
+    // Pass the prompt details and the newly created file payload
+    const response = await questionsFromCustomPromptAndDocument(
+      prompt,
+      numProblemsPerGenre,
+      difficulty,
+      filePayload
+    );
+    res.status(200).json(response);
+
+  } catch (error: any) {
+    console.error(error.message);
+    res.status(500).json({ message: 'Server Error' });
+  }
+}

@@ -5,11 +5,7 @@ import { useState } from 'react';
 interface CreateSetModalProps {
   isOpen: boolean;
   onClose: () => void;
-<<<<<<< HEAD
-  onCreateSet: (setData: { topic: string; prompt: string; difficulty: 'novice' | 'intermediate' | 'advanced'; cardCount: number }) => void;
-=======
   onCreateSet: (setData: { title: string; description: string }) => Promise<void>;
->>>>>>> bbe20a1 (Add flowing gradients, AI generation feature, and complete create/edit/play workflow with localStorage persistence)
 }
 
 export default function CreateSetModal({ isOpen, onClose, onCreateSet }: CreateSetModalProps) {

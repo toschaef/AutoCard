@@ -27,15 +27,7 @@ export default function DashboardPage() {
   // Auto-login for testing (comment out later)
   useEffect(() => {
     if (!user) {
-      // Auto-login as Ali for testing
-      const testUser = {
-        id: '1',
-        email: 'ali@example.com',
-        name: 'Ali',
-        createdAt: new Date()
-      };
-      localStorage.setItem('user', JSON.stringify(testUser));
-      window.location.reload(); // Reload to apply auto-login
+      router.push('/login');
     }
   }, [user, router]);
 

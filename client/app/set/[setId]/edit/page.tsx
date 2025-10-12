@@ -4,13 +4,13 @@
 
 import { useState, useEffect } from 'react';
 import { useParams, useRouter } from 'next/navigation';
-import { CardSet } from '@/types';
+import { CardSet } from '../../../../lib/types';
 import SetDetailsForm from '@/components/SetDetailsForm';
 import CardListEditor from '@/components/CardListEditor';
 import ConfirmDialog from '@/components/ConfirmDialog';
 import GenerateQuestionsModal from '@/components/GenerateQuestionsModal';
 import { yourSets, exampleSets } from '@/lib/exampleSets';
-import { useAppContext } from '@/Context';
+import { useAuth } from '../../../../lib/auth';
 
 // Mock function to simulate fetching data from an API
 const fetchSetById = async (id: string): Promise<CardSet> => {
@@ -34,31 +34,22 @@ const fetchSetById = async (id: string): Promise<CardSet> => {
   const allSets = [...yourSets, ...exampleSets];
   
   // Find the set by ID
-  //const foundSet = allSets.find(set => set.id === id);
+  const foundSet = allSets.find(set => set.id === id);
   
-  // if (foundSet) {
-  //   return foundSet;
-  // }
+  if (foundSet) {
+    return foundSet;
+  }
   
   // If not found, return a default set
   return {
+    id: id,
     title: 'Unknown Set',
     userId: '1', // Default to user 1
     description: 'This set was not found in the mock data.',
     created: new Date(),
-    cards: ["f"]
+    cards: []
   };
 };
-
-const addCard = () => {
-
-}
-const deleteCard = () => {
-
-}
-const updateCard = () => {
-
-}
 
 export default function EditSetPage() {
   const [cardSet, setCardSet] = useState<CardSet | null>(null);
@@ -69,14 +60,14 @@ export default function EditSetPage() {
   const [showGenerateModal, setShowGenerateModal] = useState(false);
   const params = useParams();
   const router = useRouter();
-  const { user } = useAppContext();
+  const { user, login } = useAuth();
 
-  // Redirect to welcome page if not logged in
+  // Auto-login for testing (comment out later)
   useEffect(() => {
     if (!user) {
-      router.push('/');
+      login('ali@example.com', 'password').catch(console.error);
     }
-  }, [user, router]);
+  }, [user, login]);
 
   useEffect(() => {
     const setId = params.setId;
@@ -147,6 +138,33 @@ export default function EditSetPage() {
   const handleCancelPlay = () => {
     setShowPlayDialog(false);
     router.push(`/play/${cardSet?.id}`);
+  };
+
+  // Card management functions
+  const handleAddCard = (newCard: any) => {
+    if (!cardSet) return;
+    setCardSet({
+      ...cardSet,
+      cards: [...cardSet.cards, newCard]
+    });
+  };
+
+  const handleDeleteCard = (cardId: string) => {
+    if (!cardSet) return;
+    setCardSet({
+      ...cardSet,
+      cards: cardSet.cards.filter(card => card.id !== cardId)
+    });
+  };
+
+  const handleUpdateCard = (updatedCard: any) => {
+    if (!cardSet) return;
+    setCardSet({
+      ...cardSet,
+      cards: cardSet.cards.map(card => 
+        card.id === updatedCard.id ? updatedCard : card
+      )
+    });
   };
 
   const handleGenerateQuestions = (settings: { topic: string; description: string; count: number }) => {
@@ -274,10 +292,10 @@ export default function EditSetPage() {
               <div className="flex-1 overflow-hidden">
                 <div className="h-full overflow-y-auto p-6">
                 <CardListEditor 
-                  cards={cardSet}
-                  onAddCard={addCard}
-                  onDeleteCard={deleteCard}
-                  onCardChange={updateCard}
+                  cards={cardSet?.cards || []}
+                  onAddCard={handleAddCard}
+                  onDeleteCard={handleDeleteCard}
+                  onCardChange={handleUpdateCard}
                 />
                 </div>
               </div>

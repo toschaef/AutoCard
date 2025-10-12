@@ -14,12 +14,11 @@ import TopBar from '../../components/TopBar';
 import Row from '../../components/Row';
 import CreateSetModal from '../../components/CreateSetModal';
 import { yourSets, exampleSets } from '../../lib/exampleSets';
-import apiClient from '../../apiClient';
-import { useAppContext } from '@/Context';
-import { CardSet } from '@/types';
+import { useAuth } from '../../lib/auth';
+import { CardSet } from '../../lib/types';
 
 export default function DashboardPage() {
-  const { user } = useAppContext();
+  const { user, login } = useAuth();
   const router = useRouter();
   const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
   const [userCreatedSets, setUserCreatedSets] = useState<CardSet[]>([]);
@@ -28,16 +27,9 @@ export default function DashboardPage() {
   useEffect(() => {
     if (!user) {
       // Auto-login as Ali for testing
-      const testUser = {
-        id: '1',
-        email: 'ali@example.com',
-        name: 'Ali',
-        createdAt: new Date()
-      };
-      localStorage.setItem('user', JSON.stringify(testUser));
-      window.location.reload(); // Reload to apply auto-login
+      login('ali@example.com', 'password').catch(console.error);
     }
-  }, [user, router]);
+  }, [user, login]);
 
   // Load user-created sets from localStorage
   useEffect(() => {

@@ -11,7 +11,7 @@ import AnswerGrid from '../../../components/Play/AnswerGrid';
 export default function PlayPage() {
   const params = useParams();
   const router = useRouter();
-  const { user } = useAuth();
+  const { user, login } = useAuth();
   const setId = params.id as string;
   
   // All hooks must be at the top level
@@ -24,16 +24,9 @@ export default function PlayPage() {
   // Auto-login for testing (comment out later)
   useEffect(() => {
     if (!user) {
-      const testUser = {
-        id: '1',
-        email: 'ali@example.com',
-        name: 'Ali',
-        createdAt: new Date()
-      };
-      localStorage.setItem('user', JSON.stringify(testUser));
-      window.location.reload();
+      login('ali@example.com', 'password').catch(console.error);
     }
-  }, [user, router]);
+  }, [user, login]);
 
   // Load the card set (check localStorage first, then static sets)
   useEffect(() => {

@@ -1,4 +1,4 @@
-import { CardSet, User } from '@/types';
+import { CardSet } from './types';
 //import { normalizeIncomingSet } from './normalize';
 
 // Example C++ Set using normalizeIncomingSet
@@ -49,10 +49,62 @@ const cppExample = {
   ]
 };
 
-const cppBasicsSet = {
-  ...cppExample,
+const cppBasicsSet: CardSet = {
   id: "cpp-basics",
-  userId: "1"
+  userId: "1",
+  title: "C++ Programming Fundamentals",
+  description: "Essential C++ concepts for beginners",
+  cards: [
+    {
+      id: 'cpp-1',
+      question: "What is the entry point function of a C++ program?",
+      correct_answer: "main()",
+      incorrect_answers: ["start()", "run()", "execute()"]
+    },
+    {
+      id: 'cpp-2',
+      question: "Which keyword is used to include header files?",
+      correct_answer: "#include",
+      incorrect_answers: ["import", "using", "require"]
+    },
+    {
+      id: 'cpp-3',
+      question: "What does cout stand for in C++?",
+      correct_answer: "console output",
+      incorrect_answers: ["character output", "code output", "compiler output"]
+    },
+    {
+      id: 'cpp-4',
+      question: "Which operator is used for pointer dereferencing?",
+      correct_answer: "*",
+      incorrect_answers: ["&", "->", "."]
+    },
+    {
+      id: 'cpp-5',
+      question: "What namespace is cout part of?",
+      correct_answer: "std",
+      incorrect_answers: ["io", "iostream", "console"]
+    },
+    {
+      id: 'cpp-6',
+      question: "Which keyword creates a constant in C++?",
+      correct_answer: "const",
+      incorrect_answers: ["final", "readonly", "constant"]
+    },
+    {
+      id: 'cpp-7',
+      question: "What symbol ends a statement in C++?",
+      correct_answer: ";",
+      incorrect_answers: [":", ".", ","]
+    },
+    {
+      id: 'cpp-8',
+      question: "Which header file is needed for input/output?",
+      correct_answer: "iostream",
+      incorrect_answers: ["stdio.h", "io.h", "input.h"]
+    }
+  ],
+  created: new Date('2024-01-10')
 };
 
 // JavaScript Fundamentals - Complete Set
@@ -906,24 +958,21 @@ export const exampleSets: CardSet[] = [
 // Keep yourSets for user-specific data
 export const yourSets: CardSet[] = [];
 
-// Demo users
-export const demoUsers: User[] = [
-  {
-    id: '1',
-    email: 'ali@example.com',
-    name: 'Ali',
-    createdAt: new Date('2024-01-01')
-  },
-  {
-    id: '2',
-    email: 'sarah@example.com',
-    name: 'Sarah',
-    createdAt: new Date('2024-01-02')
-  },
-  {
-    id: '3',
-    email: 'john@example.com',
-    name: 'John',
-    createdAt: new Date('2024-01-03')
-  }
-];
+// Demo users (commented out - not needed for now)
+// export const demoUsers = [
+//   {
+//     id: '1',
+//     email: 'ali@example.com',
+//     name: 'Ali',
+//   },
+//   {
+//     id: '2',
+//     email: 'sarah@example.com',
+//     name: 'Sarah',
+//   },
+//   {
+//     id: '3',
+//     email: 'john@example.com',
+//     name: 'John',
+//   }
+// ];

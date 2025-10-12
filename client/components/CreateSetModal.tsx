@@ -5,19 +5,13 @@ import { useState } from 'react';
 interface CreateSetModalProps {
   isOpen: boolean;
   onClose: () => void;
-<<<<<<< HEAD
-  onCreateSet: (setData: { topic: string; prompt: string; difficulty: 'novice' | 'intermediate' | 'advanced'; cardCount: number }) => void;
-=======
   onCreateSet: (setData: { title: string; description: string }) => Promise<void>;
->>>>>>> bbe20a1 (Add flowing gradients, AI generation feature, and complete create/edit/play workflow with localStorage persistence)
 }
 
 export default function CreateSetModal({ isOpen, onClose, onCreateSet }: CreateSetModalProps) {
   const [formData, setFormData] = useState({
-    topic: '',
-    prompt: '',
-    difficulty: 'novice' as 'novice' | 'intermediate' | 'advanced',
-    cardCount: 10,
+    title: '',
+    description: ''
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -26,21 +20,10 @@ export default function CreateSetModal({ isOpen, onClose, onCreateSet }: CreateS
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleDifficultyChange = (difficulty: 'novice' | 'intermediate' | 'advanced') => {
-    setFormData((prev) => ({ ...prev, difficulty }));
-  };
-
-  const handleCardCountChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = parseInt(e.target.value, 10);
-    if (!isNaN(value) && value > 0) {
-      setFormData(prev => ({ ...prev, cardCount: value }));
-    }
-  };
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    if (!formData.topic.trim()) {
+    if (!formData.title.trim()) {
       return;
     }
 
@@ -48,14 +31,12 @@ export default function CreateSetModal({ isOpen, onClose, onCreateSet }: CreateS
     
     try {
       await onCreateSet({
-        topic: formData.topic.trim(),
-        prompt: formData.prompt.trim(),
-        difficulty: formData.difficulty,
-        cardCount: 10,
+        title: formData.title.trim(),
+        description: formData.description.trim()
       });
       
       // Reset form
-      setFormData({ topic: '', prompt: '', difficulty: 'novice', cardCount: 10 });
+      setFormData({ title: '', description: '' });
       onClose();
     } catch (error) {
       console.error('Error creating set:', error);
@@ -66,7 +47,7 @@ export default function CreateSetModal({ isOpen, onClose, onCreateSet }: CreateS
 
   const handleClose = () => {
     if (!isSubmitting) {
-      setFormData({ topic: '', prompt: '', difficulty: 'novice', cardCount: 10 });
+      setFormData({ title: '', description: '' });
       onClose();
     }
   };
@@ -77,14 +58,14 @@ export default function CreateSetModal({ isOpen, onClose, onCreateSet }: CreateS
     <div className="fixed inset-0 z-50 overflow-y-auto">
       {/* Backdrop */}
       <div 
-        className="fixed inset-0 bg-black bg-opacity-50 transition-opacity"
+        className="fixed inset-0 bg-black/50 backdrop-blur-sm transition-opacity" 
         onClick={handleClose}
       />
-      
-      {/* Modal */}
+
+      {/* Modal Content */}
       <div className="flex min-h-full items-center justify-center p-4">
-        <div className="relative w-full max-w-md transform overflow-hidden rounded-2xl bg-white shadow-xl transition-all">
-          {/* Header */}
+        <div className="relative bg-white rounded-2xl shadow-2xl w-full max-w-md overflow-hidden transform transition-all">
+          {/* Header with gradient */}
           <div className="bg-gradient-to-r from-blue-600 to-purple-600 px-6 py-4">
             <div className="flex items-center justify-between">
               <h3 className="text-xl font-semibold text-white">
@@ -106,16 +87,16 @@ export default function CreateSetModal({ isOpen, onClose, onCreateSet }: CreateS
           <form onSubmit={handleSubmit} className="p-6">
             <div className="space-y-4">
               <div>
-                <label htmlFor="topic" className="block text-sm font-semibold text-gray-700 mb-2">
-                  Set Topic *
+                <label htmlFor="title" className="block text-sm font-semibold text-gray-700 mb-2">
+                  Set Name *
                 </label>
                 <input 
                   type="text" 
                   id="title"
                   name="title" 
-                  value={formData.topic} 
+                  value={formData.title} 
                   onChange={handleChange}
-                  placeholder="Enter set topic..."
+                  placeholder="Enter set name..."
                   required
                   disabled={isSubmitting}
                   className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors text-gray-900 placeholder-gray-500 disabled:bg-gray-100 disabled:cursor-not-allowed" 
@@ -123,13 +104,13 @@ export default function CreateSetModal({ isOpen, onClose, onCreateSet }: CreateS
               </div>
               
               <div>
-                <label htmlFor="prompt" className="block text-sm font-semibold text-gray-700 mb-2">
+                <label htmlFor="description" className="block text-sm font-semibold text-gray-700 mb-2">
                   Description
                 </label>
                 <textarea 
                   id="description"
                   name="description" 
-                  value={formData.prompt} 
+                  value={formData.description} 
                   onChange={handleChange}
                   placeholder="Describe what this set covers..."
                   rows={3}
@@ -137,50 +118,9 @@ export default function CreateSetModal({ isOpen, onClose, onCreateSet }: CreateS
                   className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors text-gray-900 placeholder-gray-500 resize-none disabled:bg-gray-100 disabled:cursor-not-allowed" 
                 />
               </div>
-              {/* Difficulty Selector */}
-            <div>
-              <label className="block text-sm font-semibold text-gray-700 mb-2">
-                Difficulty
-              </label>
-              <div className="flex gap-3">
-                {(['novice', 'intermediate', 'advanced'] as const).map((level) => (
-                  <button
-                    key={level}
-                    type="button"
-                    onClick={() => handleDifficultyChange(level)}
-                    className={`flex-1 py-2 rounded-lg font-medium border transition-all ${
-                      formData.difficulty === level
-                        ? 'bg-gradient-to-r from-blue-600 to-purple-600 text-white border-transparent'
-                        : 'border-gray-300 text-gray-700 hover:bg-gray-100'
-                    }`}
-                    disabled={isSubmitting}
-                  >
-                    {level.charAt(0).toUpperCase() + level.slice(1)}
-                  </button>
-                ))}
-              </div>
-            </div>
-            <div>
-            <div>
-                  <label htmlFor="cardCount" className="block text-sm font-semibold text-gray-700 mb-2">
-                    Number of Cards
-                  </label>
-                  <input
-                    type="number"
-                    id="cardCount"
-                    name="cardCount"
-                    value={formData.cardCount}
-                    onChange={handleCardCountChange}
-                    min={1}
-                    max={50}
-                    disabled={isSubmitting}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors text-gray-900 placeholder-gray-500 disabled:bg-gray-100 disabled:cursor-not-allowed"
-                  />
-                </div>
-            </div>
             </div>
 
-            {/* Actions */}
+            {/* Buttons */}
             <div className="flex gap-3 mt-6">
               <button
                 type="button"
@@ -192,7 +132,7 @@ export default function CreateSetModal({ isOpen, onClose, onCreateSet }: CreateS
               </button>
               <button
                 type="submit"
-                disabled={isSubmitting || !formData.topic.trim()}
+                disabled={isSubmitting || !formData.title.trim()}
                 className="flex-1 px-4 py-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg font-medium hover:from-blue-700 hover:to-purple-700 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {isSubmitting ? (

@@ -5,10 +5,11 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import apiClient from "@/apiClient";
 import Link from "next/link";
-import { useAppContext } from "@/Context";
+import { useAuth } from "../../lib/auth";
 
 export default function SignUpPage() {
   const router = useRouter();
+  const { signup } = useAuth();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -17,7 +18,6 @@ export default function SignUpPage() {
   });
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
-  const { setState } = useAppContext();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -39,15 +39,8 @@ export default function SignUpPage() {
     }
 
     try {
-      const res = await apiClient.post('/register', { email, password, name });
-
-      const { token, user } = res.data;
-
-      setState({ token, user });
-
-      console.log('redirecting');
+      await signup(name, email, password);
       router.push('/dashboard');
-
     } catch (err: any) {
       console.error(err);
       setError(err.message || 'Internal Server Error');

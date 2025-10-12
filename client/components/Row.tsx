@@ -1,6 +1,6 @@
 'use client';
 
-import { CardSet } from '@/types';
+import { CardSet } from '../lib/types';
 import SetCard from './SetCard';
 
 interface RowProps {

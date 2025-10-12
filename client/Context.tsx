@@ -29,16 +29,11 @@ interface ProviderProps {
 
 const AppContext = createContext<AppContextType | undefined>(undefined);
 
+// The reducer's only job is to calculate the next state.
 const appReducer = (state: AppState, action: AppAction): AppState => {
   switch (action.type) {
     case 'SET_STATE':
-      if (action.payload.token !== undefined)
-        localStorage.setItem('authToken', action.payload.token ?? '');
-      if (action.payload.user !== undefined)
-        localStorage.setItem('user', JSON.stringify(action.payload.user));
-
       return { ...state, ...action.payload };
-
     default:
       return state;
   }
@@ -50,7 +45,7 @@ export const Provider = ({ children }: ProviderProps) => {
     user: null,
   });
 
-  // set state from localStorage when component mounts
+  // Effect to rehydrate state from localStorage on initial load
   useEffect(() => {
     const storedToken = localStorage.getItem('authToken');
     const storedUser = localStorage.getItem('user');
@@ -66,6 +61,22 @@ export const Provider = ({ children }: ProviderProps) => {
     }
   }, []);
 
+  // This effect runs whenever state.token or state.user changes,
+  // syncing the new state TO localStorage.
+  useEffect(() => {
+    if (state.token) {
+      localStorage.setItem('authToken', state.token);
+    } else {
+      localStorage.removeItem('authToken');
+    }
+
+    if (state.user) {
+      localStorage.setItem('user', JSON.stringify(state.user));
+    } else {
+      localStorage.removeItem('user');
+    }
+  }, [state.token, state.user]);
+
   const setState = (payload: Partial<AppState>) => {
     dispatch({ type: 'SET_STATE', payload });
   };
@@ -79,7 +90,8 @@ export const Provider = ({ children }: ProviderProps) => {
 
 export const useAppContext = () => {
   const context = useContext(AppContext);
-  if (!context)
+  if (!context) {
     throw new Error('useAppContext must be used within a Provider');
+  }
   return context;
 };

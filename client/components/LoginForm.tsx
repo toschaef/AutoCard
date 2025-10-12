@@ -27,9 +27,9 @@ export default function LoginForm() {
       const res = await apiClient.post('/login', { email, password });
 
       if (res.status === 200) { 
-        const { jwt, user } = res.data;
+        const { token, user } = res.data;
 
-        setState({ token: jwt, user });
+        setState({ token: token, user });
 
         router.push('/dashboard');
       } else {

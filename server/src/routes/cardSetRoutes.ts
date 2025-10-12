@@ -4,9 +4,9 @@ import { Router } from 'express';
 import {
   createCardSet,
   getAllCardSets,
-  // getCardSetById,
-  // updateCardSet,
-  // deleteCardSet,
+  getCardSetById,
+  updateCardSet,
+  deleteCardSet,
 } from '../controllers/cardSetController';
 import cardRoutes from './cardRoutes'; // <-- Import card routes
 
@@ -24,15 +24,15 @@ router.get('/sets/', getAllCardSets);
 
 // // GET /api/sets/:setId
 // // get card set by ID
-// router.get('/sets/:setId', getCardSetById);
+router.get('/sets/:setId', getCardSetById);
 
 // // PUT /api/sets/:setId
 // // update card set by ID
-// router.put('/sets/:setId', updateCardSet);
+router.put('/sets/:setId', updateCardSet);
 
 // // DELETE /api/sets/:setId
 // // delete card set by ID
-// router.delete('/sets/:setId', deleteCardSet);
+router.delete('/sets/:setId', deleteCardSet);
 
 // --- Nest the card routes ---
 // Any request to /api/cards/**  will be handled by the cardRoutes router

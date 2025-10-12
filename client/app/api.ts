@@ -1,0 +1,117 @@
+import apiClient from "@/apiClient";
+import { Card, CardSet } from "@/types"
+
+export const getCardsFromSet = async (setId: string) => {
+    try {
+        const response = await apiClient.get(`/sets/${setId}/cards`);
+        return response.data;
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+export const createCard = async (setId: string, cardData: Card) => {
+    try {
+        const response = await apiClient.post(`/cards`, cardData);
+        return response.data;
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+export const getCardById = async (cardId: string) => {
+    try {
+        const response = await apiClient.get(`/cards/${cardId}`);
+        return response.data;
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+export const updateCard = async (cardId: string, cardData: Card) => {
+    try {
+        const response = await apiClient.put(`/cards/${cardId}`, cardData);
+        return response.data;
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+export const deleteCard = async (cardId: string) => {
+    try {
+        const response = await apiClient.delete(`/cards/${cardId}`);
+        return response.data;
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+export const createSet = async (setData: CardSet) => {
+    try {
+        const response = await apiClient.post(`/sets/`, setData);
+        return response.data;
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+export const getAllSets = async () => {
+    try {
+        const response = await apiClient.get(`/sets/`);
+        return response.data;
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+export const getSetById = async (setId: string) => {
+    try {
+        const response = await apiClient.get(`/sets/${setId}`);
+        return response.data;
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+export const updateSet = async (setId: string, setData: CardSet) => {
+    try {
+        const response = await apiClient.put(`/sets/${setId}`, setData);
+        return response.data;
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+export const deleteSet = async (setId: string) => {
+    try {
+        const response = await apiClient.delete(`/sets/${setId}`);
+        return response.data;
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+export const createBatchOfCards = async (batchData: any) => {
+    try {
+        const response = await apiClient.post(`/ai/`, batchData);
+        return response.data;
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+export const createBatchOfCardsFromFile = async (file: File) => {
+    const formData = new FormData();
+    formData.append('file', file);
+
+    try {
+        const response = await apiClient.post(`/ai/upload`, formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data',
+            },
+        });
+        return response.data;
+    } catch (error) {
+        console.error(error);
+    }
+}

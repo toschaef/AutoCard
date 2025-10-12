@@ -16,13 +16,12 @@ const router = Router({ mergeParams: true });
 // get all cards from the set ID
 router.get('/:setId/cards', getCardsBySetId);
 
-
 // // POST /api/cards/
-// // create a new card in the set ID
+// // create a new card
 router.post('/', createCard);
 
 // // GET /api/cards/:cardId
-// // get card by ID from the set ID
+// // get card by ID
 router.get('/:cardId', getCardById);
 
 // // PUT /api/cards/:setId/cards/:cardId

@@ -1,8 +1,8 @@
 import { CardSet, User } from '@/types';
-import { normalizeIncomingSet } from './normalize';
+//import { normalizeIncomingSet } from './normalize';
 
 // Example C++ Set using normalizeIncomingSet
-const cppExample = normalizeIncomingSet({
+const cppExample = {
   "setName": "C++ Programming Fundamentals",
   "setDescription": "Essential C++ concepts for beginners",
   "cards": [
@@ -47,7 +47,7 @@ const cppExample = normalizeIncomingSet({
       "incorrectAnswers": ["stdio.h", "io.h", "input.h"]
     }
   ]
-});
+};
 
 const cppBasicsSet = {
   ...cppExample,

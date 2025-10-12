@@ -6,7 +6,7 @@ import { CardSet } from '@/types';
 interface CreateSetModalProps {
   isOpen: boolean;
   onClose: () => void;
-  onCreateSet: (setData: { title: string; description: string }) => void;
+  onCreateSet: (setData: { title: string; description: string }) => Promise<void>;
 }
 
 export default function CreateSetModal({ isOpen, onClose, onCreateSet }: CreateSetModalProps) {

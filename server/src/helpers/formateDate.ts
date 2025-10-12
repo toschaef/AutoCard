@@ -1,3 +1,3 @@
 export default function formatDate(date: Date) {
-    return date.toLocaleString('en-US', { dataStyle: 'short' });
+    return date.toLocaleString('en-US', { dateStyle: 'short' });
 }

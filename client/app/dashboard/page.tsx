@@ -17,8 +17,11 @@ import CreateSetModal from '../../components/CreateSetModal';
 import { yourSets, recentSets, draftSets } from '../../lib/mockData';
 import { useAuth } from '../../lib/auth';
 import apiClient from '../../apiClient';
+import { useRouter } from 'next/navigation';
+
 
 export default function DashboardPage() {
+  const router = useRouter();
   const { user } = useAuth();
   const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
 
@@ -54,6 +57,15 @@ export default function DashboardPage() {
     
     const res = await apiClient.post(`/api/sets/${setId}/cards/`, {topic, prompt, difficulty, cardCount});
 
+    if (res.status === 200) { 
+      const { jwt, user } = res.data;
+
+      setState({ token: jwt, user });
+
+      router.push('/dashboard');
+    } else {
+      setError('Invalid email or password');
+    }
 
     } catch (error) {
       console.error('Error creating set:', error);

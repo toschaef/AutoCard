@@ -28,9 +28,9 @@ export const createCardSet = (req: Request, res: Response) => {
 }
 
 // Get all card sets
-export const getAllCardSets = (req: Request, res: Response) => {
+export const getAllCardSets = async (req: Request, res: Response) => {
   try {
-    const sets = CardSet.find().limit(100).sort({ created: -1 }); // Limit to 100 most recent sets
+    const sets = await CardSet.find({}).limit(100).sort({ created: -1 }); // Limit to 100 most recent sets
     res.json(sets);
   } catch (error: any) {
     console.error(error.message);
@@ -39,43 +39,48 @@ export const getAllCardSets = (req: Request, res: Response) => {
 };
 
 // // Get a single card set
-// export const getCardSetById = (req: Request, res: Response) => {
-//   const { setId } = req.params;
-//   const cardSet = cardSets[setId];
-//   if (!cardSet) {
-//     return res.status(404).send('Card set not found.');
-//   }
-//   res.json(cardSet);
-// };
+export const getCardSetById = async (req: Request, res: Response) => {
+  try {
+    const { setId } = req.params;
+    const cardSet = await CardSet.findById(setId);
+    if (!cardSet) {
+      return res.status(404).json({ message: 'Card set not found' });
+    }
+    res.json(cardSet);
+  } catch (error: any) {
+    console.error(error.message);
+    res.status(500).json({ message: 'Server Error' });
+  }
+};
 
 // // Update a card set
-// export const updateCardSet = (req: Request, res: Response) => {
-//   const { setId } = req.params;
-//   const cardSet = cardSets[setId];
-//   if (!cardSet) {
-//     return res.status(404).json({ error: 'Card set not found' });
-//   }
-  
-//   const updatedSet = {
-//     ...cardSet,
-//     title: req.body.title || cardSet.title,
-//     topic: req.body.topic || cardSet.topic,
-//   };
-  
-//   cardSets[setId] = updatedSet;
-//   res.json(updatedSet);
-// };
+export const updateCardSet = async (req: Request, res: Response) => {
+  try {
+    const { setId } = req.params;
+    const updateData = req.body;
+    const updatedSet = await CardSet.findByIdAndUpdate(
+      setId,
+      updateData,
+      { new: true, runValidators: true },
+    );
+    res.status(200).json(updatedSet);
+  } catch (error: any) {
+    console.error(error.message);
+    res.status(500).json({ message: 'Server Error' });
+  }
+};
 
 // // Delete a card set
-// export const deleteCardSet = (req: Request, res: Response) => {
-//   const { setId } = req.params;
-//   const cardSet = cardSets[setId];
-//   if (!cardSet) {
-//     return res.status(404).json({ error: 'Card set not found' });
-//   }
-  
-//   delete cardSets[setId];
-//   res.status(204).send();
-// };
-
-// export const getCardSets = () => cardSets;
+export const deleteCardSet = async (req: Request, res: Response) => {
+  try {
+    const { setId } = req.params;
+    const deletedSet = await CardSet.findByIdAndDelete(setId);
+    if (!deletedSet) {
+      return res.status(404).json({ message: 'Card set not found' });
+    }
+    res.status(204).send();
+  } catch (error: any) {
+    console.error(error.message);
+    res.status(500).json({ message: 'Server Error' });
+  }
+};

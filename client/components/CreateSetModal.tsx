@@ -1,18 +1,19 @@
 'use client';
 
 import { useState } from 'react';
-import { CardSet } from '@/types';
 
 interface CreateSetModalProps {
   isOpen: boolean;
   onClose: () => void;
-  onCreateSet: (setData: { title: string; description: string }) => void;
+  onCreateSet: (setData: { topic: string; prompt: string; difficulty: 'novice' | 'intermediate' | 'advanced'; cardCount: number }) => void;
 }
 
 export default function CreateSetModal({ isOpen, onClose, onCreateSet }: CreateSetModalProps) {
   const [formData, setFormData] = useState({
-    title: '',
-    description: ''
+    topic: '',
+    prompt: '',
+    difficulty: 'novice' as 'novice' | 'intermediate' | 'advanced',
+    cardCount: 10,
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -21,10 +22,21 @@ export default function CreateSetModal({ isOpen, onClose, onCreateSet }: CreateS
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
+  const handleDifficultyChange = (difficulty: 'novice' | 'intermediate' | 'advanced') => {
+    setFormData((prev) => ({ ...prev, difficulty }));
+  };
+
+  const handleCardCountChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = parseInt(e.target.value, 10);
+    if (!isNaN(value) && value > 0) {
+      setFormData(prev => ({ ...prev, cardCount: value }));
+    }
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    if (!formData.title.trim()) {
+    if (!formData.topic.trim()) {
       return;
     }
 
@@ -32,12 +44,14 @@ export default function CreateSetModal({ isOpen, onClose, onCreateSet }: CreateS
     
     try {
       await onCreateSet({
-        title: formData.title.trim(),
-        description: formData.description.trim()
+        topic: formData.topic.trim(),
+        prompt: formData.prompt.trim(),
+        difficulty: formData.difficulty,
+        cardCount: 10,
       });
       
       // Reset form
-      setFormData({ title: '', description: '' });
+      setFormData({ topic: '', prompt: '', difficulty: 'novice', cardCount: 10 });
       onClose();
     } catch (error) {
       console.error('Error creating set:', error);
@@ -48,7 +62,7 @@ export default function CreateSetModal({ isOpen, onClose, onCreateSet }: CreateS
 
   const handleClose = () => {
     if (!isSubmitting) {
-      setFormData({ title: '', description: '' });
+      setFormData({ topic: '', prompt: '', difficulty: 'novice', cardCount: 10 });
       onClose();
     }
   };
@@ -88,16 +102,16 @@ export default function CreateSetModal({ isOpen, onClose, onCreateSet }: CreateS
           <form onSubmit={handleSubmit} className="p-6">
             <div className="space-y-4">
               <div>
-                <label htmlFor="title" className="block text-sm font-semibold text-gray-700 mb-2">
-                  Set Name *
+                <label htmlFor="topic" className="block text-sm font-semibold text-gray-700 mb-2">
+                  Set Topic *
                 </label>
                 <input 
                   type="text" 
                   id="title"
                   name="title" 
-                  value={formData.title} 
+                  value={formData.topic} 
                   onChange={handleChange}
-                  placeholder="Enter set name..."
+                  placeholder="Enter set topic..."
                   required
                   disabled={isSubmitting}
                   className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors text-gray-900 placeholder-gray-500 disabled:bg-gray-100 disabled:cursor-not-allowed" 
@@ -105,13 +119,13 @@ export default function CreateSetModal({ isOpen, onClose, onCreateSet }: CreateS
               </div>
               
               <div>
-                <label htmlFor="description" className="block text-sm font-semibold text-gray-700 mb-2">
+                <label htmlFor="prompt" className="block text-sm font-semibold text-gray-700 mb-2">
                   Description
                 </label>
                 <textarea 
                   id="description"
                   name="description" 
-                  value={formData.description} 
+                  value={formData.prompt} 
                   onChange={handleChange}
                   placeholder="Describe what this set covers..."
                   rows={3}
@@ -119,6 +133,47 @@ export default function CreateSetModal({ isOpen, onClose, onCreateSet }: CreateS
                   className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors text-gray-900 placeholder-gray-500 resize-none disabled:bg-gray-100 disabled:cursor-not-allowed" 
                 />
               </div>
+              {/* Difficulty Selector */}
+            <div>
+              <label className="block text-sm font-semibold text-gray-700 mb-2">
+                Difficulty
+              </label>
+              <div className="flex gap-3">
+                {(['novice', 'intermediate', 'advanced'] as const).map((level) => (
+                  <button
+                    key={level}
+                    type="button"
+                    onClick={() => handleDifficultyChange(level)}
+                    className={`flex-1 py-2 rounded-lg font-medium border transition-all ${
+                      formData.difficulty === level
+                        ? 'bg-gradient-to-r from-blue-600 to-purple-600 text-white border-transparent'
+                        : 'border-gray-300 text-gray-700 hover:bg-gray-100'
+                    }`}
+                    disabled={isSubmitting}
+                  >
+                    {level.charAt(0).toUpperCase() + level.slice(1)}
+                  </button>
+                ))}
+              </div>
+            </div>
+            <div>
+            <div>
+                  <label htmlFor="cardCount" className="block text-sm font-semibold text-gray-700 mb-2">
+                    Number of Cards
+                  </label>
+                  <input
+                    type="number"
+                    id="cardCount"
+                    name="cardCount"
+                    value={formData.cardCount}
+                    onChange={handleCardCountChange}
+                    min={1}
+                    max={50}
+                    disabled={isSubmitting}
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors text-gray-900 placeholder-gray-500 disabled:bg-gray-100 disabled:cursor-not-allowed"
+                  />
+                </div>
+            </div>
             </div>
 
             {/* Actions */}
@@ -133,7 +188,7 @@ export default function CreateSetModal({ isOpen, onClose, onCreateSet }: CreateS
               </button>
               <button
                 type="submit"
-                disabled={isSubmitting || !formData.title.trim()}
+                disabled={isSubmitting || !formData.topic.trim()}
                 className="flex-1 px-4 py-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg font-medium hover:from-blue-700 hover:to-purple-700 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {isSubmitting ? (

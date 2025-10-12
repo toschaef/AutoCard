@@ -16,6 +16,7 @@ import Row from '../../components/Row';
 import CreateSetModal from '../../components/CreateSetModal';
 import { yourSets, recentSets, draftSets } from '../../lib/mockData';
 import { useAuth } from '../../lib/auth';
+import apiClient from '../../apiClient';
 
 export default function DashboardPage() {
   const { user } = useAuth();
@@ -43,14 +44,22 @@ export default function DashboardPage() {
     { title: "Drafts", items: getDraftSets() },
   ];
 
-  const handleCreateSet = async (setData: { title: string; description: string }) => {
-    // TODO: Implement actual set creation logic
+  const handleCreateSet = async (setData: { topic, prompt, difficulty: 'novice' | 'intermediate' | 'advanced', cardCount }) => {
+    try {
     console.log('Creating set:', setData);
+
+    const { topic, prompt, difficulty } = setData;
     
-    // For now, just simulate a delay
-    await new Promise(resolve => setTimeout(resolve, 1000));
+    //const setId = await apiClient.post(//fix this);
     
-    // TODO: Add the new set to the user's sets and refresh the dashboard
+    const res = await apiClient.post(`/api/sets/${setId}/cards/`, {topic, prompt, difficulty, cardCount});
+
+
+    } catch (error) {
+      console.error('Error creating set:', error);
+    }
+
+
   };
 
   return (

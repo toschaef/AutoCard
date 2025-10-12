@@ -81,8 +81,12 @@ export const Provider = ({ children }: ProviderProps) => {
     dispatch({ type: 'SET_STATE', payload });
   };
 
+  const logout = () => {
+    dispatch({ type: 'SET_STATE', payload: { token: null, user: null } });
+  };
+
   return (
-    <AppContext.Provider value={{ ...state, setState }}>
+    <AppContext.Provider value={{ ...state, setState, logout }}>
       {children}
     </AppContext.Provider>
   );

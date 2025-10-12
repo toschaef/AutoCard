@@ -3,7 +3,9 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import apiClient from "@/apiClient";
 import Link from "next/link";
+import { useAppContext } from "@/Context";
 
 export default function SignUpPage() {
   const router = useRouter();
@@ -15,29 +17,44 @@ export default function SignUpPage() {
   });
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  const { setState } = useAppContext();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setError("");
     setLoading(true);
+    setError('');
 
-    if (formData.password !== formData.confirmPassword) {
-      setError("Passwords do not match");
+    const { name, email, password, confirmPassword } = formData;
+
+    if (!email || !password || !name) {
+      setError('Please fill in all fields');
+      setLoading(false);
+      return;
+    }
+
+    if (password !== confirmPassword) {
+      setError('Passwords do not match');
       setLoading(false);
       return;
     }
 
     try {
-      await new Promise((r) => setTimeout(r, 1000));
-      console.log("New user signup:", {
-        name: formData.name,
-        email: formData.email,
-        password: "[HIDDEN]",
-        timestamp: new Date(),
-      });
-      router.push("/dashboard");
-    } catch {
-      setError("Something went wrong. Please try again.");
+      const res = await apiClient.post('/register', { email, password, name });
+
+      if (res.status === 201) { 
+        const { token, user } = res.data;
+
+        setState({ token, user });
+
+        router.push('/dashboard');
+      } else {
+        setError('Invalid email or password');
+      }
+
+    } catch (err: any) {
+      console.error(err);
+      setError(err.message || 'Internal Server Error');
+    } finally {
       setLoading(false);
     }
   };

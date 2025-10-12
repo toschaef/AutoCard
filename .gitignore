@@ -21,6 +21,7 @@ server/server.js
 
 # next.js
 /.next/
+.next/*
 /client/.next/
 /out/
 /client/.next/

@@ -7,7 +7,7 @@ import User from '../types/User';
 
 export const register = async (req: Request, res: Response) => {
   try {
-    const { email, password } = req.body;
+    const { email, password, name } = req.body;
 
     if (!email || !password) {
       return res.status(400).json({ message: 'Email and password are required.' });
@@ -26,6 +26,7 @@ export const register = async (req: Request, res: Response) => {
     const newUser = new User({
       email,
       password: hashedPassword,
+      name,
     });
 
     // post user

@@ -1,24 +1,21 @@
 'use client';
 
 import Link from 'next/link';
-import { useAuth } from '@/lib/auth';
+import { useAppContext } from '@/Context';
 
 export default function TopBar() {
-  const { user, logout } = useAuth();
-
+  const { user, logout } = useAppContext(); //IMPLEMENT LOGOUT
   if (!user) {
     return (
       <header className="sticky top-0 z-50 bg-white border-b border-slate-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-end items-center h-16">
-            <div className="flex items-center space-x-4">
-              <Link
-                href="/login"
-                className="px-4 py-2 text-sm font-medium text-blue-600 hover:text-blue-700 hover:bg-blue-50 rounded-md transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
-              >
-                Login
-              </Link>
-            </div>
+            <Link
+              href="/login"
+              className="px-4 py-2 text-sm font-medium text-blue-600 hover:text-blue-700 hover:bg-blue-50 rounded-md transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+            >
+              Login
+            </Link>
           </div>
         </div>
       </header>
@@ -27,28 +24,37 @@ export default function TopBar() {
 
   return (
     <header className="sticky top-0 z-50 bg-white border-b border-slate-200">
+      <style
+        dangerouslySetInnerHTML={{
+          __html: `
+            :root{
+              --green:#283618; --olive:#606c38; --cream:#fefae0; --amber:#dda15e; --burnt:#bc6c25;
+            }
+          `,
+        }}
+      />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
-          <div className="flex items-center">
-            <Link href="/dashboard" className="text-xl font-bold text-gray-900">
-              FlashCard App
-            </Link>
-          </div>
-          
-          <div className="flex items-center space-x-4">
-            <div className="flex items-center space-x-3">
-              
-              <span className="text-slate-700 font-medium">
-                Hello, {user.name}
-              </span>
-            </div>
-            <button
-              onClick={logout}
-              className="px-4 py-2 text-sm font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-100 rounded-md transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+          {/* Left: AutoCard branding */}
+          <Link href="/dashboard" className="flex items-center gap-3">
+            <div
+              className="h-9 w-9 rounded-lg grid place-items-center shadow text-sm font-bold"
+              style={{ backgroundColor: "var(--green)", color: "var(--cream)" }}
+              aria-label="AutoCard logo"
             >
-              Logout
-            </button>
-          </div>
+              AC
+            </div>
+            <span className="text-2xl font-extrabold tracking-tight" style={{ color: "var(--green)" }}>
+              AutoCard
+            </span>
+          </Link>
+
+          <button
+            onClick={logout}
+            className="px-4 py-2 text-sm font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-100 rounded-md transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+          >
+            Logout
+          </button>
         </div>
       </div>
     </header>

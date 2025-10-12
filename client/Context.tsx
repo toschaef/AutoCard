@@ -7,11 +7,11 @@ import React, {
   useEffect,
   ReactNode,
 } from 'react';
-import { Player } from '@/types';
+import { User } from '@/types/types';
 
 interface AppState {
   token: string | null;
-  user: Player | null;
+  user: User | null;
 }
 
 type AppAction = {

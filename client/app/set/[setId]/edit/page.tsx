@@ -3,18 +3,19 @@
 "use client";
 
 import { useState, useEffect } from 'react';
-import { useParams } from 'next/navigation';
-import { CardSet } from '@/types/types';
+import { useParams, useRouter } from 'next/navigation';
+import { CardSet } from '@/types';
 import SetDetailsForm from '@/components/SetDetailsForm';
 import CardListEditor from '@/components/CardListEditor';
-//import { yourSets, recentSets, draftSets } from '@/lib/mockData';
+import { yourSets, exampleSets } from '@/lib/exampleSets';
+import { useAppContext } from '@/Context';
 
 // Mock function to simulate fetching data from an API
 const fetchSetById = async (id: string): Promise<CardSet> => {
   console.log(`Fetching data for set: ${id}`);
   
-  // Combine all mock data arrays
-  //const allSets = [...yourSets, ...recentSets, ...draftSets];
+  // Combine all sets
+  const allSets = [...yourSets, ...exampleSets];
   
   // Find the set by ID
   //const foundSet = allSets.find(set => set.id === id);
@@ -26,7 +27,7 @@ const fetchSetById = async (id: string): Promise<CardSet> => {
   // If not found, return a default set
   return {
     title: 'Unknown Set',
-    user_id: '1', // Default to user 1
+    userId: '1', // Default to user 1
     description: 'This set was not found in the mock data.',
     created: new Date(),
     cards: ["f"]
@@ -46,6 +47,15 @@ const updateCard = () => {
 export default function EditSetPage() {
   const [cardSet, setCardSet] = useState<CardSet | null>(null);
   const params = useParams();
+  const router = useRouter();
+  const { user } = useAppContext();
+
+  // Redirect to welcome page if not logged in
+  useEffect(() => {
+    if (!user) {
+      router.push('/');
+    }
+  }, [user, router]);
 
   useEffect(() => {
     const setId = params.setId;

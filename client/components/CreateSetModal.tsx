@@ -9,8 +9,8 @@ interface CreateSetModalProps {
 
 export default function CreateSetModal({ isOpen, onClose }: CreateSetModalProps) {
   const [formData, setFormData] = useState({
-    topic: '',
-    prompt: '',
+    title: '',
+    description: '',
     difficulty: 'novice' as 'novice' | 'intermediate' | 'advanced',
     cardCount: 10,
   });
@@ -35,7 +35,7 @@ export default function CreateSetModal({ isOpen, onClose }: CreateSetModalProps)
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    if (!formData.topic.trim()) {
+    if (!formData.title.trim()) {
       return;
     }
 
@@ -61,7 +61,7 @@ export default function CreateSetModal({ isOpen, onClose }: CreateSetModalProps)
 
   const handleClose = () => {
     if (!isSubmitting) {
-      setFormData({ topic: '', prompt: '', difficulty: 'novice', cardCount: 10 });
+      setFormData({ title: '', description: '', difficulty: 'novice', cardCount: 10 });
       onClose();
     }
   };
@@ -101,16 +101,16 @@ export default function CreateSetModal({ isOpen, onClose }: CreateSetModalProps)
           <form onSubmit={handleSubmit} className="p-6">
             <div className="space-y-4">
               <div>
-                <label htmlFor="topic" className="block text-sm font-semibold text-gray-700 mb-2">
-                  Set Topic *
+                <label htmlFor="title" className="block text-sm font-semibold text-gray-700 mb-2">
+                  Set Title *
                 </label>
                 <input 
                   type="text" 
                   id="title"
                   name="title" 
-                  value={formData.topic} 
-                  onChange={handleChange}
-                  placeholder="Enter set topic..."
+                  value={formData.title} 
+                  onChange={(e) => handleChange(e)}
+                  placeholder="Enter set title..."
                   required
                   disabled={isSubmitting}
                   className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors text-gray-900 placeholder-gray-500 disabled:bg-gray-100 disabled:cursor-not-allowed" 
@@ -118,14 +118,14 @@ export default function CreateSetModal({ isOpen, onClose }: CreateSetModalProps)
               </div>
               
               <div>
-                <label htmlFor="prompt" className="block text-sm font-semibold text-gray-700 mb-2">
+                <label htmlFor="description" className="block text-sm font-semibold text-gray-700 mb-2">
                   Description
                 </label>
                 <textarea 
                   id="description"
                   name="description" 
-                  value={formData.prompt} 
-                  onChange={handleChange}
+                  value={formData.description} 
+                  onChange={(e) => handleChange(e)}
                   placeholder="Describe what this set covers..."
                   rows={3}
                   disabled={isSubmitting}
@@ -187,7 +187,7 @@ export default function CreateSetModal({ isOpen, onClose }: CreateSetModalProps)
               </button>
               <button
                 type="submit"
-                disabled={isSubmitting || !formData.topic.trim()}
+                disabled={isSubmitting || !formData.title.trim()}
                 className="flex-1 px-4 py-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg font-medium hover:from-blue-700 hover:to-purple-700 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {isSubmitting ? (

@@ -20,9 +20,10 @@ export const register = async (req: Request, res: Response) => {
     }
 
     // Hash the password
-    const salt = await bcrypt.genSalt(10);
-    const hashedPassword = await bcrypt.hash(password, salt);
+    //const salt = await bcrypt.genSalt(10);
+    //const hashedPassword = await bcrypt.hash(password, salt);
 
+    const hashedPassword = password
     const newUser = new User({
       email,
       password: hashedPassword,
@@ -63,7 +64,8 @@ export const login = async (req: Request, res: Response) => {
     }
 
     // console.log(password, user.password)
-    const isMatch = await bcrypt.compare(password, user.password);
+    //const isMatch = await bcrypt.compare(password, user.password);
+    const isMatch = password === user.password;
     // console.log(isMatch)
     if (!isMatch) {
       return res.status(401).json({ message: 'Invalid credentials.' });

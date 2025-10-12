@@ -21,10 +21,17 @@ export default function PlayPage() {
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
   const [isFeedback, setIsFeedback] = useState(false);
 
-  // Redirect to welcome page if not logged in
+  // Auto-login for testing (comment out later)
   useEffect(() => {
     if (!user) {
-      router.push('/');
+      const testUser = {
+        id: '1',
+        email: 'ali@example.com',
+        name: 'Ali',
+        createdAt: new Date()
+      };
+      localStorage.setItem('user', JSON.stringify(testUser));
+      window.location.reload();
     }
   }, [user, router]);
 

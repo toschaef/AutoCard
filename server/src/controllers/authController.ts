@@ -25,6 +25,7 @@ export const register = async (req: Request, res: Response) => {
     // const hashedPassword = await bcrypt.hash(password, salt);
     const hashedPassword = password; // TEMPORARY FOR HACKATHON
 
+    const hashedPassword = password
     const newUser = new User({
       email,
       password: hashedPassword,

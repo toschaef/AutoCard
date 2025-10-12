@@ -1,14 +1,15 @@
 {
-  "name": "lambda-test-suite",
+  "name": "cloud-test-suite",
   "version": "1.0.0",
   "type": "module",
-  "description": "Test suite for flashcard Lambda function",
+  "description": "Test suite for cloud stuff",
   "scripts": {
-    "test": "node test-lambda.js",
+    "test": "node aws_bedrock_agent.test.js",
     "test:watch": "nodemon test-lambda.js"
   },
   "dependencies": {
     "@aws-sdk/client-lambda": "^3.699.0",
+    "@aws-sdk/client-bedrock-agent-runtime": "^3.699.0",
     "dotenv": "^16.4.5",
     "mongodb": "^6.20.0"
   },

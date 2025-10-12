@@ -3,9 +3,7 @@
 import { Request, Response } from 'express';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
-import { DBManager } from '../managers/DBManager';
-
-const dbManager = new DBManager();
+import User from '../types/User';
 
 export const register = async (req: Request, res: Response) => {
   try {
@@ -16,19 +14,26 @@ export const register = async (req: Request, res: Response) => {
     }
 
     // Check if user already exists
-    const existingUser = await dbManager.findUserByEmail(email);
+    const existingUser = await User.findOne({ email });
     if (existingUser) {
-      return res.status(409).json({ message: 'User with this email already exists.' });
+      return res.status(400).json({ message: 'User with this email already exists.' });
     }
 
     // Hash the password
     const saltRounds = 10;
-    const passwordHash = await bcrypt.hash(password, saltRounds);
+    const hashedPassword = await bcrypt.hash(password, saltRounds);
 
-    // Create user in the database
-    const newUser = await dbManager.createUser(email, passwordHash);
+    const newUser = new User({
+      email,
+      password: hashedPassword,
+    });
 
-    res.status(201).json({ message: 'User created successfully', user: newUser });
+    // post user
+    const savedUser = await newUser.save();
+    // remove password
+    savedUser.password = undefined; 
+
+    res.status(201).json({ message: 'User created successfully', user: saved });
   } catch (error) {
     res.status(500).json({ message: 'Server error during registration.', error });
   }
@@ -43,7 +48,7 @@ export const login = async (req: Request, res: Response) => {
     }
 
     // Find user by email
-    const user = await dbManager.findUserByEmail(email);
+    const user = await User.findOne({ email });
     if (!user) {
       return res.status(401).json({ message: 'Invalid credentials.' });
     }

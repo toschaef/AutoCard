@@ -7,21 +7,21 @@ import { useParams } from 'next/navigation';
 import { CardSet } from '@/types/types';
 import SetDetailsForm from '@/components/SetDetailsForm';
 import CardListEditor from '@/components/CardListEditor';
-import { yourSets, recentSets, draftSets } from '@/lib/mockData';
+//import { yourSets, recentSets, draftSets } from '@/lib/mockData';
 
 // Mock function to simulate fetching data from an API
 const fetchSetById = async (id: string): Promise<CardSet> => {
   console.log(`Fetching data for set: ${id}`);
   
   // Combine all mock data arrays
-  const allSets = [...yourSets, ...recentSets, ...draftSets];
+  //const allSets = [...yourSets, ...recentSets, ...draftSets];
   
   // Find the set by ID
-  const foundSet = allSets.find(set => set.id === id);
+  //const foundSet = allSets.find(set => set.id === id);
   
-  if (foundSet) {
-    return foundSet;
-  }
+  // if (foundSet) {
+  //   return foundSet;
+  // }
   
   // If not found, return a default set
   return {

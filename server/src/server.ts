@@ -2,6 +2,8 @@
 
 import dotenv from 'dotenv';
 import path from 'path';
+import cors from 'cors';
+
 dotenv.config({ path: path.resolve(__dirname, '../../.env') });
 
 import express from 'express';
@@ -26,12 +28,13 @@ const app = express();
 const httpServer = createServer(app);
 const io = new Server(httpServer, {
   cors: {
-    origin: process.env.CLIENT_URL || "http://localhost:5173",
-    methods: ["GET", "POST"]
+    origin: process.env.CLIENT_URL || "http://localhost:3000",
+    methods: ["GET", "POST", "PUT", "DELETE"]
   }
 });
 
 // Middleware
+app.use(cors({ origin: process.env.CLIENT_URL || "http://localhost:3000" }));
 app.use(express.json());
 
 
@@ -59,7 +62,7 @@ const connectDB = async () => {
     // });
     // // connect to specific database
     // await mongoose.connection.useDb(process.env.DB_NAME || "test");
-    console.log('MongoDB connected successfully! 🎉');
+    console.log('MongoDB connected successfully! :tada:');
   } catch (err: any) {
     console.error('Failed to connect to MongoDB', err.message);
     // Exit process with failure
@@ -84,9 +87,10 @@ async function startServer() {
   connectDB().then(() => {
     const PORT = process.env.PORT || 5001;
     // Define your API routes
-    app.use('/api', cardSetRoutes); // Mount your controller routes
+    app.use('/api', cardSetRoutes);
+    app.use('/api', authRoutes);
 
-    app.listen(PORT, () => {
+    httpServer.listen(PORT, () => {
       console.log(`Server is running on port ${PORT}`);
     });
   });

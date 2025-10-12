@@ -1,7 +1,6 @@
 'use client';
 
 import { useState } from 'react';
-import { useAuth } from '@/lib/auth';
 import { useRouter } from 'next/navigation';
 import { useAppContext } from '@/Context';
 import apiClient from '@/apiClient';
@@ -37,6 +36,7 @@ export default function LoginForm() {
       }
 
     } catch (err: any) {
+      console.error(err);
       setError(err.message || 'Internal Server Error');
     } finally {
       setLoading(false);

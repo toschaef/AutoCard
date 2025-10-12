@@ -14,31 +14,27 @@ import TopBar from '../../components/TopBar';
 import GreetingHero from '../../components/GreetingHero';
 import Row from '../../components/Row';
 import CreateSetModal from '../../components/CreateSetModal';
-import { yourSets, recentSets, draftSets } from '../../lib/mockData';
-import { useAuth } from '../../lib/auth';
+//import { useAuth } from '../../lib/auth';
 import apiClient from '../../apiClient';
 import { useRouter } from 'next/navigation';
 
 
 export default function DashboardPage() {
   const router = useRouter();
-  const { user } = useAuth();
+ // const { user } = useAuth();
   const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
 
   // Filter sets based on current user
   const getUserSets = () => {
-    if (!user) return [];
-    return yourSets.filter(set => set.userId === user.id);
+    //
   };
 
   const getRecentSets = () => {
-    if (!user) return [];
-    return recentSets.filter(set => set.userId === user.id);
+    //
   };
 
   const getDraftSets = () => {
-    if (!user) return [];
-    return draftSets.filter(set => set.userId === user.id);
+    //
   };
 
   const filteredRows = [

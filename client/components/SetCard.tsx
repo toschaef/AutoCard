@@ -1,4 +1,4 @@
-import { CardSet } from '@/types';
+import { CardSet } from '../lib/types';
 import Link from 'next/link';
 
 interface SetCardProps {

@@ -1,26 +1,17 @@
 'use client';
 
-import { createSet } from '@/app/api';
 import { useState } from 'react';
-
-
-import { CardSet } from '@/types/types';
-import { useAppContext } from '@/Context';
-import { useRouter } from 'next/navigation';
 
 interface CreateSetModalProps {
   isOpen: boolean;
   onClose: () => void;
+  onCreateSet: (setData: { title: string; description: string }) => Promise<void>;
 }
 
-export default function CreateSetModal({ isOpen, onClose }: CreateSetModalProps) {
-  const { user } = useAppContext(); 
-  const router = useRouter();
+export default function CreateSetModal({ isOpen, onClose, onCreateSet }: CreateSetModalProps) {
   const [formData, setFormData] = useState({
     title: '',
-    description: '',
-    difficulty: 'novice' as 'novice' | 'intermediate' | 'advanced',
-    cardCount: 10,
+    description: ''
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -37,26 +28,16 @@ export default function CreateSetModal({ isOpen, onClose }: CreateSetModalProps)
     }
 
     setIsSubmitting(true);
-
-    if (!user || !user._id) {
-      console.error('User not logged in');
-      setIsSubmitting(false);
-      return;
-    }
     
-    const c: CardSet = {
-      _id: null,
-      user_id: user._id, 
-      title: formData.title.trim(),
-      description: formData.description.trim(),
-      cards: [], // Initially empty, cards can be added later
-      created: new Date(),
-    };
-
     try {
-      const res = await createSet(c);
-      console.log('Set created:', res);
-      router.push(`/sets/${res._id}/edit`);
+      await onCreateSet({
+        title: formData.title.trim(),
+        description: formData.description.trim()
+      });
+      
+      // Reset form
+      setFormData({ title: '', description: '' });
+      onClose();
     } catch (error) {
       console.error('Error creating set:', error);
     } finally {
@@ -66,7 +47,7 @@ export default function CreateSetModal({ isOpen, onClose }: CreateSetModalProps)
 
   const handleClose = () => {
     if (!isSubmitting) {
-      setFormData({ title: '', description: '', difficulty: 'novice', cardCount: 10 });
+      setFormData({ title: '', description: '' });
       onClose();
     }
   };
@@ -77,14 +58,14 @@ export default function CreateSetModal({ isOpen, onClose }: CreateSetModalProps)
     <div className="fixed inset-0 z-50 overflow-y-auto">
       {/* Backdrop */}
       <div 
-        className="fixed inset-0 bg-black bg-opacity-50 transition-opacity"
+        className="fixed inset-0 bg-black/50 backdrop-blur-sm transition-opacity" 
         onClick={handleClose}
       />
-      
-      {/* Modal */}
+
+      {/* Modal Content */}
       <div className="flex min-h-full items-center justify-center p-4">
-        <div className="relative w-full max-w-md transform overflow-hidden rounded-2xl bg-white shadow-xl transition-all">
-          {/* Header */}
+        <div className="relative bg-white rounded-2xl shadow-2xl w-full max-w-md overflow-hidden transform transition-all">
+          {/* Header with gradient */}
           <div className="bg-gradient-to-r from-blue-600 to-purple-600 px-6 py-4">
             <div className="flex items-center justify-between">
               <h3 className="text-xl font-semibold text-white">
@@ -107,15 +88,15 @@ export default function CreateSetModal({ isOpen, onClose }: CreateSetModalProps)
             <div className="space-y-4">
               <div>
                 <label htmlFor="title" className="block text-sm font-semibold text-gray-700 mb-2">
-                  Set Title *
+                  Set Name *
                 </label>
                 <input 
                   type="text" 
                   id="title"
                   name="title" 
                   value={formData.title} 
-                  onChange={(e) => handleChange(e)}
-                  placeholder="Enter set title..."
+                  onChange={handleChange}
+                  placeholder="Enter set name..."
                   required
                   disabled={isSubmitting}
                   className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors text-gray-900 placeholder-gray-500 disabled:bg-gray-100 disabled:cursor-not-allowed" 
@@ -130,18 +111,16 @@ export default function CreateSetModal({ isOpen, onClose }: CreateSetModalProps)
                   id="description"
                   name="description" 
                   value={formData.description} 
-                  onChange={(e) => handleChange(e)}
+                  onChange={handleChange}
                   placeholder="Describe what this set covers..."
                   rows={3}
                   disabled={isSubmitting}
                   className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors text-gray-900 placeholder-gray-500 resize-none disabled:bg-gray-100 disabled:cursor-not-allowed" 
                 />
               </div>
-            <div>
-            </div>
             </div>
 
-            {/* Actions */}
+            {/* Buttons */}
             <div className="flex gap-3 mt-6">
               <button
                 type="button"

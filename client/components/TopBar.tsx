@@ -1,10 +1,10 @@
 'use client';
 
 import Link from 'next/link';
-import { useAppContext } from '@/Context';
+import { useAuth } from '../lib/auth';
 
 export default function TopBar() {
-  const { user, logout } = useAppContext(); //IMPLEMENT LOGOUT
+  const { user, logout } = useAuth();
   if (!user) {
     return (
       <header className="sticky top-0 z-50 bg-white border-b border-slate-200">

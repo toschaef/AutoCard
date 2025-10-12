@@ -1,6 +1,6 @@
 // components/SetDetailsForm.tsx
 
-import { CardSet } from '@/types/types';
+import { CardSet } from '../lib/types';
 import type { Dispatch, SetStateAction } from 'react';
 
 type Props = {

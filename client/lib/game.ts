@@ -1,7 +1,8 @@
-import { Card } from '@/types';
+import { Card } from './types';
 
 
 export function buildAnswers(card: Card): { text: string; isCorrect: boolean }[] {
+  // Card structure: { correct_answer: string, incorrect_answers: string[] }
   const allAnswers = [card.correct_answer, ...card.incorrect_answers];
   const answers = allAnswers.map((text, index) => ({
     text,

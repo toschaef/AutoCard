@@ -24,9 +24,19 @@ export default function DashboardPage() {
   const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
   const [userCreatedSets, setUserCreatedSets] = useState<CardSet[]>([]);
 
-  // Redirect to welcome page if not logged in (unchanged)
+  // Auto-login for testing (comment out later)
   useEffect(() => {
-    if (!user) router.push('/');
+    if (!user) {
+      // Auto-login as Ali for testing
+      const testUser = {
+        id: '1',
+        email: 'ali@example.com',
+        name: 'Ali',
+        createdAt: new Date()
+      };
+      localStorage.setItem('user', JSON.stringify(testUser));
+      window.location.reload(); // Reload to apply auto-login
+    }
   }, [user, router]);
 
   // Load user-created sets from localStorage

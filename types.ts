@@ -6,8 +6,7 @@ export interface Card {
   correct_answer: string;
   incorrect_answers: string[];
 }
-  
-export interface CardSet extends Document {
+
 export interface CardSet extends Document {
   id: string;
   userId: string;
@@ -35,7 +34,6 @@ export interface Player extends Document {
 }
 
 export interface GameSession extends Document {
-export interface GameSession extends Document {
   hostId: string;
   cardSet: CardSet;
   players: Player[];
@@ -44,13 +42,11 @@ export interface GameSession extends Document {
 }
 
 export default interface CreateCardSetParams extends Document {
-export default interface CreateCardSetParams extends Document {
   name: string;
   description: string;
   initialCards: { front: string, back: string }[];
 }
 
-export default interface DeleteCardSetParams extends Document {
 export default interface DeleteCardSetParams extends Document {
   cardSetId: string;
 }

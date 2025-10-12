@@ -1,5 +1,5 @@
 import apiClient from "@/apiClient";
-import { Card, CardSet } from "@/types"
+import { Card, CardSet } from "../types/types"
 
 export const getCardsFromSet = async (setId: string) => {
     try {
@@ -55,9 +55,16 @@ export const createSet = async (setData: CardSet) => {
     }
 }
 
-export const getAllSets = async () => {
+export const getAllSets = async (user_id: string) => {
     try {
-        const response = await apiClient.get(`/sets/`);
+        // put in user_id as query param to get only that user's sets
+
+        const response = await apiClient.get(`/sets/`, {
+            params: {
+                user_id
+            }
+        });
+        console.log("API TS - getAllSets response:", response.data);
         return response.data;
     } catch (error) {
         console.error(error);
@@ -91,6 +98,7 @@ export const deleteSet = async (setId: string) => {
     }
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const createBatchOfCards = async (batchData: any) => {
     try {
         const response = await apiClient.post(`/ai/`, batchData);

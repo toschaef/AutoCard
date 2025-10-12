@@ -10,9 +10,9 @@ import { useRouter } from 'next/navigation';
 import TopBar from '../../components/TopBar';
 import Row from '../../components/Row';
 import CreateSetModal from '../../components/CreateSetModal';
-import { yourSets, exampleSets } from '../../lib/exampleSets';
-import apiClient from '../../apiClient';
+import { exampleSets } from '../../lib/exampleSets';
 import { useAppContext } from '@/Context';
+import { getAllSets } from '../api';
 
 export default function DashboardPage() {
   const { user } = useAppContext();
@@ -25,6 +25,19 @@ export default function DashboardPage() {
     if (!user) {
       router.push('/');
     }
+
+    // Fetch user's sets from the backend
+    const fetchUserSets = async () => {
+      if (user && user._id) {
+        try {
+          const response = await getAllSets(user._id);
+          setUserSets(response);
+        } catch (error) {
+          console.error('Error fetching user sets:', error);
+        }
+      }
+    };
+    fetchUserSets();
   }, [user, router]);
 
   return (

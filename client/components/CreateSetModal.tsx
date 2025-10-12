@@ -1,6 +1,12 @@
 'use client';
 
+import { createSet } from '@/app/api';
 import { useState } from 'react';
+
+
+import { CardSet } from '@/types/types';
+import { useAppContext } from '@/Context';
+import { useRouter } from 'next/navigation';
 
 interface CreateSetModalProps {
   isOpen: boolean;
@@ -8,6 +14,8 @@ interface CreateSetModalProps {
 }
 
 export default function CreateSetModal({ isOpen, onClose }: CreateSetModalProps) {
+  const { user } = useAppContext(); 
+  const router = useRouter();
   const [formData, setFormData] = useState({
     title: '',
     description: '',
@@ -21,17 +29,6 @@ export default function CreateSetModal({ isOpen, onClose }: CreateSetModalProps)
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleDifficultyChange = (difficulty: 'novice' | 'intermediate' | 'advanced') => {
-    setFormData((prev) => ({ ...prev, difficulty }));
-  };
-
-  const handleCardCountChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = parseInt(e.target.value, 10);
-    if (!isNaN(value) && value > 0) {
-      setFormData(prev => ({ ...prev, cardCount: value }));
-    }
-  };
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
@@ -40,23 +37,31 @@ export default function CreateSetModal({ isOpen, onClose }: CreateSetModalProps)
     }
 
     setIsSubmitting(true);
+
+    if (!user || !user._id) {
+      console.error('User not logged in');
+      setIsSubmitting(false);
+      return;
+    }
     
-    // try {
-    //   await onCreateSet({
-    //     topic: formData.topic.trim(),
-    //     prompt: formData.prompt.trim(),
-    //     difficulty: formData.difficulty,
-    //     cardCount: 10,
-    //   });
-      
-    //   // Reset form
-    //   setFormData({ topic: '', prompt: '', difficulty: 'novice', cardCount: 10 });
-    //   onClose();
-    // } catch (error) {
-    //   console.error('Error creating set:', error);
-    // } finally {
-    //   setIsSubmitting(false);
-    // }
+    const c: CardSet = {
+      _id: null,
+      user_id: user._id, 
+      title: formData.title.trim(),
+      description: formData.description.trim(),
+      cards: [], // Initially empty, cards can be added later
+      created: new Date(),
+    };
+
+    try {
+      const res = await createSet(c);
+      console.log('Set created:', res);
+      router.push(`/sets/${res._id}/edit`);
+    } catch (error) {
+      console.error('Error creating set:', error);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleClose = () => {
@@ -132,46 +137,7 @@ export default function CreateSetModal({ isOpen, onClose }: CreateSetModalProps)
                   className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors text-gray-900 placeholder-gray-500 resize-none disabled:bg-gray-100 disabled:cursor-not-allowed" 
                 />
               </div>
-              {/* Difficulty Selector */}
             <div>
-              <label className="block text-sm font-semibold text-gray-700 mb-2">
-                Difficulty
-              </label>
-              <div className="flex gap-3">
-                {(['novice', 'intermediate', 'advanced'] as const).map((level) => (
-                  <button
-                    key={level}
-                    type="button"
-                    onClick={() => handleDifficultyChange(level)}
-                    className={`flex-1 py-2 rounded-lg font-medium border transition-all ${
-                      formData.difficulty === level
-                        ? 'bg-gradient-to-r from-blue-600 to-purple-600 text-white border-transparent'
-                        : 'border-gray-300 text-gray-700 hover:bg-gray-100'
-                    }`}
-                    disabled={isSubmitting}
-                  >
-                    {level.charAt(0).toUpperCase() + level.slice(1)}
-                  </button>
-                ))}
-              </div>
-            </div>
-            <div>
-            <div>
-                  <label htmlFor="cardCount" className="block text-sm font-semibold text-gray-700 mb-2">
-                    Number of Cards
-                  </label>
-                  <input
-                    type="number"
-                    id="cardCount"
-                    name="cardCount"
-                    value={formData.cardCount}
-                    onChange={handleCardCountChange}
-                    min={1}
-                    max={50}
-                    disabled={isSubmitting}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors text-gray-900 placeholder-gray-500 disabled:bg-gray-100 disabled:cursor-not-allowed"
-                  />
-                </div>
             </div>
             </div>
 

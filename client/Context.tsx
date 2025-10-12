@@ -21,6 +21,7 @@ type AppAction = {
 
 interface AppContextType extends AppState {
   setState: (payload: Partial<AppState>) => void;
+  logout: () => void;
 }
 
 interface ProviderProps {

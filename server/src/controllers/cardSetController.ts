@@ -41,8 +41,8 @@ export const getAllCardSets = async (req: Request, res: Response) => {
 // // Get a single card set
 export const getCardSetById = async (req: Request, res: Response) => {
   try {
-    const { setId } = req.params;
-    const cardSet = await CardSet.findById(setId);
+    const { user_id } = req.params;
+    const cardSet = await CardSet.find({ user_id });
     if (!cardSet) {
       return res.status(404).json({ message: 'Card set not found' });
     }

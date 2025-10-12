@@ -2,7 +2,7 @@
 // 1. Define the TypeScript Interface for the document
 
 export interface Card {
-    id: string;
+    _id: string;
     genre: string;
     question: string;
     correctAnswer: string;
@@ -10,15 +10,17 @@ export interface Card {
     difficulty: 'easy' | 'medium' | 'hard';
   }
 
-export interface CardSet{
-user_id: string;
-title: string;
-description: string;
-cards: string[]; // An array of references to Flashcard documents
-created: Date;
+export interface CardSet {
+  _id: string | null;
+  user_id: string;
+  title: string;
+  description: string;
+  cards: string[]; // An array of references to Flashcard documents
+  created: Date;
 }
 
 export interface User{
+    _id: string | null;
     email: string;
     password?: string; // Password is optional on the document after creation
     name: string;

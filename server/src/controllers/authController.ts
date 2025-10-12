@@ -4,6 +4,7 @@ import { Request, Response } from 'express';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import User from '../types/User';
+import { hash } from 'crypto';
 
 export const register = async (req: Request, res: Response) => {
   try {
@@ -20,8 +21,9 @@ export const register = async (req: Request, res: Response) => {
     }
 
     // Hash the password
-    const salt = await bcrypt.genSalt(10);
-    const hashedPassword = await bcrypt.hash(password, salt);
+    // const salt = await bcrypt.genSalt(10);
+    // const hashedPassword = await bcrypt.hash(password, salt);
+    const hashedPassword = password; // TEMPORARY FOR HACKATHON
 
     const newUser = new User({
       email,
@@ -31,6 +33,8 @@ export const register = async (req: Request, res: Response) => {
 
     // post user
     const savedUser = await newUser.save();
+
+    console.log("REGISTERED USER:", savedUser)
     // remove password
     savedUser.password = undefined; 
 
@@ -62,9 +66,10 @@ export const login = async (req: Request, res: Response) => {
       return res.status(500).json({ message: 'User password is not set.' });
     }
 
-    // console.log(password, user.password)
+    console.log(password, user.password)
     const isMatch = await bcrypt.compare(password, user.password);
-    // console.log(isMatch)
+    // const isMatch = password === user.password; // TEMPORARY FOR HACKATHON
+    console.log(isMatch)
     if (!isMatch) {
       return res.status(401).json({ message: 'Invalid credentials.' });
     }

@@ -1,124 +1,104 @@
 // src/controllers/cardController.ts
 
 import { Request, Response } from 'express';
-import { Card, CardSet } from '../../../types';
-import { getCardSets } from './cardSetController';
-
-const dbManager = new DBManager();
+import CardSet from '../types/Set';
+import Card from '../types/Card';
 
 // Get all cards from a specific set
-export const getCardsBySetId = (req: Request, res: Response) => {
-  const { setId } = req.params;
-  const cardSets = getCardSets();
-  const cardSet = cardSets[setId];
-  
-  if (!cardSet) {
-    return res.status(404).json({ error: 'Card set not found' });
+export const getCardsBySetId = async (req: Request, res: Response) => {
+  try {
+    const { setId } = req.params;
+
+    // Find the CardSet by its ID and use populate() to get the full card documents
+    const cardSet = await CardSet.findById(setId).populate('cards');
+
+    // If no set is found with that ID, return a 404 error
+    if (!cardSet) {
+      return res.status(404).json({ message: 'Card set not found.' });
+    }
+
+    // If the set is found, return the populated 'cards' array
+    res.status(200).json(cardSet);
+    
+  } catch (error: any) {
+    console.error(error.message);
+    res.status(500).json({ message: 'Server Error' });
   }
-  
-  res.json(cardSet.cards);
 };
 
-// Get a single card by ID from a specific set
-export const getCardById = (req: Request, res: Response) => {
-  const { setId, cardId } = req.params;
-  const cardSets = getCardSets();
-  const cardSet = cardSets[setId];
-  
-  if (!cardSet) {
-    return res.status(404).json({ error: 'Card set not found' });
-  }
-  
-  const card = cardSet.cards.find(c => c.id === cardId);
-  if (!card) {
-    return res.status(404).json({ error: 'Card not found' });
-  }
-  
-  res.json(card);
+// // Get a single card by ID from a specific set
+export const getCardById = async (req: Request, res: Response) => {
+    const { cardId } = req.params;
+    try {
+      const card = await Card.findById(cardId);
+      if (!card) {
+        return res.status(404).json({ error: 'Card not found' });
+      }
+      res.json(card);
+    } catch (error: any) {
+      console.error(error.message);
+      res.status(500).json({ message: 'Server Error' });
+    }
 };
 
-// Create a new card in a specific set
-export const createCard = (req: Request, res: Response) => {
-  const { setId } = req.params;
-  const { question, answer } = req.body;
-  
-  if (!question || !answer) {
-    return res.status(400).json({ error: 'Question and answer are required' });
+// // Create a new card in a specific set
+export const createCard = async (req: Request, res: Response) => {
+  try {
+    const { genre, question, correctAnswer, incorrectAnswers, difficulty } = req.body;
+    const newCard = new Card({
+      genre,
+      question,
+      correctAnswer,
+      incorrectAnswers,
+      difficulty
+    });
+    const savedCard = await newCard.save();
+    res.status(201).json(savedCard);
+  } catch (error: any) {
+    console.error(error.message);
+    res.status(500).json({ message: 'Server Error' });
   }
-  
-  const cardSets = getCardSets();
-  const cardSet = cardSets[setId];
-  
-  if (!cardSet) {
-    return res.status(404).json({ error: 'Card set not found' });
-  }
-  
-  const newCardId = `card-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
-  const newCard: Card = {
-    id: newCardId,
-    question: question.trim(),
-    answer: answer.trim(),
-  };
-  
-  cardSet.cards.push(newCard);
-  res.status(201).json(newCard);
 };
 
-// Update an existing card
-export const updateCard = (req: Request, res: Response) => {
-  const { setId, cardId } = req.params;
-  const { question, answer } = req.body;
-  
-  const cardSets = getCardSets();
-  const cardSet = cardSets[setId];
-  
-  if (!cardSet) {
-    return res.status(404).json({ error: 'Card set not found' });
+// // Update an existing card
+export const updateCard = async (req: Request, res: Response) => {
+  try {
+    // get cardId from params
+    const { cardId } = req.params;
+    // get card from db
+    const card = await Card.findById(cardId);
+    if (!card) {
+      return res.status(404).json({ message: 'Card not found' });
+    }
+    // update card fields
+    const { genre, question, correctAnswer, incorrectAnswers, difficulty } = req.body;
+    if (genre) card.genre = genre;
+    if (question) card.question = question;
+    if (correctAnswer) card.correctAnswer = correctAnswer;
+    if (incorrectAnswers) card.incorrectAnswers = incorrectAnswers;
+    if (difficulty) card.difficulty = difficulty;
+
+    const updatedCard = await card.save();
+    res.status(200).json(updatedCard);
+  } catch (error: any) {
+    console.error(error.message);
+    res.status(500).json({ message: 'Server Error' });
   }
-  
-  const cardIndex = cardSet.cards.findIndex(c => c.id === cardId);
-  if (cardIndex === -1) {
-    return res.status(404).json({ error: 'Card not found' });
-  }
-  
-  const updatedCard = {
-    ...cardSet.cards[cardIndex],
-    question: question ? question.trim() : cardSet.cards[cardIndex].question,
-    answer: answer ? answer.trim() : cardSet.cards[cardIndex].answer,
-  };
-  
-  cardSet.cards[cardIndex] = updatedCard;
-  res.json(updatedCard);
 };
 
-// Delete a card from a set
+// // Delete a card from a set
 export const deleteCard = (req: Request, res: Response) => {
-  const { setId, cardId } = req.params;
-  const cardSets = getCardSets();
-  const cardSet = cardSets[setId];
-  
-  if (!cardSet) {
-    return res.status(404).json({ error: 'Card set not found' });
+  try {
+    const { cardId } = req.params;
+    // Find the card by its ID and delete it
+    Card.findByIdAndDelete(cardId)
+      .then(() => res.status(204).send())
+      .catch((error: any) => {
+        console.error(error.message);
+        res.status(500).json({ message: 'Server Error' });
+      });
+  } catch (error: any) {
+    console.error(error.message);
+    res.status(500).json({ message: 'Server Error' });
   }
-  
-  const cardIndex = cardSet.cards.findIndex(c => c.id === cardId);
-  if (cardIndex === -1) {
-    return res.status(404).json({ error: 'Card not found' });
-  }
-  
-  cardSet.cards.splice(cardIndex, 1);
-  res.status(204).send();
-};
-
-// Get card count for a specific set
-export const getCardCount = (req: Request, res: Response) => {
-  const { setId } = req.params;
-  const cardSets = getCardSets();
-  const cardSet = cardSets[setId];
-  
-  if (!cardSet) {
-    return res.status(404).json({ error: 'Card set not found' });
-  }
-  
-  res.json({ count: cardSet.cards.length });
 };

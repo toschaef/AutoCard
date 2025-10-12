@@ -4,7 +4,7 @@ import bcrypt from 'bcryptjs';
 // 1. Define the TypeScript Interface, including custom methods
 export interface IUser extends Document {
   email: string;
-  password?: string; // Password is optional on the document after creation
+  password?: string; // Password is required on the document after creation
   name: string;
   score: number;
   comparePassword(candidatePassword: string): Promise<boolean>;
@@ -22,7 +22,6 @@ const userSchema: Schema = new Schema({
   password: {
     type: String,
     required: [true, 'Password is required.'],
-    select: false, // Prevents the password hash from being returned in queries
   },
   name: {
     type: String,

@@ -34,7 +34,7 @@ export const register = async (req: Request, res: Response) => {
     // remove password
     savedUser.password = undefined; 
 
-    res.status(201).json({ message: 'User created successfully', user: saved });
+    res.status(201).json({ message: 'User created successfully', user: savedUser });
   } catch (error) {
     res.status(500).json({ message: 'Server error during registration.', error });
   }
@@ -50,11 +50,17 @@ export const login = async (req: Request, res: Response) => {
 
     // Find user by email
     const user = await User.findOne({ email });
+    
     if (!user) {
       return res.status(401).json({ message: 'Invalid credentials.' });
     }
 
+    console.log(user)
     // Compare provided password with stored hash
+    if (!user.password) {
+      return res.status(500).json({ message: 'User password is not set.' });
+    }
+
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
       return res.status(401).json({ message: 'Invalid credentials.' });
@@ -71,7 +77,7 @@ export const login = async (req: Request, res: Response) => {
     // Send token back to the client
     res.status(200).json({ message: 'Login successful', token });
 
-  } catch (error) {
+  } catch (error: any) {
     res.status(500).json({ message: 'Server error during login.', error });
   }
 };

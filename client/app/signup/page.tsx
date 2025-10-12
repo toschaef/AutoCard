@@ -41,7 +41,7 @@ export default function SignUpPage() {
     try {
       const res = await apiClient.post('/register', { email, password, name });
 
-      if (res.status === 200) { 
+      if (res.status === 201) { 
         const { token, user } = res.data;
 
         setState({ token, user });

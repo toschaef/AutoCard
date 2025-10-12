@@ -4,56 +4,68 @@
 
 import { useState, useEffect } from 'react';
 import { useParams } from 'next/navigation';
-import { CardSet } from '@/types';
+import { CardSet, Card } from '@/types/types'; // Import Card type
 import SetDetailsForm from '@/components/SetDetailsForm';
 import CardListEditor from '@/components/CardListEditor';
-import { yourSets, recentSets, draftSets } from '@/lib/mockData';
+import { yourSets, allCards } from '@/lib/mockData'; // Import allCards
 
-// Mock function to simulate fetching data from an API
-const fetchSetById = async (id: string): Promise<CardSet> => {
+// Mock function now returns both the set and its corresponding card objects
+const fetchSetAndCards = async (id: string): Promise<{ set: CardSet; cards: Card[] }> => {
   console.log(`Fetching data for set: ${id}`);
-  
-  // Combine all mock data arrays
-  const allSets = [...yourSets, ...recentSets, ...draftSets];
-  
-  // Find the set by ID
-  const foundSet = allSets.find(set => set.id === id);
-  
+  const foundSet = yourSets.find(set => set.id === id);
+
   if (foundSet) {
-    return foundSet;
+    // Find all card objects that match the IDs in the set
+    const cardsForSet = allCards.filter(card => foundSet.cardIds.includes(card.id));
+    return { set: foundSet, cards: cardsForSet };
   }
-  
-  // If not found, return a default set
+
+  // Fallback if the set is not found
   return {
-    id: id,
-    title: 'Unknown Set',
-    userId: '1', // Default to user 1
-    topic: 'This set was not found in the mock data.',
-    created: new Date(),
+    set: { id: id, title: 'Unknown Set', description: 'Set not found.', userId: '1', created: new Date(), cardIds: [] },
     cards: []
   };
 };
 
 export default function EditSetPage() {
+  // ✅ Manage two separate states
   const [cardSet, setCardSet] = useState<CardSet | null>(null);
+  const [cards, setCards] = useState<Card[]>([]);
   const params = useParams();
 
   useEffect(() => {
     const setId = params.setId;
     if (typeof setId === 'string' && setId) {
-      fetchSetById(setId).then(data => {
-        setCardSet(data);
+      fetchSetAndCards(setId).then(data => {
+        setCardSet(data.set);
+        setCards(data.cards);
       });
     }
   }, [params.setId]);
 
+  // ✅ Define the handler functions
+  const addCard = (newCard: Card) => {
+    setCards(prev => [...prev, newCard]);
+    setCardSet(prev => prev ? { ...prev, cardIds: [...prev.cardIds, newCard.id] } : null);
+  };
+
+  const deleteCard = (cardId: string) => {
+    setCards(prev => prev.filter(card => card.id !== cardId));
+    setCardSet(prev => prev ? { ...prev, cardIds: prev.cardIds.filter(id => id !== cardId) } : null);
+  };
+  
+  const updateCard = (updatedCard: Card) => {
+    setCards(prev => prev.map(c => c.id === updatedCard.id ? updatedCard : c));
+  };
+
   const handleSaveChanges = () => {
-    // Here you would send the 'cardSet' object to your API to save all changes
-    console.log('Saving all changes:', cardSet);
-    alert('Set and all cards saved to the console!');
+    console.log('Saving Set:', cardSet);
+    console.log('Saving Cards:', cards);
+    alert('Changes saved to the console!');
   };
 
   if (!cardSet) {
+    // Your loading spinner component is fine
     return (
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
         <div className="text-center">
@@ -66,23 +78,17 @@ export default function EditSetPage() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <div className="container mx-auto max-w-6xl p-6 min-h-screen">
-        {/* Header */}
+      <div className="container mx-auto max-w-6xl p-6">
         <div className="mb-8">
           <h1 className="text-4xl font-bold text-gray-900 mb-2">Edit Card Set</h1>
           <p className="text-gray-600">Manage your flashcard set details and content</p>
         </div>
-
-        {/* Main Content Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 h-[calc(100vh-200px)]">
-          {/* Left Column - Set Details */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           <div className="lg:col-span-1">
-            <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6 h-fit">
+            <div className="bg-white rounded-xl shadow-sm border p-6 h-fit">
               <h2 className="text-xl font-semibold text-gray-900 mb-6">Set Information</h2>
               <SetDetailsForm cardSet={cardSet} setCardSet={setCardSet} />
             </div>
-            
-            {/* Save Button */}
             <div className="mt-6">
               <button
                 onClick={handleSaveChanges}
@@ -92,19 +98,21 @@ export default function EditSetPage() {
               </button>
             </div>
           </div>
-
-          {/* Right Column - Cards */}
           <div className="lg:col-span-2">
-            <div className="bg-white rounded-xl shadow-sm border border-gray-200 h-full flex flex-col">
+            <div className="bg-white rounded-xl shadow-sm border h-full flex flex-col">
               <div className="p-6 border-b border-gray-200">
-                <h2 className="text-xl font-semibold text-gray-900">Cards ({cardSet.cards.length})</h2>
+                {/* ✅ Use cardIds.length for the count */}
+                <h2 className="text-xl font-semibold text-gray-900">Cards ({cardSet.cardIds.length})</h2>
                 <p className="text-gray-600 mt-1">Add and edit flashcards for this set</p>
               </div>
-              
-              <div className="flex-1 overflow-hidden">
-                <div className="h-full overflow-y-auto p-6">
-                  <CardListEditor cardSet={cardSet} setCardSet={setCardSet} />
-                </div>
+              <div className="flex-1 overflow-y-auto p-6">
+                {/* ✅ Pass the correct state and handler functions */}
+                <CardListEditor 
+                  cards={cards}
+                  onAddCard={addCard}
+                  onDeleteCard={deleteCard}
+                  onCardChange={updateCard}
+                />
               </div>
             </div>
           </div>

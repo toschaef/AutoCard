@@ -1,4 +1,4 @@
-import { CardSet } from '@/types';
+import { Card, CardSet } from '@/types/types';
 
 interface IncomingCard {
   question: string;
@@ -13,55 +13,54 @@ interface IncomingSet {
   cards: IncomingCard[];
 }
 
-export function normalizeIncomingSet(input: unknown): CardSet {
-  // If already a CardSet, return as-is
-  if (isCardSet(input)) {
-    return input;
-  }
 
-  // Check if it's the incoming format
+// A new type to define the shape of our normalized output
+interface NormalizedData {
+  set: CardSet;
+  cards: Card[];
+}
+
+export function normalizeIncomingSet(input: unknown): NormalizedData {
+  // We can no longer just check for CardSet, as the structure is different.
+  // In a real app, you'd have more robust validation.
+  
   if (isIncomingSet(input)) {
-    return {
+    // First, create all the full card objects with new IDs
+    const normalizedCards: Card[] = input.cards.map(card => ({
+      id: generateId(), // Assuming generateId() creates a unique string ID
+      question: card.question,
+      correctAnswer: card.correctAnswer,
+      incorrectAnswers: card.incorrectAnswers,
+      genre: "general",
+      difficulty: "medium"
+    }));
+
+    // Next, create the set object, using only the IDs from the cards we just made
+    const normalizedSet: CardSet = {
       id: generateId(),
       title: input.setName,
       description: input.setDescription,
       userId: input.userId,
-      cards: input.cards.map(card => ({
-        id: generateId(),
-        question: card.question,
-        correct_answer: card.correctAnswer,
-        incorrect_answers: card.incorrectAnswers
-      })),
+      cardIds: normalizedCards.map(card => card.id), // ✅ Create an array of just the IDs
       created: new Date()
+    };
+
+    // Finally, return both collections
+    return {
+      set: normalizedSet,
+      cards: normalizedCards
     };
   }
 
-  throw new Error('Invalid input format');
+  throw new Error("Invalid input format provided to normalizeIncomingSet");
 }
 
-function isCardSet(input: unknown): input is CardSet {
-  return (
-    typeof input === 'object' &&
-    input !== null &&
-    'id' in input &&
-    'title' in input &&
-    'topic' in input &&
-    'cards' in input &&
-    'created' in input
-  );
+// Helper function to check the incoming data format (you would need this)
+function isIncomingSet(data: any): data is IncomingSet {
+  return data && typeof data.setName === 'string' && Array.isArray(data.cards);
 }
 
-function isIncomingSet(input: unknown): input is IncomingSet {
-  return (
-    typeof input === 'object' &&
-    input !== null &&
-    'setName' in input &&
-    'setDescription' in input &&
-    'cards' in input &&
-    Array.isArray((input as IncomingSet).cards)
-  );
-}
-
+// Placeholder for a unique ID generator
 function generateId(): string {
-  return Math.random().toString(36).substr(2, 9);
+  return `id_${Math.random().toString(36).substr(2, 9)}`;
 }

@@ -7,11 +7,11 @@ import React, {
   useEffect,
   ReactNode,
 } from 'react';
-import { Player, CardSet } from '@/types';
+import { User, CardSet } from '@/types/types';
 
 interface AppState {
   token: string | null;
-  user: Player | null;
+  user: User | null;
   currentSet: CardSet | null;
 }
 

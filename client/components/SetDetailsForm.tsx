@@ -1,6 +1,6 @@
 // components/SetDetailsForm.tsx
 
-import { CardSet } from '@/types';
+import { CardSet } from '@/types/types';
 import type { Dispatch, SetStateAction } from 'react';
 
 type Props = {
@@ -35,8 +35,8 @@ const SetDetailsForm = ({ cardSet, setCardSet }: Props) => {
           Description
         </label>
         <textarea 
-          name="topic" 
-          value={cardSet.topic} 
+          name="description" 
+          value={cardSet.description} 
           onChange={handleChange}
           placeholder="Describe what this set covers..."
           rows={4}

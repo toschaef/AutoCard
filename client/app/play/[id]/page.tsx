@@ -13,6 +13,13 @@ export default function PlayPage() {
   const router = useRouter();
   const { user } = useAuth();
   const setId = params.id as string;
+  
+  // All hooks must be at the top level
+  const [cardSet, setCardSet] = useState<any>(null);
+  const [qIndex, setQIndex] = useState(0);
+  const [score, setScore] = useState(0);
+  const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
+  const [isFeedback, setIsFeedback] = useState(false);
 
   // Redirect to welcome page if not logged in
   useEffect(() => {
@@ -21,12 +28,74 @@ export default function PlayPage() {
     }
   }, [user, router]);
 
-  // Lookup in both yourSets and exampleSets
-  const allSets = [...yourSets, ...exampleSets];
-  const cardSet =
-    allSets.find(set => set.id === setId) ||
-    allSets.find(set => set.id === 'cpp-basics') ||
-    exampleSets[0];
+  // Load the card set (check localStorage first, then static sets)
+  useEffect(() => {
+    // Check localStorage for temp sets first
+    const tempSet = localStorage.getItem(`temp-set-${setId}`);
+    if (tempSet) {
+      try {
+        const parsed = JSON.parse(tempSet);
+        setCardSet({
+          ...parsed,
+          created: new Date(parsed.created)
+        });
+        return;
+      } catch (error) {
+        console.error('Error loading temp set:', error);
+      }
+    }
+
+    // Fallback to static sets
+    const allSets = [...yourSets, ...exampleSets];
+    const foundSet =
+      allSets.find(set => set.id === setId) ||
+      allSets.find(set => set.id === 'cpp-basics') ||
+      exampleSets[0];
+    
+    setCardSet(foundSet);
+  }, [setId, user]);
+
+  const currentCard = cardSet?.cards?.[qIndex];
+  const answers = useMemo(() => currentCard ? buildAnswers(currentCard) : [], [currentCard]);
+
+  // Reset state on new question
+  useEffect(() => {
+    if (qIndex >= 0 && cardSet) {
+      setSelectedIndex(null);
+      setIsFeedback(false);
+    }
+  }, [qIndex, cardSet]);
+
+  const handleChoose = (index: number) => {
+    if (isFeedback) return;
+    
+    setSelectedIndex(index);
+    setIsFeedback(true);
+    
+    if (answers[index].isCorrect) {
+      setScore(prev => prev + 100);
+    }
+    
+    setTimeout(() => {
+      setIsFeedback(false);
+      if (qIndex < (cardSet?.cards?.length || 0) - 1) {
+        setQIndex(prev => prev + 1);
+      } else {
+        setQIndex(-1);
+      }
+    }, 1000);
+  };
+
+  const handlePlayAgain = () => {
+    setQIndex(0);
+    setScore(0);
+    setSelectedIndex(null);
+    setIsFeedback(false);
+  };
+
+  const handleKeyPress = (e: React.KeyboardEvent) => {
+    // No keyboard handling needed
+  };
 
   // If still not found or cards missing, show a safe fallback
   if (!cardSet || !Array.isArray(cardSet.cards) || cardSet.cards.length === 0) {
@@ -46,42 +115,6 @@ export default function PlayPage() {
     );
   }
 
-  // ---- quiz state ----
-  const [qIndex, setQIndex] = useState(0);
-  const [score, setScore] = useState(0);
-  const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
-  const [isFeedback, setIsFeedback] = useState(false);
-
-  const currentCard = qIndex >= 0 && qIndex < cardSet.cards.length ? cardSet.cards[qIndex] : null;
-
-  const answers = useMemo(() => (currentCard ? buildAnswers(currentCard) : []), [currentCard]);
-
-  useEffect(() => {
-    setSelectedIndex(null);
-    setIsFeedback(false);
-  }, [qIndex]);
-
-  const handleChoose = (index: number) => {
-    if (isFeedback) return;
-    setSelectedIndex(index);
-    setIsFeedback(true);
-
-    const chosen = answers[index];
-    if (chosen?.isCorrect) setScore(prev => prev + 100);
-
-    setTimeout(() => {
-      setIsFeedback(false);
-      if (qIndex < cardSet.cards.length - 1) setQIndex(p => p + 1);
-      else setQIndex(-1);
-    }, 1000);
-  };
-
-  const handlePlayAgain = () => {
-    setQIndex(0);
-    setScore(0);
-    setSelectedIndex(null);
-    setIsFeedback(false);
-  };
 
   // ---- end screen ----
   if (qIndex === -1) {
@@ -119,12 +152,10 @@ export default function PlayPage() {
             {/* Left: AutoCard branding */}
             <div className="flex items-center gap-3">
               <div
-                className="h-9 w-9 rounded-lg grid place-items-center shadow text-sm font-bold"
-                style={{ backgroundColor: "var(--green)", color: "var(--cream)" }}
+                className="h-10 w-6 rounded-md shadow"
+                style={{ backgroundColor: "var(--green)" }}
                 aria-label="AutoCard logo"
-              >
-                AC
-              </div>
+              />
               <span className="text-2xl font-extrabold tracking-tight" style={{ color: "var(--green)" }}>
                 AutoCard
               </span>

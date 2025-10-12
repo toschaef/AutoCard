@@ -34,12 +34,10 @@ export default function Home() {
         >
           <div className="flex items-center gap-3">
             <div
-              className="h-9 w-9 rounded-lg grid place-items-center shadow"
-              style={{ backgroundColor: "var(--green)", color: "var(--cream)" }}
+              className="h-10 w-6 rounded-md shadow"
+              style={{ backgroundColor: "var(--green)" }}
               aria-label="AutoCard logo"
-            >
-              AC
-            </div>
+            />
             <span className="text-2xl font-extrabold tracking-tight">AutoCard</span>
           </div>
 

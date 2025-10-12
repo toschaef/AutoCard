@@ -37,13 +37,7 @@ export default function TopBar() {
           
           <div className="flex items-center space-x-4">
             <div className="flex items-center space-x-3">
-              {user.avatar && (
-                <img
-                  src={user.avatar}
-                  alt={user.name}
-                  className="h-8 w-8 rounded-full"
-                />
-              )}
+              
               <span className="text-slate-700 font-medium">
                 Hello, {user.name}
               </span>

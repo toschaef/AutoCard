@@ -58,13 +58,11 @@ export default function DashboardPage() {
     const res = await apiClient.post(`/api/sets/${setId}/cards/`, {topic, prompt, difficulty, cardCount});
 
     if (res.status === 200) { 
-      const { jwt, user } = res.data;
 
-      setState({ token: jwt, user });
 
       router.push('/dashboard');
-    } else {
-      setError('Invalid email or password');
+    } else {      console.error('Error creating set:');
+
     }
 
     } catch (error) {

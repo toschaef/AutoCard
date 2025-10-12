@@ -28,9 +28,8 @@ export default function LoginForm() {
 
       if (res.status === 200) { 
         const { token, user } = res.data;
-
+        console.log("RESPONSE DATA:", res.data)
         setState({ token: token, user });
-
         router.push('/dashboard');
       } else {
         setError('Invalid email or password');

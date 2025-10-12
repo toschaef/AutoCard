@@ -5,10 +5,9 @@ import { useState } from 'react';
 interface CreateSetModalProps {
   isOpen: boolean;
   onClose: () => void;
-  onCreateSet: (setData: { title: string; description: string }) => Promise<void>;
 }
 
-export default function CreateSetModal({ isOpen, onClose, onCreateSet }: CreateSetModalProps) {
+export default function CreateSetModal({ isOpen, onClose }: CreateSetModalProps) {
   const [formData, setFormData] = useState({
     topic: '',
     prompt: '',
@@ -42,22 +41,22 @@ export default function CreateSetModal({ isOpen, onClose, onCreateSet }: CreateS
 
     setIsSubmitting(true);
     
-    try {
-      await onCreateSet({
-        topic: formData.topic.trim(),
-        prompt: formData.prompt.trim(),
-        difficulty: formData.difficulty,
-        cardCount: 10,
-      });
+    // try {
+    //   await onCreateSet({
+    //     topic: formData.topic.trim(),
+    //     prompt: formData.prompt.trim(),
+    //     difficulty: formData.difficulty,
+    //     cardCount: 10,
+    //   });
       
-      // Reset form
-      setFormData({ topic: '', prompt: '', difficulty: 'novice', cardCount: 10 });
-      onClose();
-    } catch (error) {
-      console.error('Error creating set:', error);
-    } finally {
-      setIsSubmitting(false);
-    }
+    //   // Reset form
+    //   setFormData({ topic: '', prompt: '', difficulty: 'novice', cardCount: 10 });
+    //   onClose();
+    // } catch (error) {
+    //   console.error('Error creating set:', error);
+    // } finally {
+    //   setIsSubmitting(false);
+    // }
   };
 
   const handleClose = () => {

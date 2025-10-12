@@ -90,13 +90,30 @@ export default function DashboardPage() {
   // Filter sets based on current user (unchanged)
   const getUserSets = () => {
     if (!user) return [];
-    return yourSets.filter((set) => set.userId === user.id);
+    const staticSets = yourSets.filter((set) => set.userId === user.id);
+    return [...userCreatedSets, ...staticSets];
   };
 
   const handleCreateSet = async (setData: { title: string; description: string }) => {
-    // (unchanged) — hook up real create later
-    console.log('Creating set:', setData);
-    await new Promise((resolve) => setTimeout(resolve, 1000));
+    // Create new set with temporary ID
+    const newSetId = `set-${Date.now()}`;
+    
+    // Store set data in localStorage temporarily
+    const newSet = {
+      id: newSetId,
+      userId: user?.id || '1',
+      title: setData.title,
+      description: setData.description,
+      cards: [],
+      created: new Date()
+    };
+    
+    localStorage.setItem(`temp-set-${newSetId}`, JSON.stringify(newSet));
+    
+    console.log('Creating set:', newSet);
+    
+    // Navigate to edit page for the new set
+    router.push(`/set/${newSetId}/edit`);
   };
 
   const userSetsList = getUserSets();

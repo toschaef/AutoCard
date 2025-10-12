@@ -18,6 +18,7 @@ export default function DashboardPage() {
   const { user } = useAppContext();
   const router = useRouter();
   const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
+  const [userSets, setUserSets] = useState(null);
 
   // Redirect to welcome page if not logged in (unchanged)
   useEffect(() => {
@@ -124,7 +125,7 @@ export default function DashboardPage() {
                   color: 'transparent',
                 }}
               >
-                Lock in, {firstName}.
+                Lock in, {user?.name.split(' ')[0] || "Buddy"}.
               </h1>
               <p className="mt-2 text-sm md:text-base" style={{ color: 'var(--olive)' }}>
                 Pick up where you left off or start a new one.

@@ -41,15 +41,12 @@ export default function SignUpPage() {
     try {
       const res = await apiClient.post('/register', { email, password, name });
 
-      if (res.status === 201) { 
-        const { token, user } = res.data;
+      const { token, user } = res.data;
 
-        setState({ token, user });
+      setState({ token, user });
 
-        router.push('/dashboard');
-      } else {
-        setError('Invalid email or password');
-      }
+      console.log('redirecting');
+      router.push('/dashboard');
 
     } catch (err: any) {
       console.error(err);

@@ -8,11 +8,13 @@ export interface Card {
 }
   
 export interface CardSet extends Document {
+export interface CardSet extends Document {
   id: string;
   userId: string;
   title: string;
   description: string;
   cards: Card[];
+  cards: [String];
   created: Date;
 }
 
@@ -24,7 +26,7 @@ export interface User {
   createdAt: Date;
 }
 
-export interface Player {
+export interface Player extends Document {
   id: string;
   email: string;
   password: string;
@@ -32,6 +34,7 @@ export interface Player {
   score: number;
 }
 
+export interface GameSession extends Document {
 export interface GameSession extends Document {
   hostId: string;
   cardSet: CardSet;
@@ -41,11 +44,13 @@ export interface GameSession extends Document {
 }
 
 export default interface CreateCardSetParams extends Document {
+export default interface CreateCardSetParams extends Document {
   name: string;
   description: string;
   initialCards: { front: string, back: string }[];
 }
 
+export default interface DeleteCardSetParams extends Document {
 export default interface DeleteCardSetParams extends Document {
   cardSetId: string;
 }

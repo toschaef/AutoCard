@@ -7,11 +7,12 @@ import React, {
   useEffect,
   ReactNode,
 } from 'react';
-import { Player } from '@/types';
+import { Player, CardSet } from '@/types';
 
 interface AppState {
   token: string | null;
   user: Player | null;
+  currentSet: CardSet | null;
 }
 
 type AppAction = {
@@ -43,6 +44,7 @@ export const Provider = ({ children }: ProviderProps) => {
   const [state, dispatch] = useReducer(appReducer, {
     token: null,
     user: null,
+    currentSet: null,
   });
 
   // Effect to rehydrate state from localStorage on initial load

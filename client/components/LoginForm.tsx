@@ -3,28 +3,43 @@
 import { useState } from 'react';
 import { useAuth } from '@/lib/auth';
 import { useRouter } from 'next/navigation';
+import { useAppContext } from '@/Context';
+import apiClient from '@/apiClient';
 
 export default function LoginForm() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
-  const { login, isLoading } = useAuth();
+  const [isLoading, setLoading] = useState(false);
+  const { setState } = useAppContext();
   const router = useRouter();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setLoading(true);
     setError('');
 
     if (!email || !password) {
       setError('Please fill in all fields');
       return;
     }
+    try {
+      const res = await apiClient.post('/login', { email, password });
 
-    const success = await login(email, password);
-    if (success) {
-      router.push('/dashboard');
-    } else {
-      setError('Invalid email or password');
+      if (res.status === 200) { 
+        const { jwt, user } = res.data;
+
+        setState({ token: jwt, user });
+
+        router.push('/dashboard');
+      } else {
+        setError('Invalid email or password');
+      }
+
+    } catch (err: any) {
+      setError(err.message || 'Internal Server Error');
+    } finally {
+      setLoading(false);
     }
   };
 

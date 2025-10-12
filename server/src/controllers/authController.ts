@@ -20,8 +20,8 @@ export const register = async (req: Request, res: Response) => {
     }
 
     // Hash the password
-    const saltRounds = 10;
-    const hashedPassword = await bcrypt.hash(password, saltRounds);
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(password, salt);
 
     const newUser = new User({
       email,
@@ -49,19 +49,22 @@ export const login = async (req: Request, res: Response) => {
     }
 
     // Find user by email
-    const user = await User.findOne({ email });
+    const user = await User.findOne({ email }).select('+password'); // Explicitly select the password field
     
     if (!user) {
       return res.status(401).json({ message: 'Invalid credentials.' });
     }
 
-    console.log(user)
+
+    // console.log(user)
     // Compare provided password with stored hash
     if (!user.password) {
       return res.status(500).json({ message: 'User password is not set.' });
     }
 
+    // console.log(password, user.password)
     const isMatch = await bcrypt.compare(password, user.password);
+    // console.log(isMatch)
     if (!isMatch) {
       return res.status(401).json({ message: 'Invalid credentials.' });
     }
@@ -75,9 +78,11 @@ export const login = async (req: Request, res: Response) => {
     );
     
     // Send token back to the client
+    console.log("LOGIN SUCCESSFUL")
     res.status(200).json({ message: 'Login successful', token });
 
   } catch (error: any) {
+    console.error(error);
     res.status(500).json({ message: 'Server error during login.', error });
   }
 };

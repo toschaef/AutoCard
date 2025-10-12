@@ -12,7 +12,6 @@ export interface CardSet extends Document {
   userId: string;
   title: string;
   description: string;
-  cards: Card[];
   cards: [String];
   created: Date;
 }

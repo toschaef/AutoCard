@@ -3,13 +3,11 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import apiClient from "@/api/apiClient";
 import Link from "next/link";
-import { useAuth } from "../../lib/auth";
+import { registerUser } from "@/api/api";
 
 export default function SignUpPage() {
   const router = useRouter();
-  const { signup } = useAuth();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -39,8 +37,9 @@ export default function SignUpPage() {
     }
 
     try {
-      await signup(name, email, password);
-      router.push('/dashboard');
+      await registerUser(name, email, password).then(() => {
+        router.push('/dashboard');
+      });
     } catch (err: any) {
       console.error(err);
       setError(err.message || 'Internal Server Error');

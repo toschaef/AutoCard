@@ -18,12 +18,15 @@ export const getCardsBySetId = async (req: Request, res: Response) => {
     }
 
     // If the actual cards and the references are out of sync, clean up the references
+    // remove any null entries from the cards array as well
     if (cardSet.cards.length !== cardSet.cards.filter(card => card !== null).length) {
       CardSet.updateOne(
         { _id: setId },
         { cards: cardSet.cards.filter(card => card !== null).map(card => card._id) }
       ).catch((error: any) => console.error("Error cleaning up card references:", error));
     }
+
+    cardSet.cards = cardSet.cards.filter(card => card !== null);
 
     // If the set is found, return the populated 'cards' array
     res.status(200).json(cardSet);

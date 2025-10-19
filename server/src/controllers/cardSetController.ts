@@ -50,9 +50,19 @@ export const getCardSetById = async (req: Request, res: Response) => {
   try {
     const { setId } = req.params;
     const cardSet = await CardSet.findById(setId);
+
     if (!cardSet) {
       return res.status(404).json({ message: 'Card set not found' });
     }
+
+    // remove any null entries from the cards array
+    if (cardSet.cards.length !== cardSet.cards.filter(card => card !== null).length) {
+      CardSet.updateOne(
+        { _id: setId },
+        { cards: cardSet.cards.filter(card => card !== null).map(card => card._id) }
+      ).catch((error: any) => console.error("Error cleaning up card references:", error));
+    }
+    cardSet.cards = cardSet.cards.filter(card => card !== null);
     res.json(cardSet);
 
   } catch (error: any) {

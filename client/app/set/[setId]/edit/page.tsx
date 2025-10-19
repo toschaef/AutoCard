@@ -203,6 +203,45 @@ export default function EditSetPage() {
     );
   }
 
+  async function handleAddAllAICardsToSet(event: React.FormEvent<HTMLButtonElement>): Promise<void> {
+    event.preventDefault();
+
+    if (AIGeneratedCards.length === 0) return;
+    setIsGenerating(true);
+
+    try {
+      // Create all AI cards in parallel
+      const createdCards = await Promise.all(
+        AIGeneratedCards.map((aiCard) => createCard(aiCard))
+      );
+
+      // Add created cards to current cards and originalCards (for change tracking)
+      setCards((prev) => [...prev, ...createdCards]);
+      setOriginalCards((prev) => [...prev, ...createdCards]);
+
+      // Update cardSet locally and persist updated card IDs
+      if (cardSet) {
+        const newCardIds = createdCards.map((c) => c._id);
+        const updatedSet = { ...cardSet, cards: [...cardSet.cards, ...newCardIds] };
+        setCardSet(updatedSet);
+
+        // Persist the set update
+        try {
+          await updateSet(updatedSet._id, updatedSet);
+        } catch (err) {
+          console.error('Failed to update set with new AI cards', err);
+        }
+      }
+
+      // Clear AI generated pool and mark as unsaved
+      setAIGeneratedCards([]);
+      setIsSaved(false);
+    } catch (err) {
+      console.error('Error adding AI generated cards to set', err);
+    } finally {
+      setIsGenerating(false);
+    }
+  }
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Navbar - sticky */}
@@ -300,6 +339,9 @@ export default function EditSetPage() {
                 <p className="text-yellow-800">No AI generated cards yet. Use the button above to generate some!</p>
               ) : (
                 <ul className="space-y-2 max-h-96 overflow-y-auto">
+                  <li className="text-sm text-gray-500">
+                    <button onClick={handleAddAllAICardsToSet} className="mt-2 bg-yellow-400 hover:bg-yellow-500 text-yellow-900 font-semibold py-1 px-3 rounded-lg transition-colors duration-200">Add all cards to set</button>
+                  </li>
                   {AIGeneratedCards.map((card, idx) => (
                     // Add a genre header for each unique genre and group cards under it
                     <li key={card._id}>

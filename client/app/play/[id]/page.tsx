@@ -26,13 +26,21 @@ export default function PlayPage() {
     "(Only include Answer #)\",,,,,,,,,,,,,,,,,," + '\n';
     csvContent += cards.map((card, idx) => {
       let incorrectAnswersString = card.incorrectAnswers.map(ans => `${ans.replace(/,/g, '-')}`).join(',');
-      if (card.incorrectAnswers.length < 4) { 
-        incorrectAnswersString += ','.repeat(4 - card.incorrectAnswers.length); 
+      console.log("Generating CSV - incorrectAnswersString before padding:", incorrectAnswersString);
+      if (incorrectAnswersString.split(',').length < 4) {
+        incorrectAnswersString += ','.repeat(4 - incorrectAnswersString.split(',').length);
+      }
+
+      if (incorrectAnswersString[incorrectAnswersString.length - 1] !== ',') {
+        incorrectAnswersString += ',';
       }
 
       // replace all commas in question and answers with hyphens to avoid CSV issues
-      return `${idx+1},"${card.question.replace(/,/g, '-')}",${card.correctAnswer.replace(/,/g, '-')},${incorrectAnswersString}20,1,,${card.incorrectAnswers[0].length === 0 ? "typing" : ""},,,,,,,,,,,,,,,,` + '\n';
+      return `${idx+1},"${card.question.replace(/,/g, '-')}",${card.correctAnswer.replace(/,/g, '-')},${incorrectAnswersString}20,1,,${card.incorrectAnswers.length === 0 || card.incorrectAnswers[0].length === 0 ? "typing" : ""},,,,,,,,,,,,,,,,` + '\n';
     }).join('');
+
+    // replace all < with &lt; and > with &gt; to avoid CSV issues
+    csvContent = csvContent.replace(/</g, '❮').replace(/>/g, '❯');
 
     const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
     const link = document.createElement("a");

@@ -1,0 +1,5 @@
+{
+    "prompt": "Make questions about different data structures and algorithms used for Competitive Programming in C++. I want classification questions where the answer should be the name of a data structure or algorithm that answers the question. I want a wide vareity of algorithms used in competitive programming and I want them to be more obscure and difficult. So you shouldn't have vector, stack, queue, as an answer because those are too simple.",
+    "numProblemsPerGenre": 20,
+    "difficulty": "advance"
+}

@@ -1,0 +1,156 @@
+{
+  "title": "Advanced C++ Flashcards",
+  "description": "A set of challenging multiple-choice, true/false, and fill-in-the-blank questions on advanced C++ concepts.",
+  "cards": [
+    {
+      "index": 1,
+      "genre": "Advanced C++",
+      "question": "In C++, which mechanism is often used to enable or disable template instantiations based on properties of their arguments at compile-time, allowing for advanced overload resolution?",
+      "correctAnswer": "Substitution Failure Is Not An Error (SFINAE)",
+      "incorrectAnswers": [
+        "Runtime Polymorphism",
+        "Dynamic Dispatch",
+        "Virtual Inheritance"
+      ],
+      "difficulty": "hard"
+    },
+    {
+      "index": 2,
+      "genre": "Advanced C++",
+      "question": "True or False: A `std::move` operation guarantees that the source object will be left in a valid, but unspecified state, meaning it can still be safely destructed or assigned to, but its value should not be relied upon without reinitialization.",
+      "correctAnswer": "True",
+      "incorrectAnswers": [
+        "False"
+      ],
+      "difficulty": "hard"
+    },
+    {
+      "index": 3,
+      "genre": "Advanced C++",
+      "question": "The C++ smart pointer designed for exclusive ownership of a dynamically allocated object, ensuring automatic deallocation when it goes out of scope, is `std::__________`.",
+      "correctAnswer": "unique_ptr",
+      "incorrectAnswers": [],
+      "difficulty": "hard"
+    },
+    {
+      "index": 4,
+      "genre": "Advanced C++",
+      "question": "Which C++ synchronization primitive ensures that only one thread at a time can access a shared resource, protecting it from race conditions?",
+      "correctAnswer": "`std::mutex`",
+      "incorrectAnswers": [
+        "`std::atomic`",
+        "`std::condition_variable`",
+        "`std::future`"
+      ],
+      "difficulty": "hard"
+    },
+    {
+      "index": 5,
+      "genre": "Advanced C++",
+      "question": "True or False: C++20 Concepts are primarily a compile-time mechanism for constraining template parameters and improving error messages, and they do not introduce runtime overhead.",
+      "correctAnswer": "True",
+      "incorrectAnswers": [
+        "False"
+      ],
+      "difficulty": "hard"
+    },
+    {
+      "index": 6,
+      "genre": "Advanced C++",
+      "question": "Compile-time evaluation of constants and function results, allowing for optimization and generation of type-safe code during compilation, is extensively supported by the `__________` keyword in C++.",
+      "correctAnswer": "constexpr",
+      "incorrectAnswers": [],
+      "difficulty": "hard"
+    },
+    {
+      "index": 7,
+      "genre": "Advanced C++",
+      "question": "When a lambda expression captures a variable by value (e.g., `[var]`), what is the lifetime of the captured copy relative to the original variable?",
+      "correctAnswer": "The captured copy's lifetime is tied to the lambda object itself.",
+      "incorrectAnswers": [
+        "The captured copy's lifetime is tied to the scope where the lambda was defined.",
+        "The captured copy refers to the original variable and has no independent lifetime.",
+        "The captured copy is immediately destroyed after the lambda's creation."
+      ],
+      "difficulty": "hard"
+    },
+    {
+      "index": 8,
+      "genre": "Advanced C++",
+      "question": "True or False: The \"strong exception guarantee\" in C++ states that if an operation throws an exception, the program's state will remain unchanged, as if the operation had never been attempted.",
+      "correctAnswer": "True",
+      "incorrectAnswers": [
+        "False"
+      ],
+      "difficulty": "hard"
+    },
+    {
+      "index": 9,
+      "genre": "Advanced C++",
+      "question": "The technique of storing objects of different concrete types behind a common interface or wrapper type, often using polymorphism without virtual functions, is known as type __________.",
+      "correctAnswer": "erasure",
+      "incorrectAnswers": [],
+      "difficulty": "hard"
+    },
+    {
+      "index": 10,
+      "genre": "Advanced C++",
+      "question": "Which of the following is the most common and idiomatic way to unpack a variadic template parameter pack in C++?",
+      "correctAnswer": "Fold Expressions (C++17 onwards)",
+      "incorrectAnswers": [
+        "Recursive template instantiation",
+        "Manual loop iteration with `sizeof...`",
+        "Dynamic `std::tuple` unpacking"
+      ],
+      "difficulty": "hard"
+    },
+    {
+      "index": 11,
+      "genre": "Advanced C++",
+      "question": "True or False: C++20 Modules completely eliminate the need for header guards and the preprocessor's role in managing symbol visibility and multiple definitions across translation units.",
+      "correctAnswer": "False",
+      "incorrectAnswers": [
+        "True"
+      ],
+      "difficulty": "hard"
+    },
+    {
+      "index": 12,
+      "genre": "Advanced C++",
+      "question": "In C++20, the feature that allows functions to be paused and resumed, enabling asynchronous programming patterns without blocking, is called __________.",
+      "correctAnswer": "coroutines",
+      "incorrectAnswers": [],
+      "difficulty": "hard"
+    },
+    {
+      "index": 13,
+      "genre": "Advanced C++",
+      "question": "What is the primary motivation for implementing a custom allocator in C++?",
+      "correctAnswer": "To optimize memory usage and performance for specific data structures or scenarios.",
+      "incorrectAnswers": [
+        "To strictly enforce thread safety across all allocations",
+        "To eliminate the need for `new` and `delete` keywords entirely",
+        "To provide a garbage collection mechanism for C++ objects."
+      ],
+      "difficulty": "hard"
+    },
+    {
+      "index": 14,
+      "genre": "Advanced C++",
+      "question": "True or False: Dereferencing a null pointer in C++ guarantees a segmentation fault on all conforming systems and compilers.",
+      "correctAnswer": "False",
+      "incorrectAnswers": [
+        "True"
+      ],
+      "difficulty": "hard"
+    },
+    {
+      "index": 15,
+      "genre": "Advanced C++",
+      "question": "The combination of `std::forward` and rvalue reference parameters (often `T&&` with templates) used to pass arguments through a function while preserving their original value category (lvalue or rvalue) is known as __________ forwarding.",
+      "correctAnswer": "perfect",
+      "incorrectAnswers": [],
+      "difficulty": "hard"
+    }
+  ]
+}

@@ -1,17 +1,19 @@
 // components/SetDetailsForm.tsx
 
-import { CardSet } from '../lib/types';
+import { CardSet } from '@/types/types';
 import type { Dispatch, SetStateAction } from 'react';
 
 type Props = {
   cardSet: CardSet;
   setCardSet: Dispatch<SetStateAction<CardSet | null>>;
+  setIsSaved: Dispatch<SetStateAction<boolean>>;
 };
 
-const SetDetailsForm = ({ cardSet, setCardSet }: Props) => {
+const SetDetailsForm = ({ cardSet, setCardSet, setIsSaved }: Props) => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setCardSet(prev => prev ? { ...prev, [name]: value } : null);
+    setIsSaved(false);
   };
 
   return (

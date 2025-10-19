@@ -1,18 +1,37 @@
-import apiClient from "@/apiClient";
-import { Card, CardSet } from "../types/types"
+import apiClient from "@/api/apiClient";
+import { Card, CardSet, Prompt } from "../types/types"
+
+export const loginUser = async (email: string, password: string) => {
+    try {
+        const response = await apiClient.post('/login', { email, password });
+        return response.data;
+    } catch (error) {
+        console.error(error);
+    }
+};
+
+export const registerUser = async (name: string, email: string, password: string) => {
+    try {
+        const response = await apiClient.post('/register', { name, email, password });
+        return response.data;
+    } catch (error) {
+        console.error(error);
+    }
+};
 
 export const getCardsFromSet = async (setId: string) => {
     try {
-        const response = await apiClient.get(`/sets/${setId}/cards`);
+        const response = await apiClient.get(`/cards/${setId}/cards`);
         return response.data;
     } catch (error) {
         console.error(error);
     }
 }
 
-export const createCard = async (setId: string, cardData: Card) => {
+export const createCard = async (cardData: Partial<Card>) => {
     try {
         const response = await apiClient.post(`/cards`, cardData);
+        console.log("API TS - createCard response:", response.data);
         return response.data;
     } catch (error) {
         console.error(error);
@@ -28,7 +47,7 @@ export const getCardById = async (cardId: string) => {
     }
 }
 
-export const updateCard = async (cardId: string, cardData: Card) => {
+export const updateCard = async (cardId: string, cardData: Partial<Card>) => {
     try {
         const response = await apiClient.put(`/cards/${cardId}`, cardData);
         return response.data;
@@ -46,7 +65,7 @@ export const deleteCard = async (cardId: string) => {
     }
 }
 
-export const createSet = async (setData: CardSet) => {
+export const createSet = async (setData: Partial<CardSet>) => {
     try {
         const response = await apiClient.post(`/sets/`, setData);
         return response.data;
@@ -55,16 +74,19 @@ export const createSet = async (setData: CardSet) => {
     }
 }
 
-export const getAllSets = async (user_id: string) => {
+export const getAllSets = async () => {
     try {
-        // put in user_id as query param to get only that user's sets
-
-        const response = await apiClient.get(`/sets/`, {
-            params: {
-                user_id
-            }
-        });
+        const response = await apiClient.get(`/sets/`);
         console.log("API TS - getAllSets response:", response.data);
+        return response.data;
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+export const getAllSetsByUser = async () => {
+    try {
+        const response = await apiClient.get(`/sets/user`);
         return response.data;
     } catch (error) {
         console.error(error);
@@ -80,7 +102,7 @@ export const getSetById = async (setId: string) => {
     }
 }
 
-export const updateSet = async (setId: string, setData: CardSet) => {
+export const updateSet = async (setId: string, setData: Partial<CardSet>) => {
     try {
         const response = await apiClient.put(`/sets/${setId}`, setData);
         return response.data;
@@ -98,18 +120,19 @@ export const deleteSet = async (setId: string) => {
     }
 }
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const createBatchOfCards = async (batchData: any) => {
+export const createBatchOfCards = async (prompt: Partial<Prompt>) => {
     try {
-        const response = await apiClient.post(`/ai/`, batchData);
+        console.log("API TS - createBatchOfCards prompt:", prompt);
+        const response = await apiClient.post(`/ai/`, prompt);
         return response.data;
     } catch (error) {
         console.error(error);
     }
 }
 
-export const createBatchOfCardsFromFile = async (file: File) => {
+export const createBatchOfCardsFromFile = async (prompt: Partial<Prompt>, file: File) => {
     const formData = new FormData();
+    formData.append('prompt', JSON.stringify(prompt));
     formData.append('file', file);
 
     try {

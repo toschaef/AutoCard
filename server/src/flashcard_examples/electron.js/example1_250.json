@@ -1,0 +1,3006 @@
+{
+    "title": "Electron.js Problems",
+    "description": "A collection of multiple-choice problems covering Electron.js core architecture, development processes, and practical deployment challenges.",
+    "cards": [
+        {
+            "index": 1,
+            "genre": "Core Concepts & Architecture",
+            "question": "What is the primary purpose of Electron.js?",
+            "correctAnswer": "To build cross-platform desktop applications using web technologies.",
+            "incorrectAnswers": [
+                "To develop high-performance backend services.",
+                "To create mobile-first web applications.",
+                "To compile web code into native mobile apps."
+            ],
+            "difficulty": "novice"
+        },
+        {
+            "index": 2,
+            "genre": "Core Concepts & Architecture",
+            "question": "Which two main processes are fundamental to an Electron application's architecture?",
+            "correctAnswer": "Main process and Renderer process.",
+            "incorrectAnswers": [
+                "Server process and Client process.",
+                "Background process and Foreground process.",
+                "UI process and Logic process."
+            ],
+            "difficulty": "novice"
+        },
+        {
+            "index": 3,
+            "genre": "Core Concepts & Architecture",
+            "question": "In an Electron application, which process has direct access to Node.js APIs and manages the application lifecycle?",
+            "correctAnswer": "Main process.",
+            "incorrectAnswers": [
+                "Renderer process.",
+                "Preload script process.",
+                "Web Worker process."
+            ],
+            "difficulty": "novice"
+        },
+        {
+            "index": 4,
+            "genre": "Core Concepts & Architecture",
+            "question": "What does 'Context Isolation' in Electron aim to prevent?",
+            "correctAnswer": "Malicious code in a renderer process from accessing Node.js APIs directly.",
+            "incorrectAnswers": [
+                "Renderer processes from communicating with each other.",
+                "The main process from sending messages to the renderer.",
+                "The application from accessing local files."
+            ],
+            "difficulty": "intermediate"
+        },
+        {
+            "index": 5,
+            "genre": "Core Concepts & Architecture",
+            "question": "Which `package.json` script typically specifies the entry point file for the main process of an Electron application?",
+            "correctAnswer": "\"main\"",
+            "incorrectAnswers": [
+                "\"start\"",
+                "\"renderer\"",
+                "\"electron\""
+            ],
+            "difficulty": "novice"
+        },
+        {
+            "index": 6,
+            "genre": "Core Concepts & Architecture",
+            "question": "Which module is responsible for creating and managing native browser windows in Electron?",
+            "correctAnswer": "BrowserWindow.",
+            "incorrectAnswers": [
+                "WebView.",
+                "Window.",
+                "AppWindow."
+            ],
+            "difficulty": "novice"
+        },
+        {
+            "index": 7,
+            "genre": "Core Concepts & Architecture",
+            "question": "What is a key benefit of using Electron for desktop application development?",
+            "correctAnswer": "Leveraging existing web development skills and technologies.",
+            "incorrectAnswers": [
+                "Superior performance compared to native applications.",
+                "Smaller application bundle sizes.",
+                "Automatic security updates for all dependencies."
+            ],
+            "difficulty": "novice"
+        },
+        {
+            "index": 8,
+            "genre": "Core Concepts & Architecture",
+            "question": "When an Electron app is started, which event is typically emitted by the `app` module once Electron has finished initializing?",
+            "correctAnswer": "'ready'",
+            "incorrectAnswers": [
+                "'startup'",
+                "'launch'",
+                "'init'"
+            ],
+            "difficulty": "intermediate"
+        },
+        {
+            "index": 9,
+            "genre": "Core Concepts & Architecture",
+            "question": "How does Electron load content into its renderer processes?",
+            "correctAnswer": "By loading a local HTML file or a remote URL.",
+            "incorrectAnswers": [
+                "By embedding a native UI framework.",
+                "By compiling JavaScript into a native view.",
+                "Only by loading remote URLs."
+            ],
+            "difficulty": "novice"
+        },
+        {
+            "index": 10,
+            "genre": "Core Concepts & Architecture",
+            "question": "What is the purpose of the `app` module in Electron?",
+            "correctAnswer": "To control the application's event lifecycle.",
+            "incorrectAnswers": [
+                "To manage rendering and UI.",
+                "To handle database interactions.",
+                "To provide access to web APIs."
+            ],
+            "difficulty": "novice"
+        },
+        {
+            "index": 11,
+            "genre": "Core Concepts & Architecture",
+            "question": "Which feature of Electron allows for multiple isolated UI processes, each acting like a separate web page?",
+            "correctAnswer": "Renderer processes.",
+            "incorrectAnswers": [
+                "Main process.",
+                "Preload scripts.",
+                "Web Workers."
+            ],
+            "difficulty": "novice"
+        },
+        {
+            "index": 12,
+            "genre": "Core Concepts & Architecture",
+            "question": "What is a common drawback of Electron applications compared to purely native desktop applications?",
+            "correctAnswer": "Higher memory usage and larger executable sizes.",
+            "incorrectAnswers": [
+                "Inability to access local file systems.",
+                "Lack of cross-platform compatibility.",
+                "Difficulty in implementing modern UI designs."
+            ],
+            "difficulty": "novice"
+        },
+        {
+            "index": 13,
+            "genre": "Core Concepts & Architecture",
+            "question": "Which of the following is true about the Renderer process?",
+            "correctAnswer": "It runs a full Chromium browser instance for rendering web content.",
+            "incorrectAnswers": [
+                "It has direct access to Node.js and OS-level APIs without isolation.",
+                "There can only be one Renderer process per application.",
+                "It is primarily responsible for managing system resources."
+            ],
+            "difficulty": "intermediate"
+        },
+        {
+            "index": 14,
+            "genre": "Core Concepts & Architecture",
+            "question": "What is the default security model for new Electron applications?",
+            "correctAnswer": "Context Isolation enabled and Node.js integration disabled in renderer processes.",
+            "incorrectAnswers": [
+                "Node.js integration enabled by default in all processes.",
+                "No sandboxing or isolation for renderer processes.",
+                "All external URLs are automatically trusted."
+            ],
+            "difficulty": "intermediate"
+        },
+        {
+            "index": 15,
+            "genre": "Core Concepts & Architecture",
+            "question": "What is the role of a `preload` script in Electron?",
+            "correctAnswer": "To run before a web page loads in a renderer process and expose Node.js APIs securely.",
+            "incorrectAnswers": [
+                "To load all application assets before the main process starts.",
+                "To handle all inter-process communication directly.",
+                "To compile the entire application into a single executable."
+            ],
+            "difficulty": "intermediate"
+        },
+        {
+            "index": 16,
+            "genre": "Core Concepts & Architecture",
+            "question": "If all `BrowserWindow` instances are closed, which event on the `app` module indicates that the application is ready to quit (except on macOS)?",
+            "correctAnswer": "'window-all-closed'",
+            "incorrectAnswers": [
+                "'all-windows-closed'",
+                "'quit'",
+                "'app-closed'"
+            ],
+            "difficulty": "intermediate"
+        },
+        {
+            "index": 17,
+            "genre": "Core Concepts & Architecture",
+            "question": "What is the primary motivation behind Electron's sandboxing model for renderer processes?",
+            "correctAnswer": "To enhance security by limiting the renderer's access to system resources.",
+            "incorrectAnswers": [
+                "To improve application performance by offloading tasks to a sandbox.",
+                "To allow the renderer to run untrusted code without any restrictions.",
+                "To simplify the development of web components."
+            ],
+            "difficulty": "intermediate"
+        },
+        {
+            "index": 18,
+            "genre": "Core Concepts & Architecture",
+            "question": "Which module provides methods to control the entire lifecycle of an Electron application, such as quitting or relaunching?",
+            "correctAnswer": "`app` module.",
+            "incorrectAnswers": [
+                "`BrowserWindow` module.",
+                "`dialog` module.",
+                "`ipcMain` module."
+            ],
+            "difficulty": "novice"
+        },
+        {
+            "index": 19,
+            "genre": "Core Concepts & Architecture",
+            "question": "When is it generally recommended to disable Node.js integration in the renderer process?",
+            "correctAnswer": "When loading untrusted remote content or when not explicitly needed.",
+            "incorrectAnswers": [
+                "Always, regardless of content trust.",
+                "Only when developing for macOS.",
+                "Never, as it breaks core Electron functionality."
+            ],
+            "difficulty": "intermediate"
+        },
+        {
+            "index": 20,
+            "genre": "Core Concepts & Architecture",
+            "question": "What does `BrowserWindow.setAppDetails()` allow you to customize?",
+            "correctAnswer": "Application-specific details like the title bar and icon.",
+            "incorrectAnswers": [
+                "Details of the `app` module.",
+                "The content of the web page loaded.",
+                "Security settings for the window."
+            ],
+            "difficulty": "advanced"
+        },
+        {
+            "index": 21,
+            "genre": "Core Concepts & Architecture",
+            "question": "Why is `Context Isolation` considered a security best practice?",
+            "correctAnswer": "It prevents the loaded web content from directly manipulating the `window` object or global Node.js APIs exposed by a preload script.",
+            "incorrectAnswers": [
+                "It isolates all `BrowserWindow` instances from each other.",
+                "It ensures that all renderer processes use the same Node.js version.",
+                "It guarantees that all external network requests are encrypted."
+            ],
+            "difficulty": "advanced"
+        },
+        {
+            "index": 22,
+            "genre": "Core Concepts & Architecture",
+            "question": "What distinguishes Electron's event-driven architecture?",
+            "correctAnswer": "Both the main and renderer processes communicate primarily through events, often via IPC.",
+            "incorrectAnswers": [
+                "It uses a polling mechanism to check for state changes.",
+                "Only the main process uses events, the renderer is purely reactive.",
+                "Events are exclusively used for UI interactions."
+            ],
+            "difficulty": "intermediate"
+        },
+        {
+            "index": 23,
+            "genre": "Core Concepts & Architecture",
+            "question": "Which module system is natively supported in Electron's main process?",
+            "correctAnswer": "CommonJS and ES Modules.",
+            "incorrectAnswers": [
+                "Only CommonJS.",
+                "Only ES Modules.",
+                "AMD."
+            ],
+            "difficulty": "novice"
+        },
+        {
+            "index": 24,
+            "genre": "Core Concepts & Architecture",
+            "question": "If an Electron application needs to gracefully terminate, which `app` method should be used to initiate the shutdown sequence?",
+            "correctAnswer": "`app.quit()`",
+            "incorrectAnswers": [
+                "`app.terminate()`",
+                "`app.exit()`",
+                "`app.destroy()`"
+            ],
+            "difficulty": "intermediate"
+        },
+        {
+            "index": 25,
+            "genre": "Core Concepts & Architecture",
+            "question": "Which of the following is NOT a default behavior of a new `BrowserWindow` instance?",
+            "correctAnswer": "It has Node.js integration enabled by default.",
+            "incorrectAnswers": [
+                "It creates a new renderer process.",
+                "It can load local HTML files.",
+                "It can be configured with various options (e.g., width, height)."
+            ],
+            "difficulty": "intermediate"
+        },
+        {
+            "index": 26,
+            "genre": "Core Concepts & Architecture",
+            "question": "How can you set a custom icon for your Electron application's `BrowserWindow`?",
+            "correctAnswer": "By passing an `icon` option to the `BrowserWindow` constructor.",
+            "incorrectAnswers": [
+                "By modifying the `package.json` file.",
+                "By using a CSS property in the renderer.",
+                "Electron automatically uses the favicon from the loaded HTML."
+            ],
+            "difficulty": "novice"
+        },
+        {
+            "index": 27,
+            "genre": "Core Concepts & Architecture",
+            "question": "What is the purpose of `app.setAppLogsPath()`?",
+            "correctAnswer": "To specify a custom directory for application log files.",
+            "incorrectAnswers": [
+                "To set the path for the application's executable.",
+                "To define the default download location for files.",
+                "To configure the path to the Electron framework itself."
+            ],
+            "difficulty": "advanced"
+        },
+        {
+            "index": 28,
+            "genre": "Core Concepts & Architecture",
+            "question": "Which core architectural aspect makes Electron applications cross-platform?",
+            "correctAnswer": "Embedding Chromium for UI and Node.js for backend logic, which are cross-platform by nature.",
+            "incorrectAnswers": [
+                "Using a custom Electron language that compiles to native code for each OS.",
+                "Relying on specific OS-level APIs that are uniform across platforms.",
+                "Utilizing web standards that are interpreted differently by each OS."
+            ],
+            "difficulty": "intermediate"
+        },
+        {
+            "index": 29,
+            "genre": "Core Concepts & Architecture",
+            "question": "What security consideration applies to loading external URLs in an Electron `BrowserWindow` without proper safeguards?",
+            "correctAnswer": "It can expose the application to web vulnerabilities like XSS if `nodeIntegration` is enabled.",
+            "incorrectAnswers": [
+                "It automatically isolates the content, making it completely secure.",
+                "External URLs are always blocked by default unless explicitly whitelisted.",
+                "It is only a concern for local file access, not remote content."
+            ],
+            "difficulty": "intermediate"
+        },
+        {
+            "index": 30,
+            "genre": "Core Concepts & Architecture",
+            "question": "How does Electron handle its main process being unresponsive?",
+            "correctAnswer": "It usually does not affect the renderer processes directly; the main process might crash or become unresponsive independently.",
+            "incorrectAnswers": [
+                "All renderer processes will immediately crash as well.",
+                "The application automatically restarts the main process.",
+                "The user is prompted to close the entire application."
+            ],
+            "difficulty": "advanced"
+        },
+        {
+            "index": 31,
+            "genre": "Core Concepts & Architecture",
+            "question": "What command is typically used to start an Electron application during development?",
+            "correctAnswer": "`electron .` or `npm start` (if configured in package.json).",
+            "incorrectAnswers": [
+                "`node index.js`",
+                "`web-pack-dev-server`",
+                "`npm build`"
+            ],
+            "difficulty": "novice"
+        },
+        {
+            "index": 32,
+            "genre": "Core Concepts & Architecture",
+            "question": "Which `BrowserWindow` option allows developers to create a frameless window (without a standard OS frame)?",
+            "correctAnswer": "`frame: false`",
+            "incorrectAnswers": [
+                "`borderless: true`",
+                "`noFrame: true`",
+                "`chrome: false`"
+            ],
+            "difficulty": "intermediate"
+        },
+        {
+            "index": 33,
+            "genre": "Core Concepts & Architecture",
+            "question": "What is the relationship between Electron and Chromium?",
+            "correctAnswer": "Electron embeds Chromium to display web content as its GUI.",
+            "incorrectAnswers": [
+                "Electron is a separate project that competes with Chromium.",
+                "Chromium is a tool used to debug Electron applications.",
+                "Electron is a library for Chromium, not an embedder."
+            ],
+            "difficulty": "novice"
+        },
+        {
+            "index": 34,
+            "genre": "Core Concepts & Architecture",
+            "question": "Which global object is available in both the main and renderer processes for inter-process communication?",
+            "correctAnswer": "`ipcRenderer` (in renderer) and `ipcMain` (in main).",
+            "incorrectAnswers": [
+                "`dialog`",
+                "`app`",
+                "`BrowserWindow`"
+            ],
+            "difficulty": "intermediate"
+        },
+        {
+            "index": 35,
+            "genre": "Core Concepts & Architecture",
+            "question": "What is the primary function of `process.type` in Electron?",
+            "correctAnswer": "To identify whether the current script is running in the 'main' or 'renderer' process.",
+            "incorrectAnswers": [
+                "To determine the operating system Electron is running on.",
+                "To check the current Node.js version.",
+                "To identify the CPU architecture."
+            ],
+            "difficulty": "intermediate"
+        },
+        {
+            "index": 36,
+            "genre": "Core Concepts & Architecture",
+            "question": "Which `package.json` property can be used to pass additional command-line arguments to the Electron executable when running the app?",
+            "correctAnswer": "`electron-flags` or custom scripts.",
+            "incorrectAnswers": [
+                "`cli-args`",
+                "`app-options`",
+                "`start-args`"
+            ],
+            "difficulty": "advanced"
+        },
+        {
+            "index": 37,
+            "genre": "Main Process Development",
+            "question": "How do you create a new browser window in the main process?",
+            "correctAnswer": "By instantiating a new `BrowserWindow` object.",
+            "incorrectAnswers": [
+                "By calling `app.createWindow()`.",
+                "By using `ipcRenderer.createWindow()`.",
+                "By writing HTML code for a new window."
+            ],
+            "difficulty": "novice"
+        },
+        {
+            "index": 38,
+            "genre": "Main Process Development",
+            "question": "Which `BrowserWindow` option sets the initial width of the window?",
+            "correctAnswer": "`width`",
+            "incorrectAnswers": [
+                "`initialWidth`",
+                "`windowWidth`",
+                "`client-width`"
+            ],
+            "difficulty": "novice"
+        },
+        {
+            "index": 39,
+            "genre": "Main Process Development",
+            "question": "Which method of the `app` module is used to quit the application?",
+            "correctAnswer": "`app.quit()`",
+            "incorrectAnswers": [
+                "`app.exit()`",
+                "`app.close()`",
+                "`app.terminate()`"
+            ],
+            "difficulty": "novice"
+        },
+        {
+            "index": 40,
+            "genre": "Main Process Development",
+            "question": "How can you set a custom application menu for your Electron app?",
+            "correctAnswer": "By using `Menu.setApplicationMenu(Menu.buildFromTemplate(template))`.",
+            "incorrectAnswers": [
+                "By defining a `<menu>` tag in the HTML.",
+                "By setting the `app.menu` property.",
+                "By calling `BrowserWindow.setMenu() `."
+            ],
+            "difficulty": "intermediate"
+        },
+        {
+            "index": 41,
+            "genre": "Main Process Development",
+            "question": "Which `dialog` module method is used to open a file selection dialog?",
+            "correctAnswer": "`dialog.showOpenDialog()`",
+            "incorrectAnswers": [
+                "`dialog.openFile()`",
+                "`dialog.selectFile()`",
+                "`dialog.showFileDialog()`"
+            ],
+            "difficulty": "novice"
+        },
+        {
+            "index": 42,
+            "genre": "Main Process Development",
+            "question": "What is the purpose of the `Tray` module?",
+            "correctAnswer": "To add icons and context menus to the system's notification area.",
+            "incorrectAnswers": [
+                "To manage system-level notifications.",
+                "To create custom splash screens.",
+                "To handle application updates."
+            ],
+            "difficulty": "novice"
+        },
+        {
+            "index": 43,
+            "genre": "Main Process Development",
+            "question": "How can the main process send an asynchronous message to a renderer process?",
+            "correctAnswer": "Using `webContents.send()`.",
+            "incorrectAnswers": [
+                "Using `ipcMain.sendToRenderer()`.",
+                "Using `BrowserWindow.sendMessage()`.",
+                "Using `app.postMessage() `."
+            ],
+            "difficulty": "intermediate"
+        },
+        {
+            "index": 44,
+            "genre": "Main Process Development",
+            "question": "Which module allows an Electron app to register global keyboard shortcuts that work even when the app is in the background?",
+            "correctAnswer": "`globalShortcut` module.",
+            "incorrectAnswers": [
+                "`keyboard` module.",
+                "`app.shortcuts` module.",
+                "`accelerator` module."
+            ],
+            "difficulty": "intermediate"
+        },
+        {
+            "index": 45,
+            "genre": "Main Process Development",
+            "question": "How can you display a native OS notification from the main process?",
+            "correctAnswer": "By using the `Notification` module.",
+            "incorrectAnswers": [
+                "By calling `alert()` in the renderer process.",
+                "By sending a message to `webContents.showNotification()`.",
+                "By using `dialog.showMessageBox()`."
+            ],
+            "difficulty": "novice"
+        },
+        {
+            "index": 46,
+            "genre": "Main Process Development",
+            "question": "Which method is used to open the developer tools for a specific `BrowserWindow` instance from the main process?",
+            "correctAnswer": "`win.webContents.openDevTools()`",
+            "incorrectAnswers": [
+                "`win.openDevTools()`",
+                "`app.openDevTools(win)`",
+                "`webContents.openDevTools(win)`"
+            ],
+            "difficulty": "novice"
+        },
+        {
+            "index": 47,
+            "genre": "Main Process Development",
+            "question": "What is the purpose of `app.getPath('userData')`?",
+            "correctAnswer": "To get the path to the user's application data directory.",
+            "incorrectAnswers": [
+                "To get the path to the application's executable.",
+                "To get the path to the user's documents folder.",
+                "To get the path where application logs are stored."
+            ],
+            "difficulty": "intermediate"
+        },
+        {
+            "index": 48,
+            "genre": "Main Process Development",
+            "question": "How do you define a menu item that opens an external link in the user's default browser?",
+            "correctAnswer": "By setting the `role` to 'openUrl' and `url` property (or using a custom click handler).",
+            "incorrectAnswers": [
+                "By using `shell.openExternal(url)` in a click handler.",
+                "By setting the `type` to 'link' and `href` property.",
+                "Electron menus cannot open external links."
+            ],
+            "difficulty": "advanced"
+        },
+        {
+            "index": 49,
+            "genre": "Main Process Development",
+            "question": "When creating a new `BrowserWindow`, which option makes it a child window of another `BrowserWindow`?",
+            "correctAnswer": "`parent`",
+            "incorrectAnswers": [
+                "`childOf`",
+                "`master`",
+                "`owner`"
+            ],
+            "difficulty": "intermediate"
+        },
+        {
+            "index": 50,
+            "genre": "Main Process Development",
+            "question": "Which `dialog` module method displays a modal message box with custom buttons?",
+            "correctAnswer": "`dialog.showMessageBox()`",
+            "incorrectAnswers": [
+                "`dialog.alert()`",
+                "`dialog.confirm()`",
+                "`dialog.prompt()`"
+            ],
+            "difficulty": "intermediate"
+        },
+        {
+            "index": 51,
+            "genre": "Main Process Development",
+            "question": "How do you attach a context menu to a `Tray` icon?",
+            "correctAnswer": "By calling `tray.setContextMenu(Menu.buildFromTemplate(template))`.",
+            "incorrectAnswers": [
+                "By adding a `contextMenu` option to the `Tray` constructor.",
+                "By using `app.setTrayContextMenu()`.",
+                "Context menus are not supported for `Tray` icons."
+            ],
+            "difficulty": "intermediate"
+        },
+        {
+            "index": 52,
+            "genre": "Main Process Development",
+            "question": "Which `app` module method can be used to restart the application, with an optional path to the new executable?",
+            "correctAnswer": "`app.relaunch()`",
+            "incorrectAnswers": [
+                "`app.restart()`",
+                "`app.reboot()`",
+                "`app.reload()`"
+            ],
+            "difficulty": "intermediate"
+        },
+        {
+            "index": 53,
+            "genre": "Main Process Development",
+            "question": "What is `webContents` primarily used for from the main process?",
+            "correctAnswer": "To control and interact with the content of a `BrowserWindow` (e.g., sending messages, reloading).",
+            "incorrectAnswers": [
+                "To manage application-wide settings.",
+                "To create new `BrowserWindow` instances.",
+                "To handle file system operations."
+            ],
+            "difficulty": "novice"
+        },
+        {
+            "index": 54,
+            "genre": "Main Process Development",
+            "question": "Which power management feature can be monitored using the `powerMonitor` module?",
+            "correctAnswer": "Changes in the system's power state (e.g., suspend, resume).",
+            "incorrectAnswers": [
+                "The application's CPU and memory usage.",
+                "Network connectivity status.",
+                "Battery charging cycles."
+            ],
+            "difficulty": "advanced"
+        },
+        {
+            "index": 55,
+            "genre": "Main Process Development",
+            "question": "How can you prevent a `BrowserWindow` from being resized by the user?",
+            "correctAnswer": "By setting the `resizable` option to `false` in the constructor.",
+            "incorrectAnswers": [
+                "By using CSS `resize: none;` in the renderer.",
+                "By calling `win.disableResizing()`.",
+                "By setting `minWidth` and `maxWidth` to the same value."
+            ],
+            "difficulty": "novice"
+        },
+        {
+            "index": 56,
+            "genre": "Main Process Development",
+            "question": "Which `dialog` method is used to show an error message box to the user?",
+            "correctAnswer": "`dialog.showErrorBox()`",
+            "incorrectAnswers": [
+                "`dialog.showError()`",
+                "`dialog.errorAlert()`",
+                "`dialog.displayError()`"
+            ],
+            "difficulty": "novice"
+        },
+        {
+            "index": 57,
+            "genre": "Main Process Development",
+            "question": "What does `Menu.buildFromTemplate(template)` return?",
+            "correctAnswer": "A `Menu` object that can be set as an application or context menu.",
+            "incorrectAnswers": [
+                "An HTML string representing the menu.",
+                "A JavaScript object representing the menu structure.",
+                "A list of menu item IDs."
+            ],
+            "difficulty": "novice"
+        },
+        {
+            "index": 58,
+            "genre": "Main Process Development",
+            "question": "If a `BrowserWindow` is closed by the user, what event is emitted on the window object before it is actually closed?",
+            "correctAnswer": "'close'",
+            "incorrectAnswers": [
+                "'closed'",
+                "'destroy'",
+                "'quit'"
+            ],
+            "difficulty": "intermediate"
+        },
+        {
+            "index": 59,
+            "genre": "Main Process Development",
+            "question": "Which method of the `app` module is used to get the path to the current executable?",
+            "correctAnswer": "`app.getPath('exe')`",
+            "incorrectAnswers": [
+                "`app.getExecutablePath()`",
+                "`app.getAppPath()`",
+                "`app.getBinPath()`"
+            ],
+            "difficulty": "advanced"
+        },
+        {
+            "index": 60,
+            "genre": "Main Process Development",
+            "question": "To change the title of a `BrowserWindow` dynamically from the main process, which method should be used?",
+            "correctAnswer": "`win.setTitle(newTitle)`",
+            "incorrectAnswers": [
+                "`win.webContents.setTitle(newTitle)`",
+                "`win.title = newTitle`",
+                "`app.setWindowTitle(win, newTitle)`"
+            ],
+            "difficulty": "novice"
+        },
+        {
+            "index": 61,
+            "genre": "Main Process Development",
+            "question": "What is a typical use case for `BrowserWindow.getParentWindow()`?",
+            "correctAnswer": "To establish a relationship between a modal dialog and its originating window.",
+            "incorrectAnswers": [
+                "To find the main application window from any renderer process.",
+                "To get the window that created the current `BrowserWindow` instance.",
+                "To navigate the DOM tree of parent windows."
+            ],
+            "difficulty": "advanced"
+        },
+        {
+            "index": 62,
+            "genre": "Main Process Development",
+            "question": "Which property of `BrowserWindow` allows you to control whether the window should be shown in the macOS Dock?",
+            "correctAnswer": "`skipTaskbar` (or `skipPager` on Linux, `setSkipTaskbar(true)`).",
+            "incorrectAnswers": [
+                "`hideFromDock`",
+                "`showInDock`",
+                "`dockBehavior`"
+            ],
+            "difficulty": "advanced"
+        },
+        {
+            "index": 63,
+            "genre": "Main Process Development",
+            "question": "How do you create a system tray icon that responds to user clicks?",
+            "correctAnswer": "Instantiate `new Tray(iconPath)` and attach event listeners like 'click'.",
+            "incorrectAnswers": [
+                "Use `app.setTrayIcon(iconPath)`.",
+                "Implement a custom HTML element for the tray.",
+                "Electron does not support interactive tray icons."
+            ],
+            "difficulty": "novice"
+        },
+        {
+            "index": 64,
+            "genre": "Main Process Development",
+            "question": "Which `app` module event is emitted when the application is about to quit?",
+            "correctAnswer": "'will-quit'",
+            "incorrectAnswers": [
+                "'before-quit'",
+                "'quitting'",
+                "'shutdown'"
+            ],
+            "difficulty": "intermediate"
+        },
+        {
+            "index": 65,
+            "genre": "Main Process Development",
+            "question": "If you want to prevent a `BrowserWindow` from closing when the user clicks the close button, what event can you listen for and prevent default?",
+            "correctAnswer": "The 'close' event on the `BrowserWindow` instance.",
+            "incorrectAnswers": [
+                "The 'beforeunload' event in the renderer.",
+                "The 'window-all-closed' event on `app`.",
+                "The 'destroy' event on the `BrowserWindow`."
+            ],
+            "difficulty": "intermediate"
+        },
+        {
+            "index": 66,
+            "genre": "Main Process Development",
+            "question": "Which property of a `BrowserWindow` allows you to make it full screen?",
+            "correctAnswer": "`fullscreen: true` (or `setFullScreen(true)`).",
+            "incorrectAnswers": [
+                "`maximized: true`",
+                "`stretch: true`",
+                "`display: 'full'`"
+            ],
+            "difficulty": "novice"
+        },
+        {
+            "index": 67,
+            "genre": "Main Process Development",
+            "question": "What does `powerMonitor.on('suspend', ...)` allow you to do?",
+            "correctAnswer": "Execute code before the system enters a suspended state.",
+            "incorrectAnswers": [
+                "Monitor the battery level.",
+                "Prevent the system from suspending.",
+                "Detect when an application crashes."
+            ],
+            "difficulty": "advanced"
+        },
+        {
+            "index": 68,
+            "genre": "Main Process Development",
+            "question": "How can you dynamically add or remove menu items from an existing application menu?",
+            "correctAnswer": "By modifying the `Menu` object obtained from `Menu.getApplicationMenu()` and calling `setApplicationMenu()` again.",
+            "incorrectAnswers": [
+                "Menus are static and cannot be changed after creation.",
+                "By directly manipulating the DOM of the menu in the renderer.",
+                "Electron automatically updates menus based on application state."
+            ],
+            "difficulty": "advanced"
+        },
+        {
+            "index": 69,
+            "genre": "Main Process Development",
+            "question": "What is the significance of the `BrowserWindow` `webPreferences` option?",
+            "correctAnswer": "It controls various settings for the renderer process, such as `nodeIntegration` and `contextIsolation`.",
+            "incorrectAnswers": [
+                "It defines the styling and appearance of the window frame.",
+                "It specifies the network proxy settings for the application.",
+                "It determines the operating system compatibility of the window."
+            ],
+            "difficulty": "intermediate"
+        },
+        {
+            "index": 70,
+            "genre": "Main Process Development",
+            "question": "Which `app` module method ensures only a single instance of your application is running?",
+            "correctAnswer": "`app.requestSingleInstanceLock()`",
+            "incorrectAnswers": [
+                "`app.ensureSingleton()`",
+                "`app.lockInstance()`",
+                "`app.allowSingleInstance()`"
+            ],
+            "difficulty": "advanced"
+        },
+        {
+            "index": 71,
+            "genre": "Main Process Development",
+            "question": "What are `BrowserWindow` `minWidth` and `minHeight` options used for?",
+            "correctAnswer": "To set the minimum dimensions below which the window cannot be resized.",
+            "incorrectAnswers": [
+                "To set the initial dimensions of the window.",
+                "To define the size of the window when it's minimized.",
+                "To prevent the window from being moved too close to screen edges."
+            ],
+            "difficulty": "novice"
+        },
+        {
+            "index": 72,
+            "genre": "Main Process Development",
+            "question": "How do you programmatically close a specific `BrowserWindow` instance from the main process?",
+            "correctAnswer": "By calling `win.close()`.",
+            "incorrectAnswers": [
+                "By calling `win.destroy()`.",
+                "By calling `app.closeWindow(win)`.",
+                "By sending an IPC message to the renderer to close itself."
+            ],
+            "difficulty": "novice"
+        },
+        {
+            "index": 73,
+            "genre": "Renderer Process Development",
+            "question": "How does a renderer process typically access Node.js APIs in a secure Electron application (with context isolation enabled)?",
+            "correctAnswer": "Through an API exposed by a `preload` script using `contextBridge`.",
+            "incorrectAnswers": [
+                "Directly, by calling `require()` anywhere in the renderer.",
+                "By sending a synchronous IPC message to the main process.",
+                "It cannot access Node.js APIs at all."
+            ],
+            "difficulty": "intermediate"
+        },
+        {
+            "index": 74,
+            "genre": "Renderer Process Development",
+            "question": "What is the primary language used for developing the UI and frontend logic in an Electron renderer process?",
+            "correctAnswer": "JavaScript, HTML, and CSS.",
+            "incorrectAnswers": [
+                "Python.",
+                "Java.",
+                "C#."
+            ],
+            "difficulty": "novice"
+        },
+        {
+            "index": 75,
+            "genre": "Renderer Process Development",
+            "question": "What is the main purpose of a `preload` script?",
+            "correctAnswer": "To inject custom scripts into the renderer's global scope before web content loads.",
+            "incorrectAnswers": [
+                "To load all external libraries before the application starts.",
+                "To handle all the main process logic.",
+                "To define the application's build process."
+            ],
+            "difficulty": "novice"
+        },
+        {
+            "index": 76,
+            "genre": "Renderer Process Development",
+            "question": "How does a renderer process send an asynchronous message to the main process?",
+            "correctAnswer": "Using `ipcRenderer.send()`.",
+            "incorrectAnswers": [
+                "Using `ipcMain.sendToMain()`.",
+                "Using `app.sendMessageToMain()`.",
+                "Using `window.postMessageToMain()`."
+            ],
+            "difficulty": "novice"
+        },
+        {
+            "index": 77,
+            "genre": "Renderer Process Development",
+            "question": "Which `ipcRenderer` method is used to send a message to the main process and await a response?",
+            "correctAnswer": "`ipcRenderer.invoke()`",
+            "incorrectAnswers": [
+                "`ipcRenderer.sendSync()`",
+                "`ipcRenderer.request()`",
+                "`ipcRenderer.call()`"
+            ],
+            "difficulty": "intermediate"
+        },
+        {
+            "index": 78,
+            "genre": "Renderer Process Development",
+            "question": "What is a common way to persist client-side data in an Electron renderer process?",
+            "correctAnswer": "`localStorage`, `sessionStorage`, or IndexedDB.",
+            "incorrectAnswers": [
+                "Directly writing to the file system using Node.js `fs` module (without contextBridge).",
+                "Using a server-side database.",
+                "By sending data to the main process for every change."
+            ],
+            "difficulty": "novice"
+        },
+        {
+            "index": 79,
+            "genre": "Renderer Process Development",
+            "question": "Which web API allows an Electron app to access the user's camera or microphone?",
+            "correctAnswer": "`navigator.mediaDevices.getUserMedia()`",
+            "incorrectAnswers": [
+                "`electron.camera.access()`",
+                "`app.getMediaDevices()`",
+                "`BrowserWindow.getMedia()`"
+            ],
+            "difficulty": "intermediate"
+        },
+        {
+            "index": 80,
+            "genre": "Renderer Process Development",
+            "question": "If `contextIsolation` is enabled, how can a renderer access global variables or functions defined by Node.js in the main process?",
+            "correctAnswer": "Through APIs exposed by the `preload` script via `contextBridge`.",
+            "incorrectAnswers": [
+                "Directly, as `contextIsolation` only applies to `require()`.",
+                "It can't; `contextIsolation` completely blocks all access.",
+                "By calling a synchronous IPC method on `ipcRenderer`."
+            ],
+            "difficulty": "intermediate"
+        },
+        {
+            "index": 81,
+            "genre": "Renderer Process Development",
+            "question": "How can a renderer process listen for messages sent from the main process?",
+            "correctAnswer": "Using `ipcRenderer.on()`.",
+            "incorrectAnswers": [
+                "Using `ipcMain.receive()`",
+                "Using `app.onRendererMessage()`",
+                "Using `window.addEventListener('message')` without IPC."
+            ],
+            "difficulty": "novice"
+        },
+        {
+            "index": 82,
+            "genre": "Renderer Process Development",
+            "question": "What is a key difference in how Node.js APIs are typically accessed in an Electron renderer compared to a standard web browser?",
+            "correctAnswer": "Electron provides access to Node.js APIs, while standard browsers do not.",
+            "incorrectAnswers": [
+                "Node.js APIs are more limited in Electron's renderer than in a browser.",
+                "Node.js APIs are always globally available without any setup in Electron.",
+                "Electron requires special browser plugins for Node.js access."
+            ],
+            "difficulty": "novice"
+        },
+        {
+            "index": 83,
+            "genre": "Renderer Process Development",
+            "question": "Why might you choose a frontend framework like React, Vue, or Angular for your Electron renderer process?",
+            "correctAnswer": "To efficiently manage complex UI states and component-based development.",
+            "incorrectAnswers": [
+                "To gain direct access to Node.js APIs.",
+                "To reduce the overall application bundle size.",
+                "To enable server-side rendering for desktop apps."
+            ],
+            "difficulty": "novice"
+        },
+        {
+            "index": 84,
+            "genre": "Renderer Process Development",
+            "question": "What is the main security implication if `nodeIntegration` is enabled in a renderer process that loads untrusted external content?",
+            "correctAnswer": "Malicious scripts in the web content could potentially access system resources.",
+            "incorrectAnswers": [
+                "It would only affect the performance of the renderer.",
+                "The application would automatically be blocked by the operating system.",
+                "It would prevent the renderer from displaying images."
+            ],
+            "difficulty": "intermediate"
+        },
+        {
+            "index": 85,
+            "genre": "Renderer Process Development",
+            "question": "How do you enable drag-and-drop functionality for files from the OS into an Electron application's renderer?",
+            "correctAnswer": "By handling `dragover` and `drop` events on DOM elements and using `event.dataTransfer.files`.",
+            "incorrectAnswers": [
+                "Electron automatically handles all drag-and-drop operations.",
+                "By calling `BrowserWindow.enableDragAndDrop()`.",
+                "By using the `electron.dragAndDrop` module."
+            ],
+            "difficulty": "intermediate"
+        },
+        {
+            "index": 86,
+            "genre": "Renderer Process Development",
+            "question": "What does `window.open()` do in an Electron renderer process by default?",
+            "correctAnswer": "It opens a new `BrowserWindow` instance.",
+            "incorrectAnswers": [
+                "It opens a new tab in the current browser window.",
+                "It navigates the current `BrowserWindow` to a new URL.",
+                "It only opens external URLs in the default system browser."
+            ],
+            "difficulty": "intermediate"
+        },
+        {
+            "index": 87,
+            "genre": "Renderer Process Development",
+            "question": "Which HTML element was historically used in Electron to embed other web content within a `BrowserWindow` (now largely deprecated)?",
+            "correctAnswer": "`<webview>`",
+            "incorrectAnswers": [
+                "`<iframe>` (only for regular web content)",
+                "`<embed>`",
+                "`<frame>`"
+            ],
+            "difficulty": "intermediate"
+        },
+        {
+            "index": 88,
+            "genre": "Renderer Process Development",
+            "question": "When receiving an IPC message from the main process, what object typically contains the message arguments in the renderer?",
+            "correctAnswer": "The second argument of the `ipcRenderer.on` callback.",
+            "incorrectAnswers": [
+                "The `event` object's `detail` property.",
+                "A global variable named `ipcMessageArgs`.",
+                "It's directly accessible as `message.args`."
+            ],
+            "difficulty": "novice"
+        },
+        {
+            "index": 89,
+            "genre": "Renderer Process Development",
+            "question": "What is `contextBridge.exposeInMainWorld()` used for?",
+            "correctAnswer": "To safely expose Node.js APIs or custom functions from the preload script to the renderer's global scope.",
+            "incorrectAnswers": [
+                "To make main process functions available directly to the web content.",
+                "To bridge CSS styles between multiple renderer processes.",
+                "To connect two separate web workers."
+            ],
+            "difficulty": "intermediate"
+        },
+        {
+            "index": 90,
+            "genre": "Renderer Process Development",
+            "question": "What is a primary consideration when structuring a `preload` script for security?",
+            "correctAnswer": "Exposing only the minimal necessary APIs to the renderer and carefully validating inputs.",
+            "incorrectAnswers": [
+                "Exposing all Node.js APIs to maximize functionality.",
+                "Making sure the `preload` script is as small as possible.",
+                "Ensuring the `preload` script runs before any HTML loads."
+            ],
+            "difficulty": "advanced"
+        },
+        {
+            "index": 91,
+            "genre": "Renderer Process Development",
+            "question": "If a renderer needs to perform a synchronous operation that requires main process access, which `ipcRenderer` method is generally discouraged and why?",
+            "correctAnswer": "`ipcRenderer.sendSync()`, because it blocks the renderer process.",
+            "incorrectAnswers": [
+                "`ipcRenderer.invoke()`, because it's too complex.",
+                "`ipcRenderer.send()`, because it's asynchronous.",
+                "`contextBridge.exposeInMainWorld()`, because it creates security risks."
+            ],
+            "difficulty": "intermediate"
+        },
+        {
+            "index": 92,
+            "genre": "Renderer Process Development",
+            "question": "What is the role of `document.getElementById('my-element')` in a renderer process?",
+            "correctAnswer": "To access an HTML element by its ID for manipulation.",
+            "incorrectAnswers": [
+                "To fetch data from a server.",
+                "To create a new window.",
+                "To send a message to the main process."
+            ],
+            "difficulty": "novice"
+        },
+        {
+            "index": 93,
+            "genre": "Renderer Process Development",
+            "question": "What might happen if `nodeIntegration` is enabled in a renderer process loading an external, untrusted website, and that website executes arbitrary JavaScript?",
+            "correctAnswer": "The arbitrary JavaScript could potentially access local file system, execute processes, or perform other privileged Node.js operations.",
+            "incorrectAnswers": [
+                "The website would only be able to access its own `localStorage`.",
+                "The Electron application would immediately crash.",
+                "The website's JavaScript would be blocked by default."
+            ],
+            "difficulty": "advanced"
+        },
+        {
+            "index": 94,
+            "genre": "Renderer Process Development",
+            "question": "How do you share data between different renderer processes (different `BrowserWindow` instances)?",
+            "correctAnswer": "Through the main process using IPC, or by using shared storage mechanisms like `localStorage` (if paths align).",
+            "incorrectAnswers": [
+                "Directly between renderer processes using `window.postMessage()`.",
+                "By using a global shared object in the renderer.",
+                "It's not possible to share data between renderer processes."
+            ],
+            "difficulty": "advanced"
+        },
+        {
+            "index": 95,
+            "genre": "Renderer Process Development",
+            "question": "Which `preload` script option is used to specify the path to the preload script file?",
+            "correctAnswer": "`webPreferences.preload` in the `BrowserWindow` constructor.",
+            "incorrectAnswers": [
+                "`webPreferences.script`",
+                "`preloadScript`",
+                "`main.preload`"
+            ],
+            "difficulty": "novice"
+        },
+        {
+            "index": 96,
+            "genre": "Renderer Process Development",
+            "question": "When developing a UI with a framework like React in Electron, where does the React application typically render?",
+            "correctAnswer": "Within the HTML document loaded by the renderer process.",
+            "incorrectAnswers": [
+                "Directly on the main process.",
+                "In a separate Node.js process.",
+                "As a native UI component outside the Chromium window."
+            ],
+            "difficulty": "novice"
+        },
+        {
+            "index": 97,
+            "genre": "Renderer Process Development",
+            "question": "What is the purpose of `webPreferences.sandbox: true`?",
+            "correctAnswer": "To enable Chromium's sandboxing for the renderer process for enhanced security.",
+            "incorrectAnswers": [
+                "To isolate CSS styles between different components.",
+                "To create a separate Node.js environment for each renderer.",
+                "To run the renderer process in a virtual machine."
+            ],
+            "difficulty": "advanced"
+        },
+        {
+            "index": 98,
+            "genre": "Renderer Process Development",
+            "question": "What is the impact of disabling `webSecurity` in `webPreferences`?",
+            "correctAnswer": "It allows arbitrary CORS requests and local file access from the renderer, significantly reducing security.",
+            "incorrectAnswers": [
+                "It improves the performance of web content loading.",
+                "It disables all network requests from the renderer.",
+                "It enables Node.js integration by default."
+            ],
+            "difficulty": "advanced"
+        },
+        {
+            "index": 99,
+            "genre": "Renderer Process Development",
+            "question": "How can you inject a global JavaScript variable or function into the renderer process from the main process *without* using a preload script (and without context isolation)?",
+            "correctAnswer": "By executing `win.webContents.executeJavaScript()` or `win.webContents.send()` and then setting a global from the renderer. (Less secure and generally discouraged).",
+            "incorrectAnswers": [
+                "It's not possible without a preload script.",
+                "By directly modifying the `window` object from the main process.",
+                "Electron automatically syncs main process globals to the renderer."
+            ],
+            "difficulty": "advanced"
+        },
+        {
+            "index": 100,
+            "genre": "Renderer Process Development",
+            "question": "When integrating a UI framework like Vue.js, where would you typically initialize the Vue app?",
+            "correctAnswer": "In the renderer process's main JavaScript file, after the DOM is ready.",
+            "incorrectAnswers": [
+                "In the main process before any `BrowserWindow` is created.",
+                "Within the `preload` script.",
+                "Vue.js cannot be used in Electron."
+            ],
+            "difficulty": "novice"
+        },
+        {
+            "index": 101,
+            "genre": "Renderer Process Development",
+            "question": "If you need to access system information (e.g., OS version) from the renderer, how should it be done securely?",
+            "correctAnswer": "Expose a method via `contextBridge` in the preload script that calls Node.js `os` module functions.",
+            "incorrectAnswers": [
+                "Directly use `require('os')` in the renderer if `nodeIntegration` is enabled.",
+                "Send an IPC message to the main process and await the response.",
+                "It's not possible to get system info from the renderer."
+            ],
+            "difficulty": "intermediate"
+        },
+        {
+            "index": 102,
+            "genre": "Renderer Process Development",
+            "question": "What are some challenges when upgrading `Electron` while using a frontend framework that has specific Chromium version dependencies?",
+            "correctAnswer": "Compatibility issues with the new Chromium version that might break parts of the framework or its libraries.",
+            "incorrectAnswers": [
+                "Electron upgrades automatically handle all framework dependencies.",
+                "Frontend frameworks are completely independent of Chromium versions.",
+                "Only Node.js compatibility is a concern, not Chromium."
+            ],
+            "difficulty": "advanced"
+        },
+        {
+            "index": 103,
+            "genre": "Renderer Process Development",
+            "question": "Which event listener would you typically use in the renderer to detect when the entire HTML document has been loaded and parsed?",
+            "correctAnswer": "`DOMContentLoaded`",
+            "incorrectAnswers": [
+                "`load` (for all resources, including images)",
+                "`ready`",
+                "`documentReady`"
+            ],
+            "difficulty": "novice"
+        },
+        {
+            "index": 104,
+            "genre": "Renderer Process Development",
+            "question": "How can a `preload` script expose a Node.js `fs` module method (e.g., `fs.readFile`) securely to the renderer?",
+            "correctAnswer": "By wrapping `fs.readFile` in a function in the preload script and exposing that function via `contextBridge`.",
+            "incorrectAnswers": [
+                "Directly expose the `fs` module via `contextBridge`.",
+                "Simply make `global.fs = require('fs')` in the preload.",
+                "It's not possible to expose `fs` securely."
+            ],
+            "difficulty": "advanced"
+        },
+        {
+            "index": 105,
+            "genre": "Renderer Process Development",
+            "question": "What is a common use case for a `preload` script to interact with the DOM?",
+            "correctAnswer": "To inject polyfills or modify global objects before the main web content loads.",
+            "incorrectAnswers": [
+                "To create a new `BrowserWindow` instance.",
+                "To handle all application-level IPC communication.",
+                "To package the application for distribution."
+            ],
+            "difficulty": "intermediate"
+        },
+        {
+            "index": 106,
+            "genre": "Renderer Process Development",
+            "question": "Why is it important to carefully manage dependencies (like `npm` packages) in the renderer process?",
+            "correctAnswer": "Unnecessary or large dependencies can increase the application's bundle size and load time.",
+            "incorrectAnswers": [
+                "Renderer dependencies directly affect the main process's memory usage.",
+                "npm packages cannot be used in the renderer process.",
+                "They can cause conflicts with native OS libraries."
+            ],
+            "difficulty": "novice"
+        },
+        {
+            "index": 107,
+            "genre": "Renderer Process Development",
+            "question": "Which `webPreferences` option, when `false`, allows all `window.open()` calls to be handled by the main process's `app.on('web-contents-created')` event?",
+            "correctAnswer": "`nativeWindowOpen`",
+            "incorrectAnswers": [
+                "`allowWindowOpen`",
+                "`openExternal`",
+                "`newWindow`"
+            ],
+            "difficulty": "advanced"
+        },
+        {
+            "index": 108,
+            "genre": "Renderer Process Development",
+            "question": "What does the `webContents.executeJavaScript(code)` method do from the main process?",
+            "correctAnswer": "Executes JavaScript code directly within the specified renderer process.",
+            "incorrectAnswers": [
+                "Compiles JavaScript code into native machine code.",
+                "Runs JavaScript code in the main process.",
+                "Saves JavaScript code to a file."
+            ],
+            "difficulty": "intermediate"
+        },
+        {
+            "index": 109,
+            "genre": "Renderer Process Development",
+            "question": "When handling `dragstart` events in the renderer for custom drag-and-drop, what property of `event.dataTransfer` is commonly set to indicate the data being dragged?",
+            "correctAnswer": "`setData()`",
+            "incorrectAnswers": [
+                "`setDragData()`",
+                "`addData()`",
+                "`setItem()`"
+            ],
+            "difficulty": "advanced"
+        },
+        {
+            "index": 110,
+            "genre": "Renderer Process Development",
+            "question": "How do you handle routing in a single-page application (SPA) built with a framework like Angular within an Electron renderer?",
+            "correctAnswer": "Using the framework's router (e.g., Angular Router) with HashLocationStrategy or configuring the Electron app to handle URL paths.",
+            "incorrectAnswers": [
+                "Electron automatically provides routing for SPAs.",
+                "By creating a new `BrowserWindow` for each route.",
+                "Routing is not supported in Electron SPAs."
+            ],
+            "difficulty": "novice"
+        },
+        {
+            "index": 111,
+            "genre": "Inter-Process Communication (IPC)",
+            "question": "What is the primary reason for Inter-Process Communication (IPC) in Electron?",
+            "correctAnswer": "To enable communication between the main process and renderer processes.",
+            "incorrectAnswers": [
+                "To allow web pages to communicate with each other directly.",
+                "To facilitate communication between Electron and external web servers.",
+                "To manage multi-threading within a single process."
+            ],
+            "difficulty": "novice"
+        },
+        {
+            "index": 112,
+            "genre": "Inter-Process Communication (IPC)",
+            "question": "Which module is used in the main process to listen for messages from renderer processes?",
+            "correctAnswer": "`ipcMain`",
+            "incorrectAnswers": [
+                "`ipcRenderer`",
+                "`app.ipc`",
+                "`mainIpc`"
+            ],
+            "difficulty": "novice"
+        },
+        {
+            "index": 113,
+            "genre": "Inter-Process Communication (IPC)",
+            "question": "Which module is used in the renderer process to send messages to the main process?",
+            "correctAnswer": "`ipcRenderer`",
+            "incorrectAnswers": [
+                "`ipcMain`",
+                "`app.ipc`",
+                "`rendererIpc`"
+            ],
+            "difficulty": "novice"
+        },
+        {
+            "index": 114,
+            "genre": "Inter-Process Communication (IPC)",
+            "question": "How does the main process send an asynchronous message to a specific renderer process?",
+            "correctAnswer": "By calling `webContents.send()` on the target window's `webContents` object.",
+            "incorrectAnswers": [
+                "By calling `ipcMain.sendToRenderer()` directly.",
+                "By emitting an event on the `app` module.",
+                "By using `BrowserWindow.postMessage()`."
+            ],
+            "difficulty": "intermediate"
+        },
+        {
+            "index": 115,
+            "genre": "Inter-Process Communication (IPC)",
+            "question": "What `ipcRenderer` method is used for a one-way message from the renderer to the main process, without expecting a response?",
+            "correctAnswer": "`ipcRenderer.send()`",
+            "incorrectAnswers": [
+                "`ipcRenderer.request()`",
+                "`ipcRenderer.invoke()`",
+                "`ipcRenderer.call()`"
+            ],
+            "difficulty": "novice"
+        },
+        {
+            "index": 116,
+            "genre": "Inter-Process Communication (IPC)",
+            "question": "What `ipcMain` method is used to listen for asynchronous messages sent from a renderer process via `ipcRenderer.send()`?",
+            "correctAnswer": "`ipcMain.on()`",
+            "incorrectAnswers": [
+                "`ipcMain.handle()`",
+                "`ipcMain.receive()`",
+                "`ipcMain.listen()`"
+            ],
+            "difficulty": "novice"
+        },
+        {
+            "index": 117,
+            "genre": "Inter-Process Communication (IPC)",
+            "question": "What is the key difference between `ipcRenderer.send()` and `ipcRenderer.invoke()`?",
+            "correctAnswer": "`send()` is one-way (fire and forget), `invoke()` is two-way (sends a message and awaits a response).",
+            "incorrectAnswers": [
+                "`send()` is synchronous, `invoke()` is asynchronous.",
+                "`send()` is for main-to-renderer, `invoke()` is for renderer-to-main.",
+                "`send()` can only send strings, `invoke()` can send objects."
+            ],
+            "difficulty": "intermediate"
+        },
+        {
+            "index": 118,
+            "genre": "Inter-Process Communication (IPC)",
+            "question": "Which `ipcMain` method is used to handle messages sent from a renderer process via `ipcRenderer.invoke()` and send a response back?",
+            "correctAnswer": "`ipcMain.handle()`",
+            "incorrectAnswers": [
+                "`ipcMain.on()`",
+                "`ipcMain.call()`",
+                "`ipcMain.respond()`"
+            ],
+            "difficulty": "intermediate"
+        },
+        {
+            "index": 119,
+            "genre": "Inter-Process Communication (IPC)",
+            "question": "What is `contextBridge` specifically designed for in the context of IPC?",
+            "correctAnswer": "To securely expose main process APIs or Node.js functionality to the renderer process when `contextIsolation` is enabled.",
+            "incorrectAnswers": [
+                "To bridge the gap between HTML and CSS.",
+                "To allow direct synchronous access to Node.js APIs from the renderer.",
+                "To facilitate communication between two different renderer processes."
+            ],
+            "difficulty": "intermediate"
+        },
+        {
+            "index": 120,
+            "genre": "Inter-Process Communication (IPC)",
+            "question": "When using `ipcRenderer.invoke()` and `ipcMain.handle()`, what is the nature of the communication?",
+            "correctAnswer": "Asynchronous, request-response.",
+            "incorrectAnswers": [
+                "Synchronous, one-way.",
+                "Synchronous, request-response.",
+                "Asynchronous, one-way."
+            ],
+            "difficulty": "intermediate"
+        },
+        {
+            "index": 121,
+            "genre": "Inter-Process Communication (IPC)",
+            "question": "What data types can be sent over Electron's IPC channels?",
+            "correctAnswer": "Primitive values, arrays, objects, and certain native objects that can be serialized by the Structured Clone Algorithm.",
+            "incorrectAnswers": [
+                "Only strings and numbers.",
+                "Only JSON-serializable objects.",
+                "Any JavaScript object, including functions and DOM elements."
+            ],
+            "difficulty": "intermediate"
+        },
+        {
+            "index": 122,
+            "genre": "Inter-Process Communication (IPC)",
+            "question": "What is a potential pitfall of using `ipcRenderer.sendSync()`?",
+            "correctAnswer": "It blocks the renderer process until the main process responds, leading to a frozen UI.",
+            "incorrectAnswers": [
+                "It can only send primitive data types.",
+                "It is less secure than `ipcRenderer.send()`.",
+                "It requires complex error handling mechanisms."
+            ],
+            "difficulty": "intermediate"
+        },
+        {
+            "index": 123,
+            "genre": "Inter-Process Communication (IPC)",
+            "question": "How can you handle errors that occur during `ipcRenderer.invoke()` calls?",
+            "correctAnswer": "By wrapping the `invoke` call in a `try...catch` block and handling rejected Promises.",
+            "incorrectAnswers": [
+                "Errors are automatically logged to the main process console.",
+                "You cannot catch errors from `invoke` calls.",
+                "By using `ipcRenderer.onError()` event listener."
+            ],
+            "difficulty": "novice"
+        },
+        {
+            "index": 124,
+            "genre": "Inter-Process Communication (IPC)",
+            "question": "What is a best practice for structuring IPC listeners in the main process?",
+            "correctAnswer": "Centralize listeners, avoid creating new listeners for every `BrowserWindow`, and clean up on window close.",
+            "incorrectAnswers": [
+                "Create a separate `ipcMain.on` listener for each renderer process.",
+                "Only use synchronous IPC to simplify error handling.",
+                "Place all IPC logic directly inside the `BrowserWindow` constructor."
+            ],
+            "difficulty": "advanced"
+        },
+        {
+            "index": 125,
+            "genre": "Inter-Process Communication (IPC)",
+            "question": "If a `preload` script exposes an API `myApi` using `contextBridge.exposeInMainWorld('myApi', { ... })`, how would the renderer access it?",
+            "correctAnswer": "`window.myApi`",
+            "incorrectAnswers": [
+                "`myApi` (globally)",
+                "`electron.myApi`",
+                "`ipcRenderer.myApi`"
+            ],
+            "difficulty": "novice"
+        },
+        {
+            "index": 126,
+            "genre": "Inter-Process Communication (IPC)",
+            "question": "When an `ipcMain.on()` listener receives a message, what is the first argument typically provided to the callback function?",
+            "correctAnswer": "The `IpcMainEvent` object.",
+            "incorrectAnswers": [
+                "The message payload.",
+                "The sender's `BrowserWindow` instance.",
+                "The channel name."
+            ],
+            "difficulty": "intermediate"
+        },
+        {
+            "index": 127,
+            "genre": "Inter-Process Communication (IPC)",
+            "question": "What does `event.sender` in an `ipcMain.on()` callback refer to?",
+            "correctAnswer": "The `WebContents` object of the renderer process that sent the message.",
+            "incorrectAnswers": [
+                "The `BrowserWindow` object that sent the message.",
+                "The `app` module instance.",
+                "The message payload itself."
+            ],
+            "difficulty": "intermediate"
+        },
+        {
+            "index": 128,
+            "genre": "Inter-Process Communication (IPC)",
+            "question": "How do you send a reply back to the renderer from an `ipcMain.on()` listener (for a one-way `ipcRenderer.send()` message)?",
+            "correctAnswer": "Using `event.reply(channel, ...args)`.",
+            "incorrectAnswers": [
+                "Using `event.sender.send(channel, ...args)`.",
+                "Using `ipcMain.sendToRenderer(event.sender, ...args)`.",
+                "It's not possible to reply to `ipcRenderer.send()` messages."
+            ],
+            "difficulty": "intermediate"
+        },
+        {
+            "index": 129,
+            "genre": "Inter-Process Communication (IPC)",
+            "question": "Why is it crucial to sanitize and validate any data received via IPC from a renderer process in the main process?",
+            "correctAnswer": "Renderer processes can be compromised, and untrusted data could lead to security vulnerabilities in the main process.",
+            "incorrectAnswers": [
+                "IPC only transmits strings, which need to be parsed.",
+                "It is only necessary for performance optimization.",
+                "Data validation is automatically handled by Electron's IPC."
+            ],
+            "difficulty": "advanced"
+        },
+        {
+            "index": 130,
+            "genre": "Inter-Process Communication (IPC)",
+            "question": "What is the purpose of the `channel` argument in IPC methods like `ipcRenderer.send(channel, ...args)`?",
+            "correctAnswer": "To categorize and distinguish different types of messages being sent between processes.",
+            "incorrectAnswers": [
+                "To specify the target renderer process ID.",
+                "To define the encryption method for the message.",
+                "To indicate the priority of the message."
+            ],
+            "difficulty": "novice"
+        },
+        {
+            "index": 131,
+            "genre": "Inter-Process Communication (IPC)",
+            "question": "Can IPC be used to send custom JavaScript objects (e.g., instances of classes) between processes directly?",
+            "correctAnswer": "Yes, if they are serializable by the Structured Clone Algorithm; otherwise, only their plain data will be sent.",
+            "incorrectAnswers": [
+                "No, only primitive data types can be sent.",
+                "Yes, but only if they are JSON serializable.",
+                "Only if you use `contextBridge` to expose them."
+            ],
+            "difficulty": "advanced"
+        },
+        {
+            "index": 132,
+            "genre": "Inter-Process Communication (IPC)",
+            "question": "What is a common pattern for main-to-renderer communication when the main process needs to update UI based on a system event?",
+            "correctAnswer": "Main process listens for a system event, then uses `webContents.send()` to notify relevant renderer processes.",
+            "incorrectAnswers": [
+                "Main process directly manipulates the DOM of the renderer.",
+                "Renderer processes constantly poll the main process for updates.",
+                "Main process uses a shared file to communicate state."
+            ],
+            "difficulty": "intermediate"
+        },
+        {
+            "index": 133,
+            "genre": "Inter-Process Communication (IPC)",
+            "question": "Which best practice helps prevent memory leaks related to IPC listeners?",
+            "correctAnswer": "Remove `ipcMain.on` and `ipcRenderer.on` listeners when they are no longer needed (e.g., when a window closes).",
+            "incorrectAnswers": [
+                "Always use `ipcRenderer.invoke` instead of `ipcRenderer.send`.",
+                "Limit the number of messages sent over IPC.",
+                "Keep all IPC listeners in a single, large function."
+            ],
+            "difficulty": "advanced"
+        },
+        {
+            "index": 134,
+            "genre": "Inter-Process Communication (IPC)",
+            "question": "What happens if `ipcRenderer.invoke()` is called, but there is no `ipcMain.handle()` listener for that channel in the main process?",
+            "correctAnswer": "The Promise returned by `invoke()` will reject.",
+            "incorrectAnswers": [
+                "The application will crash.",
+                "The message will be silently dropped.",
+                "The main process will automatically create a default handler."
+            ],
+            "difficulty": "intermediate"
+        },
+        {
+            "index": 135,
+            "genre": "Inter-Process Communication (IPC)",
+            "question": "How would you ensure that an API exposed via `contextBridge` is read-only from the renderer?",
+            "correctAnswer": "By exposing methods that return data but do not allow modification of the main process state directly.",
+            "incorrectAnswers": [
+                "By setting a `readOnly` flag in `exposeInMainWorld`.",
+                "By using `Object.freeze()` on the exposed object in the renderer.",
+                "It's not possible; `contextBridge` inherently allows read/write."
+            ],
+            "difficulty": "advanced"
+        },
+        {
+            "index": 136,
+            "genre": "Inter-Process Communication (IPC)",
+            "question": "What is a disadvantage of using synchronous IPC (`ipcRenderer.sendSync()`)?",
+            "correctAnswer": "It can make the UI unresponsive and degrade user experience.",
+            "incorrectAnswers": [
+                "It is less secure than asynchronous IPC.",
+                "It uses more system resources.",
+                "It is difficult to debug."
+            ],
+            "difficulty": "novice"
+        },
+        {
+            "index": 137,
+            "genre": "Inter-Process Communication (IPC)",
+            "question": "When using `ipcMain.handle()`, what value does the handler function return to the renderer?",
+            "correctAnswer": "A Promise that resolves with the return value of the handler function.",
+            "incorrectAnswers": [
+                "A plain object directly.",
+                "A callback function that the renderer can execute.",
+                "The `IpcMainInvokeEvent` object itself."
+            ],
+            "difficulty": "intermediate"
+        },
+        {
+            "index": 138,
+            "genre": "Inter-Process Communication (IPC)",
+            "question": "To target a specific `BrowserWindow` from the main process to send an IPC message, what information do you need?",
+            "correctAnswer": "The `WebContents` object associated with that `BrowserWindow`.",
+            "incorrectAnswers": [
+                "The `BrowserWindow` ID.",
+                "The URL loaded in the window.",
+                "The window's title."
+            ],
+            "difficulty": "intermediate"
+        },
+        {
+            "index": 139,
+            "genre": "Inter-Process Communication (IPC)",
+            "question": "What is the purpose of `ipcMain.removeHandler(channel)`?",
+            "correctAnswer": "To unregister a handler for a specific IPC channel, preventing further `invoke` calls from being handled.",
+            "incorrectAnswers": [
+                "To stop a currently ongoing IPC communication.",
+                "To remove all `ipcMain.on` listeners for a channel.",
+                "To delete the channel itself."
+            ],
+            "difficulty": "advanced"
+        },
+        {
+            "index": 140,
+            "genre": "Inter-Process Communication (IPC)",
+            "question": "Which `IpcMainEvent` property contains the arguments passed from the renderer?",
+            "correctAnswer": "`event.args`",
+            "incorrectAnswers": [
+                "`event.data`",
+                "`event.payload`",
+                "`event.message`"
+            ],
+            "difficulty": "novice"
+        },
+        {
+            "index": 141,
+            "genre": "Inter-Process Communication (IPC)",
+            "question": "When developing a multi-window Electron application, how can the main process distinguish which renderer sent an IPC message?",
+            "correctAnswer": "By using `event.sender` (which is the `WebContents` object) and then linking it to its parent `BrowserWindow`.",
+            "incorrectAnswers": [
+                "Each renderer sends a unique ID in the message payload.",
+                "Electron automatically groups messages by window.",
+                "It's not possible to distinguish senders reliably."
+            ],
+            "difficulty": "intermediate"
+        },
+        {
+            "index": 142,
+            "genre": "Inter-Process Communication (IPC)",
+            "question": "What is the maximum amount of data that can be transferred via IPC?",
+            "correctAnswer": "There isn't a strict hard limit, but very large data transfers are inefficient and may lead to performance issues.",
+            "incorrectAnswers": [
+                "1MB per message.",
+                "100KB per message.",
+                "Limited only by available RAM."
+            ],
+            "difficulty": "advanced"
+        },
+        {
+            "index": 143,
+            "genre": "Inter-Process Communication (IPC)",
+            "question": "How can you mock IPC calls for testing renderer processes without a full Electron main process?",
+            "correctAnswer": "By providing a mock `ipcRenderer` object that simulates responses, often within a testing framework.",
+            "incorrectAnswers": [
+                "It's not possible to test renderer IPC without the main process.",
+                "Electron provides a built-in mocking utility for IPC.",
+                "By manually calling the main process code in the test environment."
+            ],
+            "difficulty": "advanced"
+        },
+        {
+            "index": 144,
+            "genre": "Inter-Process Communication (IPC)",
+            "question": "What could be a reason to prefer asynchronous IPC over synchronous IPC?",
+            "correctAnswer": "To keep the UI responsive and avoid blocking the main thread of either process.",
+            "incorrectAnswers": [
+                "Asynchronous IPC is simpler to implement.",
+                "Asynchronous IPC has better error handling.",
+                "Synchronous IPC is inherently insecure."
+            ],
+            "difficulty": "novice"
+        },
+        {
+            "index": 145,
+            "genre": "Inter-Process Communication (IPC)",
+            "question": "If you need to send a message to *all* renderer processes from the main process, how would you approach this?",
+            "correctAnswer": "Iterate through all open `BrowserWindow` instances and call `win.webContents.send()` on each.",
+            "incorrectAnswers": [
+                "There is a global `ipcMain.sendToAll()` method.",
+                "By emitting a special `app` event that all renderers listen to.",
+                "It's not supported by Electron's IPC."
+            ],
+            "difficulty": "intermediate"
+        },
+        {
+            "index": 146,
+            "genre": "Inter-Process Communication (IPC)",
+            "question": "What security concern is mitigated by avoiding the `remote` module and preferring `contextBridge` for IPC?",
+            "correctAnswer": "It prevents direct exposure of Node.js APIs and main process objects to potentially untrusted renderer code.",
+            "incorrectAnswers": [
+                "It prevents network attacks on the renderer process.",
+                "It reduces the application's memory footprint.",
+                "It ensures that all IPC messages are encrypted."
+            ],
+            "difficulty": "intermediate"
+        },
+        {
+            "index": 147,
+            "genre": "Inter-Process Communication (IPC)",
+            "question": "How can you ensure that an IPC channel is only listened to once?",
+            "correctAnswer": "By using `ipcMain.once()` or `ipcRenderer.once()`.",
+            "incorrectAnswers": [
+                "By manually removing the listener after the first message.",
+                "By setting a `once: true` option on `ipcMain.on`.",
+                "Electron channels are inherently single-use."
+            ],
+            "difficulty": "novice"
+        },
+        {
+            "index": 148,
+            "genre": "Inter-Process Communication (IPC)",
+            "question": "Which event on `BrowserWindow` is useful for cleaning up IPC listeners specific to that window?",
+            "correctAnswer": "'closed'",
+            "incorrectAnswers": [
+                "'close'",
+                "'destroy'",
+                "'leave'"
+            ],
+            "difficulty": "intermediate"
+        },
+        {
+            "index": 149,
+            "genre": "Packaging, Distribution & Updates",
+            "question": "Which tool is commonly used to package Electron applications for distribution?",
+            "correctAnswer": "`electron-builder`",
+            "incorrectAnswers": [
+                "`npm pack`",
+                "`electron-forge` (though it can use `electron-builder`)",
+                "`webpack`"
+            ],
+            "difficulty": "novice"
+        },
+        {
+            "index": 150,
+            "genre": "Packaging, Distribution & Updates",
+            "question": "What configuration file is primarily used by `electron-builder` to define packaging options?",
+            "correctAnswer": "`package.json`",
+            "incorrectAnswers": [
+                "`builder.json`",
+                "`electron-config.js`",
+                "`app.json`"
+            ],
+            "difficulty": "novice"
+        },
+        {
+            "index": 151,
+            "genre": "Packaging, Distribution & Updates",
+            "question": "What is a key benefit of using `electron-builder` for packaging?",
+            "correctAnswer": "It provides cross-platform packaging for Windows, macOS, and Linux from a single codebase.",
+            "incorrectAnswers": [
+                "It automatically fixes all application bugs.",
+                "It generates obfuscated code for security.",
+                "It handles all application updates automatically."
+            ],
+            "difficulty": "novice"
+        },
+        {
+            "index": 152,
+            "genre": "Packaging, Distribution & Updates",
+            "question": "Which `package.json` property typically holds `electron-builder` specific configuration?",
+            "correctAnswer": "`build`",
+            "incorrectAnswers": [
+                "`electron`",
+                "`builder`",
+                "`config`"
+            ],
+            "difficulty": "intermediate"
+        },
+        {
+            "index": 153,
+            "genre": "Packaging, Distribution & Updates",
+            "question": "What is 'code signing' primarily used for in application distribution?",
+            "correctAnswer": "To verify the authenticity and integrity of an application, assuring users it hasn't been tampered with.",
+            "incorrectAnswers": [
+                "To encrypt the application's source code.",
+                "To reduce the application's file size.",
+                "To provide a license key for the application."
+            ],
+            "difficulty": "novice"
+        },
+        {
+            "index": 154,
+            "genre": "Packaging, Distribution & Updates",
+            "question": "Which of the following is a common installer type generated by `electron-builder` for macOS?",
+            "correctAnswer": "DMG (Disk Image)",
+            "incorrectAnswers": [
+                "MSI (Microsoft Installer)",
+                "DEB (Debian package)",
+                "RPM (Red Hat Package Manager)"
+            ],
+            "difficulty": "novice"
+        },
+        {
+            "index": 155,
+            "genre": "Packaging, Distribution & Updates",
+            "question": "What is `electron-updater` primarily used for?",
+            "correctAnswer": "To implement automatic application updates.",
+            "incorrectAnswers": [
+                "To update Electron's core dependencies.",
+                "To update the application's UI components.",
+                "To update the operating system."
+            ],
+            "difficulty": "novice"
+        },
+        {
+            "index": 156,
+            "genre": "Packaging, Distribution & Updates",
+            "question": "What is the purpose of macOS 'Notarization' for Electron applications?",
+            "correctAnswer": "To assure users that the application has been checked by Apple for malicious components.",
+            "incorrectAnswers": [
+                "To encrypt the application bundle.",
+                "To automatically publish the app to the Mac App Store.",
+                "To optimize app performance on macOS."
+            ],
+            "difficulty": "intermediate"
+        },
+        {
+            "index": 157,
+            "genre": "Packaging, Distribution & Updates",
+            "question": "Which `electron-builder` target is typically used for Windows installations?",
+            "correctAnswer": "`nsis` (Nullsoft Scriptable Install System) for `.exe` installers or `msi`.",
+            "incorrectAnswers": [
+                "`dmg`",
+                "`appimage`",
+                "`deb`"
+            ],
+            "difficulty": "intermediate"
+        },
+        {
+            "index": 158,
+            "genre": "Packaging, Distribution & Updates",
+            "question": "What is a common method for distributing Electron application updates using `electron-updater`?",
+            "correctAnswer": "GitHub Releases (or a custom update server).",
+            "incorrectAnswers": [
+                "Email attachments.",
+                "USB drives.",
+                "Manual downloads from a web page only."
+            ],
+            "difficulty": "novice"
+        },
+        {
+            "index": 159,
+            "genre": "Packaging, Distribution & Updates",
+            "question": "When debugging a packaged Electron application, what are some common challenges?",
+            "correctAnswer": "Accessing developer tools, logging, and source maps may be more difficult than in development mode.",
+            "incorrectAnswers": [
+                "Packaged apps automatically launch DevTools.",
+                "Debugging packaged apps is identical to debugging in development.",
+                "Packaged apps are always bug-free."
+            ],
+            "difficulty": "intermediate"
+        },
+        {
+            "index": 160,
+            "genre": "Packaging, Distribution & Updates",
+            "question": "What does `app.getPath('appData')` return after an application is installed?",
+            "correctAnswer": "The path to the user's application data directory, specific to the OS.",
+            "incorrectAnswers": [
+                "The path where the application's executable is located.",
+                "The path to the user's documents folder.",
+                "The path to the Electron framework installation."
+            ],
+            "difficulty": "intermediate"
+        },
+        {
+            "index": 161,
+            "genre": "Packaging, Distribution & Updates",
+            "question": "What is `electron-builder`'s `files` option used for?",
+            "correctAnswer": "To specify which files and directories from your project should be included in the packaged application.",
+            "incorrectAnswers": [
+                "To define the icons for your application.",
+                "To list all external dependencies.",
+                "To specify temporary files for the build process."
+            ],
+            "difficulty": "intermediate"
+        },
+        {
+            "index": 162,
+            "genre": "Packaging, Distribution & Updates",
+            "question": "How do you specify the application icon for different operating systems in `electron-builder`?",
+            "correctAnswer": "By defining `icon` properties within the `build` configuration, pointing to `.icns`, `.ico`, and `.png` files.",
+            "incorrectAnswers": [
+                "Electron automatically generates icons from the main executable.",
+                "You can only have one generic icon for all platforms.",
+                "Icons are specified in the `BrowserWindow` constructor."
+            ],
+            "difficulty": "novice"
+        },
+        {
+            "index": 163,
+            "genre": "Packaging, Distribution & Updates",
+            "question": "What is the role of `publisherName` in `electron-builder`'s Windows configuration?",
+            "correctAnswer": "It specifies the publisher name for the installer, used for code signing and displayed in app properties.",
+            "incorrectAnswers": [
+                "It defines the company name for internal use only.",
+                "It is ignored unless building for the Microsoft Store.",
+                "It sets the name of the executable file."
+            ],
+            "difficulty": "advanced"
+        },
+        {
+            "index": 164,
+            "genre": "Packaging, Distribution & Updates",
+            "question": "Which property in `package.json` specifies the version of your application that `electron-builder` uses?",
+            "correctAnswer": "`version`",
+            "incorrectAnswers": [
+                "`appVersion`",
+                "`buildVersion`",
+                "`release`"
+            ],
+            "difficulty": "novice"
+        },
+        {
+            "index": 165,
+            "genre": "Packaging, Distribution & Updates",
+            "question": "What type of package is commonly used for Linux distributions like Debian/Ubuntu by `electron-builder`?",
+            "correctAnswer": "DEB (Debian package)",
+            "incorrectAnswers": [
+                "RPM",
+                "APK",
+                "EXE"
+            ],
+            "difficulty": "novice"
+        },
+        {
+            "index": 166,
+            "genre": "Packaging, Distribution & Updates",
+            "question": "When configuring `electron-updater`, what is a common URL for updates hosted on GitHub Releases?",
+            "correctAnswer": "`https://github.com/owner/repo` (or specific API endpoint)",
+            "incorrectAnswers": [
+                "`file:///local/path/to/updates`",
+                "`ftp://update.server.com`",
+                "`http://localhost:8080/updates`"
+            ],
+            "difficulty": "intermediate"
+        },
+        {
+            "index": 167,
+            "genre": "Packaging, Distribution & Updates",
+            "question": "What is a 'snapshot' in the context of `electron-builder`?",
+            "correctAnswer": "A pre-built Electron executable that `electron-builder` uses as a base for your application.",
+            "incorrectAnswers": [
+                "A screenshot of your application.",
+                "A backup of your project files.",
+                "A temporary file generated during the build process."
+            ],
+            "difficulty": "advanced"
+        },
+        {
+            "index": 168,
+            "genre": "Packaging, Distribution & Updates",
+            "question": "What is `electron-builder`'s `asar` option used for?",
+            "correctAnswer": "To package the application's source code into an ASAR archive for performance and security.",
+            "incorrectAnswers": [
+                "To automatically sign the application.",
+                "To compress the application's assets.",
+                "To convert the application to a web server."
+            ],
+            "difficulty": "intermediate"
+        },
+        {
+            "index": 169,
+            "genre": "Packaging, Distribution & Updates",
+            "question": "When deploying an Electron app, what is the significance of the `productName` in `package.json`?",
+            "correctAnswer": "It defines the human-friendly name of your application, used in installers, menus, and taskbars.",
+            "incorrectAnswers": [
+                "It's the name of the executable file.",
+                "It's the npm package name.",
+                "It's an internal project identifier."
+            ],
+            "difficulty": "novice"
+        },
+        {
+            "index": 170,
+            "genre": "Packaging, Distribution & Updates",
+            "question": "What is the recommended way to handle sensitive configuration (e.g., API keys for update server) during the build process?",
+            "correctAnswer": "Use environment variables or a separate configuration file that is not committed to version control.",
+            "incorrectAnswers": [
+                "Hardcode them directly into the source code.",
+                "Embed them in the `package.json` file.",
+                "Store them in a publicly accessible cloud storage."
+            ],
+            "difficulty": "intermediate"
+        },
+        {
+            "index": 171,
+            "genre": "Packaging, Distribution & Updates",
+            "question": "What is the primary role of `electron-build` command?",
+            "correctAnswer": "To build and package the Electron application according to the `electron-builder` configuration.",
+            "incorrectAnswers": [
+                "To start the Electron development server.",
+                "To install Electron dependencies.",
+                "To test the application's UI."
+            ],
+            "difficulty": "novice"
+        },
+        {
+            "index": 172,
+            "genre": "Packaging, Distribution & Updates",
+            "question": "If you need to include platform-specific assets (e.g., different icons for Windows and macOS), how can `electron-builder` handle this?",
+            "correctAnswer": "By specifying platform-specific icon paths in the `build` configuration or using platform-specific folders.",
+            "incorrectAnswers": [
+                "Electron-builder automatically detects OS and uses correct assets.",
+                "You must create separate `package.json` files for each platform.",
+                "It's not possible to have platform-specific assets."
+            ],
+            "difficulty": "intermediate"
+        },
+        {
+            "index": 173,
+            "genre": "Packaging, Distribution & Updates",
+            "question": "What is the purpose of `app.setAppUserModelId()` on Windows?",
+            "correctAnswer": "To uniquely identify the application for features like pinning to the taskbar and grouping windows.",
+            "incorrectAnswers": [
+                "To set the user's login ID for the application.",
+                "To define the application's security permissions.",
+                "To register the application with the Windows Store."
+            ],
+            "difficulty": "advanced"
+        },
+        {
+            "index": 174,
+            "genre": "Packaging, Distribution & Updates",
+            "question": "Which `electron-builder` option is used to customize the installer splash screen or background image?",
+            "correctAnswer": "`installerIcon` or `installerHeader` for NSIS, and other platform-specific options.",
+            "incorrectAnswers": [
+                "`splashScreen.png`",
+                "`customInstallerUI`",
+                "`build.ui`"
+            ],
+            "difficulty": "advanced"
+        },
+        {
+            "index": 175,
+            "genre": "Packaging, Distribution & Updates",
+            "question": "What is a release server's responsibility when working with `electron-updater`?",
+            "correctAnswer": "To host the update files (e.g., `.dmg`, `.exe`) and a `latest.yml` (or similar) file that describes the latest version.",
+            "incorrectAnswers": [
+                "To perform the actual application update installation on the client.",
+                "To sign the application code.",
+                "To debug update issues on the client side."
+            ],
+            "difficulty": "intermediate"
+        },
+        {
+            "index": 176,
+            "genre": "Packaging, Distribution & Updates",
+            "question": "How do you handle post-installation tasks (e.g., creating desktop shortcuts) with `electron-builder`?",
+            "correctAnswer": "`electron-builder`'s target configurations (e.g., NSIS) offer options for custom scripts or actions.",
+            "incorrectAnswers": [
+                "Electron applications run a `post-install` script automatically.",
+                "You manually instruct users on how to create shortcuts.",
+                "It's not possible to customize post-installation tasks."
+            ],
+            "difficulty": "advanced"
+        },
+        {
+            "index": 177,
+            "genre": "Packaging, Distribution & Updates",
+            "question": "What can cause `electron-updater` to fail in checking for updates?",
+            "correctAnswer": "Incorrect update server URL, network connectivity issues, invalid `latest.yml` file, or corrupted application signature.",
+            "incorrectAnswers": [
+                "The user's wallpaper is too dark.",
+                "The application has too many open windows.",
+                "The Electron app is using a dark theme."
+            ],
+            "difficulty": "intermediate"
+        },
+        {
+            "index": 178,
+            "genre": "Packaging, Distribution & Updates",
+            "question": "What is a common strategy for testing automatic updates?",
+            "correctAnswer": "Set up a local update server or a test GitHub repository and point `electron-updater` to it.",
+            "incorrectAnswers": [
+                "Publish every update to production immediately.",
+                "Manually download and install new versions.",
+                "It's not possible to test updates locally."
+            ],
+            "difficulty": "advanced"
+        },
+        {
+            "index": 179,
+            "genre": "Packaging, Distribution & Updates",
+            "question": "Which tool integrates with `electron-builder` to streamline the release process, including GitHub Releases?",
+            "correctAnswer": "`electron-release` (or `electron-builder`'s own release functionality).",
+            "incorrectAnswers": [
+                "`npm publish`",
+                "`git push`",
+                "`jenkins`"
+            ],
+            "difficulty": "advanced"
+        },
+        {
+            "index": 180,
+            "genre": "Packaging, Distribution & Updates",
+            "question": "What is the impact of using `AppImage` for Linux distribution?",
+            "correctAnswer": "It creates a single executable file that runs on most Linux distributions without installation.",
+            "incorrectAnswers": [
+                "It installs the application system-wide like a DEB package.",
+                "It is only compatible with specific Linux versions.",
+                "It requires an internet connection to run."
+            ],
+            "difficulty": "intermediate"
+        },
+        {
+            "index": 181,
+            "genre": "Security & Best Practices",
+            "question": "Why is `contextIsolation` enabled by default in modern Electron versions?",
+            "correctAnswer": "To prevent the renderer's JavaScript from directly accessing Node.js APIs or objects exposed by the preload script.",
+            "incorrectAnswers": [
+                "To isolate CSS styles between different UI components.",
+                "To improve the performance of web content loading.",
+                "To ensure consistent behavior across all operating systems."
+            ],
+            "difficulty": "novice"
+        },
+        {
+            "index": 182,
+            "genre": "Security & Best Practices",
+            "question": "What is the recommended setting for `nodeIntegration` in renderer processes, especially when loading untrusted content?",
+            "correctAnswer": "`false`",
+            "incorrectAnswers": [
+                "`true`",
+                "`'sandbox'`",
+                "`'hybrid'`"
+            ],
+            "difficulty": "novice"
+        },
+        {
+            "index": 183,
+            "genre": "Security & Best Practices",
+            "question": "What is the purpose of Content Security Policy (CSP) in an Electron application?",
+            "correctAnswer": "To mitigate cross-site scripting (XSS) attacks by specifying allowed sources for content.",
+            "incorrectAnswers": [
+                "To encrypt all network traffic.",
+                "To restrict access to the local file system.",
+                "To prevent the main process from crashing."
+            ],
+            "difficulty": "novice"
+        },
+        {
+            "index": 184,
+            "genre": "Security & Best Practices",
+            "question": "How should untrusted content (e.g., user-generated HTML, external websites) be handled in an Electron renderer?",
+            "correctAnswer": "By displaying it in a `BrowserWindow` with `nodeIntegration` and `contextIsolation` disabled, and preferably `sandbox` enabled.",
+            "incorrectAnswers": [
+                "Directly inject it into the main `BrowserWindow` with full Node.js access.",
+                "Always sanitize it using a custom script before displaying.",
+                "Trust Electron's default security to handle any content."
+            ],
+            "difficulty": "intermediate"
+        },
+        {
+            "index": 185,
+            "genre": "Security & Best Practices",
+            "question": "Why is it recommended to restrict or avoid the deprecated `remote` module?",
+            "correctAnswer": "It exposes main process objects and methods directly to the renderer, creating a large attack surface.",
+            "incorrectAnswers": [
+                "It causes performance bottlenecks in the renderer.",
+                "It is incompatible with modern JavaScript frameworks.",
+                "It is only available on specific operating systems."
+            ],
+            "difficulty": "intermediate"
+        },
+        {
+            "index": 186,
+            "genre": "Security & Best Practices",
+            "question": "When an Electron app needs to open an external link clicked by the user, which module should be used to open it in the default system browser?",
+            "correctAnswer": "`shell.openExternal()`",
+            "incorrectAnswers": [
+                "`window.open()` (in renderer)",
+                "`BrowserWindow.loadURL()`",
+                "`app.openExternal()`"
+            ],
+            "difficulty": "novice"
+        },
+        {
+            "index": 187,
+            "genre": "Security & Best Practices",
+            "question": "What is the secure pattern for exposing an API from the main process to the renderer?",
+            "correctAnswer": "Using a `preload` script with `contextBridge.exposeInMainWorld()`.",
+            "incorrectAnswers": [
+                "Assigning main process objects directly to `global.window` in the preload script.",
+                "Creating global variables in the main process that renderers can access.",
+                "Using `ipcRenderer.sendSync()` for all API calls."
+            ],
+            "difficulty": "novice"
+        },
+        {
+            "index": 188,
+            "genre": "Security & Best Practices",
+            "question": "What is a general principle for minimizing an Electron application's attack surface?",
+            "correctAnswer": "Disable or restrict all unnecessary features, modules, and permissions.",
+            "incorrectAnswers": [
+                "Enable all features to provide maximum functionality.",
+                "Use a single main process and no renderer processes.",
+                "Avoid using any external dependencies."
+            ],
+            "difficulty": "intermediate"
+        },
+        {
+            "index": 189,
+            "genre": "Security & Best Practices",
+            "question": "Why is it important to regularly update Electron and its dependencies?",
+            "correctAnswer": "To incorporate security patches, bug fixes, and performance improvements.",
+            "incorrectAnswers": [
+                "To gain access to new UI features only.",
+                "Updates typically increase application size.",
+                "It's only necessary for major version changes."
+            ],
+            "difficulty": "novice"
+        },
+        {
+            "index": 190,
+            "genre": "Security & Best Practices",
+            "question": "What is one way to prevent Cross-Site Scripting (XSS) in an Electron renderer process?",
+            "correctAnswer": "Implement a strict Content Security Policy (CSP).",
+            "incorrectAnswers": [
+                "Disabling `contextIsolation`.",
+                "Enabling `nodeIntegration`.",
+                "Loading all content from untrusted sources."
+            ],
+            "difficulty": "novice"
+        },
+        {
+            "index": 191,
+            "genre": "Security & Best Practices",
+            "question": "If your Electron app needs to execute an external executable, how should this be done securely from the main process?",
+            "correctAnswer": "Using `child_process.execFile()` with strict validation of arguments and paths.",
+            "incorrectAnswers": [
+                "Directly using `child_process.exec()` with user-provided commands.",
+                "Allowing the renderer to use `child_process` directly.",
+                "It's generally advised to avoid executing external processes."
+            ],
+            "difficulty": "advanced"
+        },
+        {
+            "index": 192,
+            "genre": "Security & Best Practices",
+            "question": "What is the purpose of `webPreferences.sandbox: true` for a `BrowserWindow`?",
+            "correctAnswer": "To enable Chromium's sandboxing, providing an additional layer of security for the renderer process.",
+            "incorrectAnswers": [
+                "To run the renderer process in a separate virtual machine.",
+                "To isolate the application from the operating system entirely.",
+                "To make the renderer process unable to communicate with the main process."
+            ],
+            "difficulty": "intermediate"
+        },
+        {
+            "index": 193,
+            "genre": "Security & Best Practices",
+            "question": "Which security measure prevents a `BrowserWindow` from loading arbitrary external content?",
+            "correctAnswer": "Implementing a strong Content Security Policy (CSP) and carefully validating URLs.",
+            "incorrectAnswers": [
+                "Setting `nodeIntegration: false`.",
+                "Disabling `contextIsolation`.",
+                "Always using synchronous IPC."
+            ],
+            "difficulty": "intermediate"
+        },
+        {
+            "index": 194,
+            "genre": "Security & Best Practices",
+            "question": "What is a common vulnerability if `nodeIntegration` is enabled in an Electron renderer process?",
+            "correctAnswer": "Ability for web content to directly interact with Node.js APIs, potentially executing arbitrary code on the user's system.",
+            "incorrectAnswers": [
+                "Slowdowns in UI rendering performance.",
+                "Cross-origin resource sharing (CORS) issues.",
+                "The inability to use web-based animations."
+            ],
+            "difficulty": "novice"
+        },
+        {
+            "index": 195,
+            "genre": "Security & Best Practices",
+            "question": "How should you store sensitive user data (e.g., API tokens, passwords) in an Electron application?",
+            "correctAnswer": "Using a secure key-value store like `electron-store` combined with OS-level credential managers.",
+            "incorrectAnswers": [
+                "Directly in `localStorage`.",
+                "In plain text files on the user's file system.",
+                "Hardcoded within the application's source code."
+            ],
+            "difficulty": "advanced"
+        },
+        {
+            "index": 196,
+            "genre": "Security & Best Practices",
+            "question": "Why is input validation critical for data passed over IPC?",
+            "correctAnswer": "Untrusted input can lead to various vulnerabilities (e.g., arbitrary file access, command injection) if not properly sanitized.",
+            "incorrectAnswers": [
+                "It improves the performance of IPC communication.",
+                "It prevents network latency.",
+                "It ensures data types are automatically converted."
+            ],
+            "difficulty": "novice"
+        },
+        {
+            "index": 197,
+            "genre": "Security & Best Practices",
+            "question": "What is the risk of using `webPreferences.allowRunningInsecureContent: true`?",
+            "correctAnswer": "It allows a renderer loaded over HTTPS to load content from insecure HTTP sources, making it vulnerable to MITM attacks.",
+            "incorrectAnswers": [
+                "It disables `contextIsolation`.",
+                "It makes all `BrowserWindow` instances invisible.",
+                "It blocks all network requests from the renderer."
+            ],
+            "difficulty": "advanced"
+        },
+        {
+            "index": 198,
+            "genre": "Security & Best Practices",
+            "question": "How can you protect your Electron app against common web vulnerabilities like SQL injection if it interacts with a local Node.js backend?",
+            "correctAnswer": "By using parameterized queries or prepared statements for all database interactions.",
+            "incorrectAnswers": [
+                "By disabling JavaScript in the renderer.",
+                "By solely relying on client-side input validation.",
+                "By restricting the app to only local URLs."
+            ],
+            "difficulty": "intermediate"
+        },
+        {
+            "index": 199,
+            "genre": "Security & Best Practices",
+            "question": "What is the primary benefit of `contextBridge.exposeInMainWorld()` over simply adding properties to `window` in a preload script (without context isolation)?",
+            "correctAnswer": "It creates a secure, isolated bridge between the preload script's context and the renderer's `window` object.",
+            "incorrectAnswers": [
+                "It allows direct access to Node.js modules from the renderer.",
+                "It improves the performance of exposed APIs.",
+                "It makes the exposed APIs available only to trusted domains."
+            ],
+            "difficulty": "intermediate"
+        },
+        {
+            "index": 200,
+            "genre": "Security & Best Practices",
+            "question": "If your Electron application serves a local HTTP server, what security considerations apply?",
+            "correctAnswer": "Ensure that the server only listens on `localhost` and that its endpoints are properly secured against external access.",
+            "incorrectAnswers": [
+                "Local servers are inherently secure and require no extra precautions.",
+                "Only HTTPS connections are allowed for local servers.",
+                "The server must run in a separate Electron main process."
+            ],
+            "difficulty": "advanced"
+        },
+        {
+            "index": 201,
+            "genre": "Security & Best Practices",
+            "question": "What should be done when an external resource (e.g., an image or script) is loaded from an untrusted URL in the renderer?",
+            "correctAnswer": "Ensure a strict Content Security Policy (CSP) is in place, and `nodeIntegration` and `contextIsolation` are properly configured.",
+            "incorrectAnswers": [
+                "Electron automatically blocks all untrusted external resources.",
+                "The external resource inherits the main process's permissions.",
+                "It's generally safe as long as it's an image."
+            ],
+            "difficulty": "intermediate"
+        },
+        {
+            "index": 202,
+            "genre": "Security & Best Practices",
+            "question": "Which `webPreferences` option, when `false`, helps prevent local file system access by the renderer process?",
+            "correctAnswer": "`nodeIntegration`",
+            "incorrectAnswers": [
+                "`contextIsolation`",
+                "`webSecurity`",
+                "`sandbox`"
+            ],
+            "difficulty": "novice"
+        },
+        {
+            "index": 203,
+            "genre": "Security & Best Practices",
+            "question": "What is the security implication of using `allowPopups: true` without proper handling?",
+            "correctAnswer": "It allows the renderer process to open new `BrowserWindow` instances that might not inherit the same security settings.",
+            "incorrectAnswers": [
+                "It blocks all new windows from opening.",
+                "It makes the application run slower.",
+                "It's purely a UI preference with no security implications."
+            ],
+            "difficulty": "advanced"
+        },
+        {
+            "index": 204,
+            "genre": "Security & Best Practices",
+            "question": "When handling user-provided file paths in the main process, what is a crucial security step?",
+            "correctAnswer": "Sanitize and validate paths, and ideally restrict operations to a known safe directory.",
+            "incorrectAnswers": [
+                "Trust all user-provided paths implicitly.",
+                "Automatically resolve all paths to absolute paths.",
+                "Encrypt all path strings before use."
+            ],
+            "difficulty": "advanced"
+        },
+        {
+            "index": 205,
+            "genre": "Security & Best Practices",
+            "question": "What is the purpose of `app.setAsDefaultProtocolClient()` regarding security?",
+            "correctAnswer": "It registers your app to handle a custom protocol, which requires careful validation of received URLs to prevent command injection.",
+            "incorrectAnswers": [
+                "It sets the default web browser for the user.",
+                "It establishes a secure communication protocol for IPC.",
+                "It ensures all external links are opened by your app."
+            ],
+            "difficulty": "advanced"
+        },
+        {
+            "index": 206,
+            "genre": "Security & Best Practices",
+            "question": "What is the risk of using `webPreferences.enableRemoteModule: true`?",
+            "correctAnswer": "It allows arbitrary access to main process modules (like `app`, `dialog`, `Menu`) from the renderer, greatly increasing the attack surface.",
+            "incorrectAnswers": [
+                "It causes the application to crash on startup.",
+                "It makes the app unresponsive.",
+                "It's only a performance concern."
+            ],
+            "difficulty": "intermediate"
+        },
+        {
+            "index": 207,
+            "genre": "Security & Best Practices",
+            "question": "To prevent JavaScript injection attacks when displaying dynamic content from a database in the renderer, what should be done?",
+            "correctAnswer": "Sanitize all HTML content before injecting it into the DOM (e.g., using a DOMPurify-like library).",
+            "incorrectAnswers": [
+                "Display content directly without any sanitization.",
+                "Only use `textContent` instead of `innerHTML`.",
+                "Disable all CSS styles."
+            ],
+            "difficulty": "novice"
+        },
+        {
+            "index": 208,
+            "genre": "Security & Best Practices",
+            "question": "Why should you avoid enabling `nodeIntegration` in *all* renderer processes by default?",
+            "correctAnswer": "It gives every renderer process direct access to powerful Node.js APIs, which can be exploited by malicious web content.",
+            "incorrectAnswers": [
+                "It complicates the development workflow.",
+                "It is only useful for debugging purposes.",
+                "It makes the application incompatible with certain web technologies."
+            ],
+            "difficulty": "novice"
+        },
+        {
+            "index": 209,
+            "genre": "Security & Best Practices",
+            "question": "What is a common security best practice for handling sensitive environment variables in Electron?",
+            "correctAnswer": "Load them in the main process and pass only necessary, sanitized data to renderers via IPC.",
+            "incorrectAnswers": [
+                "Expose all environment variables to all renderer processes.",
+                "Store them directly in `package.json`.",
+                "Hardcode them in the source code."
+            ],
+            "difficulty": "intermediate"
+        },
+        {
+            "index": 210,
+            "genre": "Security & Best Practices",
+            "question": "If an Electron app uses `localStorage` for storing data, what is a security consideration?",
+            "correctAnswer": "`localStorage` is not encrypted and can be accessed by other websites if `webSecurity` is disabled or compromised.",
+            "incorrectAnswers": [
+                "`localStorage` data is automatically synchronized to the cloud.",
+                "`localStorage` is only accessible from the main process.",
+                "`localStorage` is perfectly secure for sensitive data."
+            ],
+            "difficulty": "intermediate"
+        },
+        {
+            "index": 211,
+            "genre": "Security & Best Practices",
+            "question": "What is the purpose of `app.disableHardwareAcceleration()` from a security perspective?",
+            "correctAnswer": "It can mitigate potential vulnerabilities related to GPU-accelerated content, especially when displaying untrusted content.",
+            "incorrectAnswers": [
+                "It makes the application run faster on older hardware.",
+                "It prevents the application from accessing network resources.",
+                "It ensures that all content is rendered in software mode."
+            ],
+            "difficulty": "advanced"
+        },
+        {
+            "index": 212,
+            "genre": "Security & Best Practices",
+            "question": "When building Electron apps, what is the importance of auditing `npm` dependencies?",
+            "correctAnswer": "To identify and mitigate known vulnerabilities in third-party libraries.",
+            "incorrectAnswers": [
+                "To reduce the number of dependencies.",
+                "To ensure all dependencies are open source.",
+                "To automatically update all dependencies."
+            ],
+            "difficulty": "novice"
+        },
+        {
+            "index": 213,
+            "genre": "Security & Best Practices",
+            "question": "What is the primary danger of deserializing untrusted JSON or JavaScript objects in an Electron app?",
+            "correctAnswer": "It can lead to arbitrary code execution if the deserializer is vulnerable (e.g., prototype pollution).",
+            "incorrectAnswers": [
+                "It only causes data corruption.",
+                "It slows down the application's startup time.",
+                "It makes the application incompatible with certain OS versions."
+            ],
+            "difficulty": "advanced"
+        },
+        {
+            "index": 214,
+            "genre": "Security & Best Practices",
+            "question": "How can you ensure that a `BrowserWindow` always opens external URLs in the user's default browser, not within a new Electron window?",
+            "correctAnswer": "By handling the `new-window` event on `webContents` and using `shell.openExternal()`.",
+            "incorrectAnswers": [
+                "By setting `nativeWindowOpen: false` in `webPreferences`.",
+                "By disabling `window.open()` in the renderer.",
+                "Electron automatically opens all external URLs in the default browser."
+            ],
+            "difficulty": "intermediate"
+        },
+        {
+            "index": 215,
+            "genre": "Development Workflow & Debugging",
+            "question": "Which tool is built into Electron for debugging renderer processes?",
+            "correctAnswer": "Chromium DevTools.",
+            "incorrectAnswers": [
+                "Node.js Debugger.",
+                "VS Code debugger.",
+                "Electron Inspector."
+            ],
+            "difficulty": "novice"
+        },
+        {
+            "index": 216,
+            "genre": "Development Workflow & Debugging",
+            "question": "How do you open Chromium DevTools for a `BrowserWindow` from the main process?",
+            "correctAnswer": "`win.webContents.openDevTools()`",
+            "incorrectAnswers": [
+                "`win.openDevTools()`",
+                "`app.openDevTools()`",
+                "`console.openDevTools()`"
+            ],
+            "difficulty": "novice"
+        },
+        {
+            "index": 217,
+            "genre": "Development Workflow & Debugging",
+            "question": "To debug the main process of an Electron application using VS Code, what file typically needs to be configured?",
+            "correctAnswer": "`launch.json`",
+            "incorrectAnswers": [
+                "`settings.json`",
+                "`tasks.json`",
+                "`debug.config`"
+            ],
+            "difficulty": "novice"
+        },
+        {
+            "index": 218,
+            "genre": "Development Workflow & Debugging",
+            "question": "What is 'hot-reloading' in the context of Electron development?",
+            "correctAnswer": "Updating code changes in the running application without a full reload, preserving application state.",
+            "incorrectAnswers": [
+                "Automatically restarting the application after every change.",
+                "Compiling the entire application into an executable.",
+                "Debugging code in production."
+            ],
+            "difficulty": "intermediate"
+        },
+        {
+            "index": 219,
+            "genre": "Development Workflow & Debugging",
+            "question": "Which tool or module can be used to automatically restart the main process and reload renderer processes on code changes?",
+            "correctAnswer": "`electron-reloader` or similar development tools.",
+            "incorrectAnswers": [
+                "`npm watch`",
+                "`webpack-dev-server` (by itself)",
+                "`gulp reload`"
+            ],
+            "difficulty": "intermediate"
+        },
+        {
+            "index": 220,
+            "genre": "Development Workflow & Debugging",
+            "question": "How can you effectively log messages from both the main and renderer processes for debugging?",
+            "correctAnswer": "Use a logging library that writes to files from both processes or pipe renderer `console.log` to main.",
+            "incorrectAnswers": [
+                "Only use `console.log` in the main process.",
+                "Renderer logs are always visible in the main process console.",
+                "Only log errors, not regular messages."
+            ],
+            "difficulty": "intermediate"
+        },
+        {
+            "index": 221,
+            "genre": "Development Workflow & Debugging",
+            "question": "What is the purpose of source maps in Electron development?",
+            "correctAnswer": "To map transpiled or minified code back to the original source code for easier debugging.",
+            "incorrectAnswers": [
+                "To create a visual representation of the application's architecture.",
+                "To optimize application startup time.",
+                "To encrypt the application's source code."
+            ],
+            "difficulty": "novice"
+        },
+        {
+            "index": 222,
+            "genre": "Development Workflow & Debugging",
+            "question": "Which testing framework is specifically designed for testing Electron applications with a focus on end-to-end testing?",
+            "correctAnswer": "Spectron (or Playwright/Cypress for web content).",
+            "incorrectAnswers": [
+                "Jest (unit testing)",
+                "Mocha (general JS testing)",
+                "Selenium (web browser automation)"
+            ],
+            "difficulty": "intermediate"
+        },
+        {
+            "index": 223,
+            "genre": "Development Workflow & Debugging",
+            "question": "How do you pause execution and inspect variables in the main process using VS Code?",
+            "correctAnswer": "By setting breakpoints in the main process's JavaScript files.",
+            "incorrectAnswers": [
+                "By using `debugger;` statement in the renderer.",
+                "Main process cannot be debugged.",
+                "By manually logging all variable values to the console."
+            ],
+            "difficulty": "novice"
+        },
+        {
+            "index": 224,
+            "genre": "Development Workflow & Debugging",
+            "question": "What command is commonly used to install project dependencies during development?",
+            "correctAnswer": "`npm install` or `yarn install`",
+            "incorrectAnswers": [
+                "`npm build`",
+                "`npm start`",
+                "`npm test`"
+            ],
+            "difficulty": "novice"
+        },
+        {
+            "index": 225,
+            "genre": "Development Workflow & Debugging",
+            "question": "When debugging a preload script, where would you typically set breakpoints?",
+            "correctAnswer": "In the `preload.js` file, which can be debugged as part of the renderer process (often with `webContents.openDevTools({ mode: 'undocked' })`).",
+            "incorrectAnswers": [
+                "In the main process's `launch.json`.",
+                "Preload scripts cannot be debugged.",
+                "Directly in the `BrowserWindow` constructor."
+            ],
+            "difficulty": "intermediate"
+        },
+        {
+            "index": 226,
+            "genre": "Development Workflow & Debugging",
+            "question": "What is a common technique for performance profiling an Electron renderer process?",
+            "correctAnswer": "Using the 'Performance' tab in Chromium DevTools.",
+            "incorrectAnswers": [
+                "Running `npm audit` on the project.",
+                "Monitoring CPU usage from the OS task manager.",
+                "Using Node.js built-in profiler."
+            ],
+            "difficulty": "novice"
+        },
+        {
+            "index": 227,
+            "genre": "Development Workflow & Debugging",
+            "question": "Which VS Code `launch.json` configuration type is typically used for debugging the Electron main process?",
+            "correctAnswer": "`'node'` or a custom Electron configuration.",
+            "incorrectAnswers": [
+                "`'chrome'`",
+                "`'javascript'`",
+                "`'web'`"
+            ],
+            "difficulty": "intermediate"
+        },
+        {
+            "index": 228,
+            "genre": "Development Workflow & Debugging",
+            "question": "What is the purpose of `electron-debug`?",
+            "correctAnswer": "To enhance the development experience with features like automatic DevTools opening, reload shortcuts, and crash reporting.",
+            "incorrectAnswers": [
+                "To debug the Electron framework itself.",
+                "To automatically fix bugs in the application.",
+                "To optimize application startup time."
+            ],
+            "difficulty": "intermediate"
+        },
+        {
+            "index": 229,
+            "genre": "Development Workflow & Debugging",
+            "question": "How can you ensure consistent Node.js versions across development environments for an Electron project?",
+            "correctAnswer": "Using Node Version Manager (NVM) or specifying `engines.node` in `package.json` with a tool like `nvmrc`.",
+            "incorrectAnswers": [
+                "Electron automatically manages Node.js versions.",
+                "By manually installing the latest Node.js version.",
+                "It's not critical for development workflow."
+            ],
+            "difficulty": "intermediate"
+        },
+        {
+            "index": 230,
+            "genre": "Development Workflow & Debugging",
+            "question": "Which type of testing would Spectron primarily be used for?",
+            "correctAnswer": "End-to-end (E2E) testing of the entire Electron application UI and functionality.",
+            "incorrectAnswers": [
+                "Unit testing individual functions.",
+                "Integration testing between modules.",
+                "Performance testing of rendering speed."
+            ],
+            "difficulty": "intermediate"
+        },
+        {
+            "index": 231,
+            "genre": "Development Workflow & Debugging",
+            "question": "What is a common problem when debugging IPC issues?",
+            "correctAnswer": "Mismatched channel names, incorrect arguments, or listeners not being attached/removed correctly.",
+            "incorrectAnswers": [
+                "IPC calls are always perfectly reliable.",
+                "Debugging IPC is the easiest part of Electron development.",
+                "IPC only fails due to network issues."
+            ],
+            "difficulty": "novice"
+        },
+        {
+            "index": 232,
+            "genre": "Development Workflow & Debugging",
+            "question": "How would you attach the VS Code debugger to an already running Electron main process?",
+            "correctAnswer": "By configuring a 'Attach to Process' launch configuration in `launch.json` and selecting the Node.js process.",
+            "incorrectAnswers": [
+                "It's not possible to attach to a running process.",
+                "The debugger automatically attaches when Electron starts.",
+                "By using the `debugger;` statement."
+            ],
+            "difficulty": "advanced"
+        },
+        {
+            "index": 233,
+            "genre": "Development Workflow & Debugging",
+            "question": "What is the role of `webpack` in an Electron development workflow?",
+            "correctAnswer": "To bundle, transpile, and optimize JavaScript, CSS, and other assets for both main and renderer processes.",
+            "incorrectAnswers": [
+                "To create native installers for the application.",
+                "To manage Node.js versions.",
+                "To serve as the Electron main process entry point."
+            ],
+            "difficulty": "novice"
+        },
+        {
+            "index": 234,
+            "genre": "Development Workflow & Debugging",
+            "question": "When logging from the renderer process, where do `console.log` messages appear by default?",
+            "correctAnswer": "In the Chromium DevTools console for that specific renderer window.",
+            "incorrectAnswers": [
+                "In the main process console.",
+                "In a separate log file on the file system.",
+                "They are suppressed by default."
+            ],
+            "difficulty": "novice"
+        },
+        {
+            "index": 235,
+            "genre": "Development Workflow & Debugging",
+            "question": "What is a common challenge when setting up hot-reloading for an Electron main process?",
+            "correctAnswer": "Changes to the main process often require a full restart of the Electron application, making true hot-reloading difficult.",
+            "incorrectAnswers": [
+                "Hot-reloading is always straightforward for the main process.",
+                "Only CSS changes can be hot-reloaded in the main process.",
+                "Hot-reloading is a renderer-only concept."
+            ],
+            "difficulty": "advanced"
+        },
+        {
+            "index": 236,
+            "genre": "Development Workflow & Debugging",
+            "question": "Which `BrowserWindow` event could be useful for logging when a window loses focus?",
+            "correctAnswer": "'blur'",
+            "incorrectAnswers": [
+                "'unfocus'",
+                "'inactive'",
+                "'hide'"
+            ],
+            "difficulty": "intermediate"
+        },
+        {
+            "index": 237,
+            "genre": "Development Workflow & Debugging",
+            "question": "How can you enable verbose logging for Electron's internal processes?",
+            "correctAnswer": "By passing command-line arguments like `--enable-logging` or setting `process.env.ELECTRON_ENABLE_LOGGING`.",
+            "incorrectAnswers": [
+                "By setting `app.enableVerboseLogging()` in the main process.",
+                "Electron does not support verbose internal logging.",
+                "By increasing the Node.js verbosity level."
+            ],
+            "difficulty": "advanced"
+        },
+        {
+            "index": 238,
+            "genre": "Development Workflow & Debugging",
+            "question": "What is the benefit of integrating automated testing (e.g., with Jest for unit tests) into your Electron development workflow?",
+            "correctAnswer": "To ensure code quality, catch regressions early, and speed up the development cycle.",
+            "incorrectAnswers": [
+                "Automated testing automatically fixes bugs.",
+                "It's only useful for large enterprise applications.",
+                "Automated testing replaces manual testing entirely."
+            ],
+            "difficulty": "novice"
+        },
+        {
+            "index": 239,
+            "genre": "Development Workflow & Debugging",
+            "question": "What is the purpose of the `DEBUG_PROD` environment variable often used with Electron applications?",
+            "correctAnswer": "To enable debugging utilities (like DevTools or console logging) even in production builds.",
+            "incorrectAnswers": [
+                "To enable production-specific optimizations.",
+                "To disable all debugging features.",
+                "To switch the application to a dark theme."
+            ],
+            "difficulty": "advanced"
+        },
+        {
+            "index": 240,
+            "genre": "Development Workflow & Debugging",
+            "question": "When profiling memory usage in Electron, which tools are most relevant?",
+            "correctAnswer": "Chromium DevTools' 'Memory' tab for renderers and Node.js built-in profiler or `heapdump` for the main process.",
+            "incorrectAnswers": [
+                "Only the OS task manager.",
+                "`npm install` memory-profiler.",
+                "Electron has no built-in memory profiling tools."
+            ],
+            "difficulty": "intermediate"
+        },
+        {
+            "index": 241,
+            "genre": "Development Workflow & Debugging",
+            "question": "How do you force a `BrowserWindow` to reload its content from the main process?",
+            "correctAnswer": "`win.webContents.reload()` or `win.webContents.reloadIgnoringCache()`.",
+            "incorrectAnswers": [
+                "`win.reload()`",
+                "`app.reloadWindow(win)`",
+                "`win.webContents.refresh()`"
+            ],
+            "difficulty": "novice"
+        },
+        {
+            "index": 242,
+            "genre": "Development Workflow & Debugging",
+            "question": "What is a benefit of using `yarn` over `npm` in a development environment?",
+            "correctAnswer": "Potentially faster dependency installation and more consistent builds due to `yarn.lock` (though `npm` now also has `package-lock.json`).",
+            "incorrectAnswers": [
+                "`yarn` is incompatible with Electron.",
+                "`yarn` installs fewer dependencies.",
+                "`yarn` has a built-in debugger."
+            ],
+            "difficulty": "novice"
+        },
+        {
+            "index": 243,
+            "genre": "Development Workflow & Debugging",
+            "question": "What happens if you run `electron-builder` in `debug` mode?",
+            "correctAnswer": "It typically produces unminified code and sometimes extra logs, aiding in debugging packaged apps.",
+            "incorrectAnswers": [
+                "It automatically opens DevTools when the packaged app launches.",
+                "It only builds the application without packaging.",
+                "It runs a debugger in the console."
+            ],
+            "difficulty": "intermediate"
+        },
+        {
+            "index": 244,
+            "genre": "Development Workflow & Debugging",
+            "question": "When debugging crashes in an Electron application, what is a crucial first step?",
+            "correctAnswer": "Check the application's logs (if implemented) and the operating system's crash logs.",
+            "incorrectAnswers": [
+                "Reinstall Node.js.",
+                "Assume it's an Electron framework bug.",
+                "Restart the computer."
+            ],
+            "difficulty": "novice"
+        },
+        {
+            "index": 245,
+            "genre": "Development Workflow & Debugging",
+            "question": "What does the `webContents.isDevToolsOpened()` method tell you?",
+            "correctAnswer": "Whether the developer tools are currently open for that specific `BrowserWindow`.",
+            "incorrectAnswers": [
+                "Whether the application is running in development mode.",
+                "Whether the Electron framework's internal tools are active.",
+                "Whether the debugger is attached to the main process."
+            ],
+            "difficulty": "novice"
+        },
+        {
+            "index": 246,
+            "genre": "Development Workflow & Debugging",
+            "question": "What is a common strategy for splitting code into smaller, manageable chunks for better performance and debugging?",
+            "correctAnswer": "Using module bundlers like Webpack or Rollup for code splitting and lazy loading.",
+            "incorrectAnswers": [
+                "Writing all code in a single file.",
+                "Avoiding external libraries.",
+                "Only using synchronous code execution."
+            ],
+            "difficulty": "novice"
+        },
+        {
+            "index": 247,
+            "genre": "Development Workflow & Debugging",
+            "question": "How do you configure an Electron app to run with specific Chromium flags during development?",
+            "correctAnswer": "By passing flags to the `electron` executable (e.g., `electron --enable-features=WebMIDI .`) or via `app.commandLine.appendSwitch()`.",
+            "incorrectAnswers": [
+                "By modifying the Chromium source code.",
+                "By setting environment variables only.",
+                "Electron does not support custom Chromium flags."
+            ],
+            "difficulty": "advanced"
+        },
+        {
+            "index": 248,
+            "genre": "Development Workflow & Debugging",
+            "question": "Which module allows you to track and report application crashes to a remote service?",
+            "correctAnswer": "`crashReporter` module.",
+            "incorrectAnswers": [
+                "`errorMonitor`",
+                "`app.crashLogger`",
+                "`bugTracker`"
+            ],
+            "difficulty": "intermediate"
+        },
+        {
+            "index": 249,
+            "genre": "Development Workflow & Debugging",
+            "question": "What is the purpose of the `NODE_ENV` environment variable in an Electron development setup?",
+            "correctAnswer": "To differentiate between development and production environments, often for conditional code execution (e.g., debugging features).",
+            "incorrectAnswers": [
+                "To specify the Node.js version.",
+                "To define the application's main entry point.",
+                "To configure network proxy settings."
+            ],
+            "difficulty": "novice"
+        },
+        {
+            "index": 250,
+            "genre": "Development Workflow & Debugging",
+            "question": "If your Electron app is slow to start, what debugging technique might you employ?",
+            "correctAnswer": "Use the 'Performance' tab in DevTools to profile startup, analyze `console.time` for key loading stages, and identify blocking operations.",
+            "incorrectAnswers": [
+                "Immediately blame the user's computer.",
+                "Assume all Electron apps are inherently slow.",
+                "Only focus on the UI rendering, not the main process."
+            ],
+            "difficulty": "intermediate"
+        }
+    ]
+}

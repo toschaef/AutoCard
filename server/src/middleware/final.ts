@@ -30,6 +30,8 @@ export async function getGenresFromPrompt(prompt: string, numProblemsPerGenre: n
       },
     },
   });
+  // see how many tokens were used:
+  console.log("Tokens used to generate genres and descriptions:", response.usageMetadata);
     return response;
 }
 
@@ -39,12 +41,12 @@ export async function questionsFromCustomPrompt(prompt: string, specificGenre: s
     await getGenresFromPrompt(prompt, numProblemsPerGenre).then((response) => {
       if (response.text) {
         genresDescription = JSON.parse(response.text).listAndDescriptionOfGenres;
-        console.log("Genres and descriptions generated:\n", genresDescription);
+        // console.log("Genres and descriptions generated:\n", genresDescription);
       }}).catch((error) => {
         console.error("Error generating genres and descriptions:", error);
       });
   }
-  const customPrompt = `You are AutoCardAI, an AI assistant used to create multiple-choice problems to help students with their studies. You will generate problems that fall under 3 types: Multiple choice (1 right, 3 wrong), True/False (True or False), or Fill in the Blank. Every question will each have a difficulty rating [novice, intermediate, advance] (novice should be simple, intermediate should require a bit of background knowledge to know, advance should be challenging even for experienced individuals), a right answer, and three incorrect answers. The True/False questions will have a statement and the student must choose whether it is true or false (incorrect answers will only have one entry). The Fill in the Blank questions will have a sentence with a missing word or phrase (incorrect answers will be empty), and the student must provide the correct answer and the answer should be very easy to type and simple. The following is the prompt from the student: ${prompt}. ${specificGenre ? `A previous AI model has generated the following genre and description of problems you can create: ${specificGenre}.` : genresDescription} You should create ${numProblemsPerGenre} problems. ${difficulty ? `All problems should be of ${difficulty} difficulty.` : ''}.`;
+  const customPrompt = `You are AutoCardAI, an AI assistant used to create multiple-choice problems to help students with their studies. You will generate problems that fall under 3 types: Multiple choice (1 right, 3 wrong), True/False (True or False), or Fill in the Blank. Every question will each have a difficulty rating [novice, intermediate, advance] (novice should be simple, intermediate should require a bit of background knowledge to know, advance should be challenging even for experienced individuals), a right answer, and three incorrect answers. The True/False questions will have a statement and the student must choose whether it is true or false (incorrect answers will only have one entry). The Fill in the Blank questions will have a sentence with a missing word or phrase, shown as _______ and incorrect answers will be empty, and the student must provide the correct answer and the answer should be very easy to type and simple. The following is the prompt from the student: ${prompt}. ${specificGenre ? `A previous AI model has generated the following genre and description of problems you can create: ${specificGenre}.` : genresDescription} You should create ${numProblemsPerGenre} problems for every listed genre. ${difficulty ? `All problems should be of ${difficulty} difficulty.` : ''}.`;
   const response = await ai.models.generateContent({
     model: model,
     contents: customPrompt,
@@ -97,10 +99,13 @@ export async function questionsFromCustomPrompt(prompt: string, specificGenre: s
       },
     },
   });
+  // see how many tokens were used:
+  console.log("Tokens used to generate questions:", response.usageMetadata);
+
   if (response.text) {
     // print out the response as a parsed JSON object including arrays:
     const jsonResponse = JSON.parse(response.text);
-    console.log(JSON.stringify(jsonResponse, null, 2));
+    // console.log(JSON.stringify(jsonResponse, null, 2));
     return jsonResponse;
   }
   return null;

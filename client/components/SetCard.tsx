@@ -1,4 +1,4 @@
-import { CardSet } from '../lib/types';
+import { CardSet } from '@/types/types';
 import Link from 'next/link';
 
 interface SetCardProps {
@@ -8,7 +8,7 @@ interface SetCardProps {
 export default function SetCard({ item }: SetCardProps) {
   return (
     <div
-      className="group relative aspect-[16/10] rounded-2xl overflow-hidden border border-black/5 bg-white shadow-sm transition-all duration-200 will-change-transform hover:shadow-md hover:scale-[1.02] focus-within:shadow-md focus-within:scale-[1.02]"
+      className="group relative aspect-[16/10] rounded-2xl overflow-hidden border border-black/5 shadow-sm transition-all duration-200 will-change-transform hover:shadow-md hover:scale-[1.02] focus-within:shadow-md focus-within:scale-[1.02]"
       data-testid="set-card"
       tabIndex={0}
     >
@@ -35,7 +35,7 @@ export default function SetCard({ item }: SetCardProps) {
         {/* Buttons container */}
         <div className="pointer-events-auto flex items-center justify-between gap-3">
           <Link
-            href={`/set/${item.id}/edit`}
+            href={`/set/${item._id}/edit`}
             className="px-4 py-2 rounded-lg text-sm font-medium text-white bg-white/10 hover:bg-white/20 border border-white/20 transition focus:outline-none focus:ring-2 focus:ring-white/50 focus:ring-offset-2 focus:ring-offset-transparent"
             data-testid="btn-edit"
             aria-label={`Edit ${item.title}`}
@@ -45,7 +45,7 @@ export default function SetCard({ item }: SetCardProps) {
           </Link>
 
           <Link
-            href={`/play/${item.id}`}
+            href={`/play/${item._id}`}
             className="px-4 py-2 rounded-lg text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 transition focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-transparent"
             data-testid="btn-play"
             aria-label={`Play ${item.title}`}

@@ -1,14 +1,14 @@
 'use client';
 
+import { createSet } from '@/api/api';
 import { useState } from 'react';
 
 interface CreateSetModalProps {
   isOpen: boolean;
   onClose: () => void;
-  onCreateSet: (setData: { title: string; description: string }) => Promise<void>;
 }
 
-export default function CreateSetModal({ isOpen, onClose, onCreateSet }: CreateSetModalProps) {
+export default function CreateSetModal({ isOpen, onClose }: CreateSetModalProps) {
   const [formData, setFormData] = useState({
     title: '',
     description: ''
@@ -30,14 +30,11 @@ export default function CreateSetModal({ isOpen, onClose, onCreateSet }: CreateS
     setIsSubmitting(true);
     
     try {
-      await onCreateSet({
-        title: formData.title.trim(),
-        description: formData.description.trim()
+      await createSet({"title": formData.title, "description": formData.description}).then(() => {
+        // Reset form
+        setFormData({ title: '', description: '' });
+        onClose();
       });
-      
-      // Reset form
-      setFormData({ title: '', description: '' });
-      onClose();
     } catch (error) {
       console.error('Error creating set:', error);
     } finally {

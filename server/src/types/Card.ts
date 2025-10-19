@@ -2,35 +2,35 @@ import mongoose, { Schema, Document } from 'mongoose';
 
 // 1. Define the TypeScript Interface for the document
 export interface IFlashcard extends Document {
+  user_id: mongoose.Types.ObjectId;
   genre: string;
   question: string;
   correctAnswer: string;
   incorrectAnswers: string[];
-  difficulty: 'easy' | 'medium' | 'hard';
+  difficulty: 'novice' | 'intermediate' | 'advanced';
 }
 
 // 2. Create the Mongoose Schema
 const CardSchema: Schema = new Schema({
+  user_id: {
+    type: Schema.Types.ObjectId,
+    ref: 'User',
+  },
   genre: {
     type: String,
-    required: true
   },
   question: {
     type: String,
-    required: true,
   },
   correctAnswer: {
     type: String,
-    required: true
   },
     incorrectAnswers: {
     type: [String], // Defines an array of strings
-    required: true
   },
   difficulty: {
     type: String,
-    required: true,
-    enum: ['novice', 'intermediate', 'advance'] // Enforces specific values
+    enum: ['any', 'novice', 'intermediate', 'advanced'] // Enforces specific values
   }
 });
 

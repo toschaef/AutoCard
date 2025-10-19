@@ -4,12 +4,13 @@ import { Request, Response } from 'express';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import User from '../types/User';
-import { hash } from 'crypto';
 
 export const register = async (req: Request, res: Response) => {
   try {
+    // Extract user details from request body
     const { email, password, name } = req.body;
 
+    // Check for required fields
     if (!email || !password) {
       return res.status(400).json({ message: 'Email and password are required.' });
     }
@@ -20,34 +21,35 @@ export const register = async (req: Request, res: Response) => {
       return res.status(400).json({ message: 'User with this email already exists.' });
     }
 
-    // Hash the password
-    //const salt = await bcrypt.genSalt(10);
-    //const hashedPassword = await bcrypt.hash(password, salt);
-
-    const hashedPassword = password
+    // Note that the password is hashed by the User type pre-save hook
     const newUser = new User({
       email,
-      password: hashedPassword,
+      password,
       name,
     });
 
     // post user
     const savedUser = await newUser.save();
-
     console.log("REGISTERED USER:", savedUser)
+
     // remove password
     savedUser.password = undefined; 
 
+    // Respond with success and user data
     res.status(201).json({ message: 'User created successfully', user: savedUser });
   } catch (error) {
+
+    // Respond with error
     res.status(500).json({ message: 'Server error during registration.', error });
   }
 };
 
 export const login = async (req: Request, res: Response) => {
   try {
+    // Extract user details from request body
     const { email, password } = req.body;
 
+    // Check for required fields, return 400 if missing required fields
     if (!email || !password) {
       return res.status(400).json({ message: 'Email and password are required.' });
     }
@@ -55,20 +57,18 @@ export const login = async (req: Request, res: Response) => {
     // Find user by email
     const user = await User.findOne({ email }).select('+password'); // Explicitly select the password field
     
+    // If user not found, return invalid credentials
     if (!user) {
       return res.status(401).json({ message: 'Invalid credentials.' });
     }
 
-
-    // console.log(user)
     // Compare provided password with stored hash
     if (!user.password) {
       return res.status(500).json({ message: 'User password is not set.' });
     }
 
-    // console.log(password, user.password)
+    // Compare provided password with stored hash
     const isMatch = await bcrypt.compare(password, user.password);
-    // console.log(isMatch)
     if (!isMatch) {
       return res.status(401).json({ message: 'Invalid credentials.' });
     }
@@ -78,15 +78,14 @@ export const login = async (req: Request, res: Response) => {
     const token = jwt.sign(
       jwtPayload,
       process.env.JWT_SECRET as string,
-      { expiresIn: '1h' } // FIX THIS IF WORKING ON PROJECT AFTER HACKATHON
+      { expiresIn: '6h' }
     );
     
     // Send token back to the client
-    console.log("LOGIN SUCCESSFUL")
     res.status(200).json({ message: 'Login successful', token, user });
-
   } catch (error: any) {
-    console.error(error);
+
+    // Respond with error
     res.status(500).json({ message: 'Server error during login.', error });
   }
 };

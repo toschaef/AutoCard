@@ -4,8 +4,8 @@ import { questionsFromCustomPrompt, questionsFromCustomPromptAndDocument } from 
 // Get all cards from a specific set
 export const createBatchOfCards = async (req: Request, res: Response) => {
   try {
-    const { prompt, specificGenre, numProblemsPerGenre, difficulty } = req.body;
-    const response = await questionsFromCustomPrompt(prompt, specificGenre, numProblemsPerGenre, difficulty);
+    const { prompt, genre, numProblemsPerGenre, difficulty } = req.body;
+    const response = await questionsFromCustomPrompt(prompt, genre, numProblemsPerGenre, difficulty);
     res.status(200).json(response);
   } catch (error: any) {
     console.error(error.message);

@@ -1,18 +1,20 @@
 'use client';
 
+import { Prompt } from '@/types/types';
 import { useState } from 'react';
 
 interface GenerateQuestionsModalProps {
   isOpen: boolean;
   onClose: () => void;
-  onGenerate: (settings: { topic: string; description: string; count: number }) => void;
+  onGenerate: (settings: Partial<Prompt>) => void;
 }
 
 export default function GenerateQuestionsModal({ isOpen, onClose, onGenerate }: GenerateQuestionsModalProps) {
-  const [settings, setSettings] = useState({
-    topic: '',
-    description: '',
-    count: 10
+  const [settings, setSettings] = useState<Partial<Prompt>>({
+    prompt: '',
+    genre: '',
+    numProblemsPerGenre: 10,
+    difficulty: 'any',
   });
 
   if (!isOpen) return null;
@@ -20,7 +22,7 @@ export default function GenerateQuestionsModal({ isOpen, onClose, onGenerate }: 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     
-    if (!settings.topic.trim()) {
+    if (!settings.prompt!.trim()) {
       alert('Topic is required');
       return;
     }
@@ -29,18 +31,20 @@ export default function GenerateQuestionsModal({ isOpen, onClose, onGenerate }: 
     
     // Reset form
     setSettings({
-      topic: '',
-      description: '',
-      count: 10
+      prompt: '',
+      genre: '',
+      numProblemsPerGenre: 10,
+      difficulty: 'any',
     });
     onClose();
   };
 
   const handleClose = () => {
     setSettings({
-      topic: '',
-      description: '',
-      count: 10
+      prompt: '',
+      genre: '',
+      numProblemsPerGenre: 10,
+      difficulty: 'any',
     });
     onClose();
   };
@@ -54,47 +58,65 @@ export default function GenerateQuestionsModal({ isOpen, onClose, onGenerate }: 
       />
 
       {/* Modal */}
-      <div className="relative bg-white rounded-2xl shadow-2xl max-w-lg w-full p-8">
+      <div className="relative bg-white text-black placeholder:text-black rounded-2xl shadow-2xl max-w-lg w-full p-8">
         <h2 className="text-2xl font-bold text-slate-900 mb-2">Generate Questions with AI</h2>
-        <p className="text-slate-600 mb-6">Describe what you want and we'll generate flashcards for you</p>
+        <p className="text-slate-600 mb-6">Describe what you want and AI will generate problems/cards for you</p>
 
         <form onSubmit={handleSubmit} className="space-y-5">
-          {/* Topic */}
-          <div>
-            <label className="block text-sm font-medium text-slate-700 mb-2">
-              Topic *
-            </label>
-            <input
-              type="text"
-              value={settings.topic}
-              onChange={(e) => setSettings({ ...settings, topic: e.target.value })}
-              className="w-full px-4 py-3 rounded-lg border border-slate-300 focus:outline-none focus:ring-2 focus:ring-green-500"
-              placeholder="e.g., Python Functions, World War II"
-              required
-            />
-          </div>
-
+          
           {/* Description */}
           <div>
             <label className="block text-sm font-medium text-slate-700 mb-2">
               Short Description
             </label>
             <textarea
-              value={settings.description}
-              onChange={(e) => setSettings({ ...settings, description: e.target.value })}
+              value={settings.prompt}
+              onChange={(e) => setSettings({ ...settings, prompt: e.target.value })}
               className="w-full px-4 py-3 rounded-lg border border-slate-300 focus:outline-none focus:ring-2 focus:ring-green-500 min-h-[80px]"
               placeholder="Brief context about what the questions should cover..."
+              required
             />
+          </div>
+
+          {/* Specific Genre */}
+          <div>
+            <label className="block text-sm font-medium text-slate-700 mb-2">
+              Specific Genre
+            </label>
+            <input
+              type="text"
+              value={settings.genre}
+              onChange={(e) => setSettings({ ...settings, genre: e.target.value })}
+              className="w-full px-4 py-3 rounded-lg border border-slate-300 focus:outline-none focus:ring-2 focus:ring-green-500"
+              placeholder="e.g., Minimax, Recursion, Dynamic Programming..."
+            />
+          </div>
+
+          {/* Difficulty Level */}
+          <div>
+            <label className="block text-sm font-medium text-slate-700 mb-2">
+              Difficulty Level
+            </label>
+            <select
+              value={settings.difficulty}
+              onChange={(e) => setSettings({ ...settings, difficulty: e.target.value as Prompt['difficulty'] })}
+              className="w-full px-4 py-3 rounded-lg border border-slate-300 focus:outline-none focus:ring-2 focus:ring-green-500"
+            >
+              <option value={'any'}>Any</option>
+              <option value={'novice'}>Novice</option>
+              <option value={'intermediate'}>Intermediate</option>
+              <option value={'advanced'}>Advanced</option>
+            </select>
           </div>
 
           {/* Number of Questions */}
           <div>
             <label className="block text-sm font-medium text-slate-700 mb-2">
-              Number of Questions
+              Number of Questions Per Genre
             </label>
             <select
-              value={settings.count}
-              onChange={(e) => setSettings({ ...settings, count: parseInt(e.target.value) })}
+              value={settings.numProblemsPerGenre}
+              onChange={(e) => setSettings({ ...settings, numProblemsPerGenre: parseInt(e.target.value) })}
               className="w-full px-4 py-3 rounded-lg border border-slate-300 focus:outline-none focus:ring-2 focus:ring-green-500"
             >
               <option value={5}>5 questions</option>
@@ -104,11 +126,11 @@ export default function GenerateQuestionsModal({ isOpen, onClose, onGenerate }: 
           </div>
 
           {/* Info Box */}
-          <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+          {/* <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
             <p className="text-sm text-blue-800">
               <strong>Note:</strong> AI will generate {settings.count} questions about "{settings.topic || 'your topic'}". API integration coming soon!
             </p>
-          </div>
+          </div> */}
 
           {/* Buttons */}
           <div className="flex gap-3 pt-2">

@@ -1,17 +1,14 @@
-
-// 1. Define the TypeScript Interface for the document
-
 export interface Card {
-    _id: string;
-    genre: string;
-    question: string;
-    correctAnswer: string;
-    incorrectAnswers: string[];
-    difficulty: 'easy' | 'medium' | 'hard';
-  }
+  _id: string;
+  genre: string;
+  question: string;
+  correctAnswer: string;
+  incorrectAnswers: string[];
+  difficulty: 'novice' | 'intermediate' | 'advanced';
+}
 
 export interface CardSet {
-  _id: string | null;
+  _id: string;
   user_id: string;
   title: string;
   description: string;
@@ -19,11 +16,18 @@ export interface CardSet {
   created: Date;
 }
 
-export interface User{
-    _id: string | null;
-    email: string;
-    password?: string; // Password is optional on the document after creation
-    name: string;
-    score: number;
-    comparePassword(candidatePassword: string): Promise<boolean>;
-  }
+export interface User {
+  _id: string | null;
+  email: string;
+  password?: string; // Password is optional on the document after creation
+  name: string;
+  score: number;
+  comparePassword(candidatePassword: string): Promise<boolean>;
+}
+
+export interface Prompt {
+  prompt: string;
+  genre: string;
+  numProblemsPerGenre: number;
+  difficulty: 'any' | 'novice' | 'intermediate' | 'advanced';
+}

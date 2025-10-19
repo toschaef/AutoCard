@@ -1,10 +1,29 @@
 'use client';
-
+import { User } from '@/types/types';
 import Link from 'next/link';
-import { useAuth } from '../lib/auth';
+import { useEffect, useState } from 'react';
 
 export default function TopBar() {
-  const { user, logout } = useAuth();
+  const [user, setUser] = useState<User | null>(null);
+  useEffect(() => {
+    const storedState = localStorage.getItem('app-state');
+    let tempUser: User | null = null;
+    if (storedState) {
+      try {
+        const state = JSON.parse(storedState);
+        tempUser = state?.user || null;
+        setUser(tempUser);
+      } catch (e) {
+        console.error("Could not parse stored app state:", e);
+      }
+    }
+  }, []);
+  
+  const logout = () => {
+    localStorage.removeItem('app-state');
+    window.location.href = '/';
+  };
+
   if (!user) {
     return (
       <header className="sticky top-0 z-50 bg-white border-b border-slate-200">

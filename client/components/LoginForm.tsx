@@ -3,15 +3,13 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
-import { useAppContext } from '@/Context';
-import apiClient from '@/apiClient';
+import { loginUser } from '@/api/api';
 
 export default function LoginForm() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [isLoading, setLoading] = useState(false);
-  const { setState } = useAppContext();
   const router = useRouter();
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -24,12 +22,15 @@ export default function LoginForm() {
       return;
     }
     try {
-      const res = await apiClient.post('/login', { email, password });
+      const res = await loginUser(email, password);
 
-      if (res.status === 200) { 
-        const { token, user } = res.data;
-        console.log("RESPONSE DATA:", res.data)
-        setState({ token: token, user });
+      if (res && res.message === 'Login successful') {
+        const { token, user } = res;
+
+        // Store token and user info in localStorage
+        localStorage.setItem('app-state', JSON.stringify({ token, user }));
+        
+        // Redirect to dashboard or home page
         router.push('/dashboard');
       } else {
         setError('Invalid email or password');
@@ -160,7 +161,7 @@ export default function LoginForm() {
         </p>
       </div>
 
-      {/* Demo credentials (theme-matched) */}
+      {/* Demo credentials (theme-matched)
       <div className="mt-8">
         <div className="relative">
           <div className="absolute inset-0 flex items-center">
@@ -189,7 +190,7 @@ export default function LoginForm() {
             <div>• john@example.com / password123</div>
           </div>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 }

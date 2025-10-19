@@ -3,7 +3,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import apiClient from "@/apiClient";
+import apiClient from "@/api/apiClient";
 import Link from "next/link";
 import { useAuth } from "../../lib/auth";
 

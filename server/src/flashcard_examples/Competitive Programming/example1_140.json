@@ -1,0 +1,1686 @@
+{
+  "title": "Advanced Competitive Programming Concepts",
+  "description": "A collection of advanced multiple-choice questions on data structures and algorithms for competitive programming in C++.",
+  "cards": [
+    {
+      "index": 1,
+      "genre": "Graph Algorithms (Advanced)",
+      "question": "Which algorithm efficiently determines strongly connected components in a directed graph?",
+      "correctAnswer": "Tarjan's Algorithm",
+      "incorrectAnswers": [
+        "Dinic's Algorithm",
+        "Hopcroft-Karp Algorithm",
+        "Bron-Kerbosch Algorithm"
+      ],
+      "difficulty": "advance"
+    },
+    {
+      "index": 2,
+      "genre": "Graph Algorithms (Advanced)",
+      "question": "Which algorithm is used to find articulation points or bridges in an undirected graph?",
+      "correctAnswer": "Tarjan's Algorithm",
+      "incorrectAnswers": [
+        "Boyer-Myrvold Algorithm",
+        "Centroid Decomposition",
+        "Heavy-Light Decomposition"
+      ],
+      "difficulty": "advance"
+    },
+    {
+      "index": 3,
+      "genre": "Graph Algorithms (Advanced)",
+      "question": "Which technique solves 2-satisfiability problems by constructing an implication graph?",
+      "correctAnswer": "2-SAT",
+      "incorrectAnswers": [
+        "Min Cost Max Flow",
+        "Link-Cut Tree",
+        "Eulerian Path Algorithm"
+      ],
+      "difficulty": "advance"
+    },
+    {
+      "index": 4,
+      "genre": "Graph Algorithms (Advanced)",
+      "question": "Which algorithm finds the minimum cost to reach all nodes in a graph that also allows adding edges with costs?",
+      "correctAnswer": "Min Cost Max Flow",
+      "incorrectAnswers": [
+        "Aho-Corasick Automaton",
+        "Convex Hull Trick",
+        "Dinic's Algorithm"
+      ],
+      "difficulty": "advance"
+    },
+    {
+      "index": 5,
+      "genre": "Graph Algorithms (Advanced)",
+      "question": "Which decomposition method recursively splits a tree into smaller subproblems by removing a \"center\" node?",
+      "correctAnswer": "Centroid Decomposition",
+      "incorrectAnswers": [
+        "Heavy-Light Decomposition",
+        "Binary Lifting",
+        "Link-Cut Tree"
+      ],
+      "difficulty": "advance"
+    },
+    {
+      "index": 6,
+      "genre": "Graph Algorithms (Advanced)",
+      "question": "Which technique efficiently queries path information or updates subtrees on a large tree structure by decomposing it into heavy and light paths?",
+      "correctAnswer": "Heavy-Light Decomposition",
+      "incorrectAnswers": [
+        "Euler Tour",
+        "Binary Lifting",
+        "Centroid Decomposition"
+      ],
+      "difficulty": "advance"
+    },
+    {
+      "index": 7,
+      "genre": "Graph Algorithms (Advanced)",
+      "question": "Which algorithm identifies an Eulerian path or circuit in a graph?",
+      "correctAnswer": "Hierholzer's Algorithm",
+      "incorrectAnswers": [
+        "Tarjan's Algorithm",
+        "Dinic's Algorithm",
+        "Kosaraju's Algorithm"
+      ],
+      "difficulty": "advance"
+    },
+    {
+      "index": 8,
+      "genre": "Graph Algorithms (Advanced)",
+      "question": "Which algorithm finds the maximum flow in a network with specific capacity constraints with high efficiency?",
+      "correctAnswer": "Dinic's Algorithm",
+      "incorrectAnswers": [
+        "Hopcroft-Karp Algorithm",
+        "Bron-Kerbosch Algorithm",
+        "Min-Cost Max-Flow Algorithm"
+      ],
+      "difficulty": "advance"
+    },
+    {
+      "index": 9,
+      "genre": "Graph Algorithms (Advanced)",
+      "question": "Which theorem determines the minimum cut separating a source from a sink in a flow network?",
+      "correctAnswer": "Max Flow Min Cut Theorem",
+      "incorrectAnswers": [
+        "Dilworth's Theorem",
+        "König's Theorem",
+        "Sprague-Grundy Theorem"
+      ],
+      "difficulty": "advance"
+    },
+    {
+      "index": 10,
+      "genre": "Graph Algorithms (Advanced)",
+      "question": "Which algorithm solves maximum bipartite matching problems efficiently?",
+      "correctAnswer": "Hopcroft-Karp Algorithm",
+      "incorrectAnswers": [
+        "Blossom Algorithm",
+        "Dinic's Algorithm",
+        "Hungarian Algorithm"
+      ],
+      "difficulty": "advance"
+    },
+    {
+      "index": 11,
+      "genre": "Graph Algorithms (Advanced)",
+      "question": "Which algorithm is used to find all maximal cliques in a graph?",
+      "correctAnswer": "Bron-Kerbosch Algorithm",
+      "incorrectAnswers": [
+        "Tarjan's Algorithm",
+        "Kosaraju's Algorithm",
+        "Hopcroft-Karp Algorithm"
+      ],
+      "difficulty": "advance"
+    },
+    {
+      "index": 12,
+      "genre": "Graph Algorithms (Advanced)",
+      "question": "Which technique computes the lowest common ancestor for many pairs of nodes in a tree using precomputed jumps?",
+      "correctAnswer": "Binary Lifting",
+      "incorrectAnswers": [
+        "Heavy-Light Decomposition",
+        "Centroid Decomposition",
+        "Link-Cut Tree"
+      ],
+      "difficulty": "advance"
+    },
+    {
+      "index": 13,
+      "genre": "Graph Algorithms (Advanced)",
+      "question": "Which algorithm determines tree isomorphism?",
+      "correctAnswer": "Tree Hashing",
+      "incorrectAnswers": [
+        "Bron-Kerbosch Algorithm",
+        "Boyer-Myrvold Algorithm",
+        "Tarjan's Algorithm"
+      ],
+      "difficulty": "advance"
+    },
+    {
+      "index": 14,
+      "genre": "Graph Algorithms (Advanced)",
+      "question": "Which data structure computes distances in a tree with dynamically changing edge weights or structure?",
+      "correctAnswer": "Link-Cut Tree",
+      "incorrectAnswers": [
+        "Centroid Decomposition",
+        "Heavy-Light Decomposition",
+        "Splay Tree"
+      ],
+      "difficulty": "advance"
+    },
+    {
+      "index": 15,
+      "genre": "Graph Algorithms (Advanced)",
+      "question": "Which algorithm finds the k-th shortest path in a graph?",
+      "correctAnswer": "A* with Dijkstra on state graph",
+      "incorrectAnswers": [
+        "Dinic's Algorithm",
+        "Prim's Algorithm",
+        "Kruskal's Algorithm"
+      ],
+      "difficulty": "advance"
+    },
+    {
+      "index": 16,
+      "genre": "Graph Algorithms (Advanced)",
+      "question": "Which algorithm determines if a graph is planar?",
+      "correctAnswer": "Boyer-Myrvold Algorithm",
+      "incorrectAnswers": [
+        "Tarjan's Algorithm",
+        "Bron-Kerbosch Algorithm",
+        "Hopcroft-Karp Algorithm"
+      ],
+      "difficulty": "advance"
+    },
+    {
+      "index": 17,
+      "genre": "Graph Algorithms (Advanced)",
+      "question": "Which technique optimizes path queries on a tree by decomposing paths into a logarithmic number of segments?",
+      "correctAnswer": "Heavy-Light Decomposition",
+      "incorrectAnswers": [
+        "Centroid Decomposition",
+        "Binary Lifting",
+        "Link-Cut Tree"
+      ],
+      "difficulty": "advance"
+    },
+    {
+      "index": 18,
+      "genre": "Graph Algorithms (Advanced)",
+      "question": "Which technique solves problems on flow networks with lower bounds on edge flow?",
+      "correctAnswer": "Circulation with Demands",
+      "incorrectAnswers": [
+        "Max Flow Min Cut Theorem",
+        "Dinic's Algorithm",
+        "Min Cost Max Flow"
+      ],
+      "difficulty": "advance"
+    },
+    {
+      "index": 19,
+      "genre": "Graph Algorithms (Advanced)",
+      "question": "Which technique finds the maximum weight closure of a directed graph?",
+      "correctAnswer": "Min Cut",
+      "incorrectAnswers": [
+        "Max Flow",
+        "Min Cost Max Flow",
+        "2-SAT"
+      ],
+      "difficulty": "advance"
+    },
+    {
+      "index": 20,
+      "genre": "Graph Algorithms (Advanced)",
+      "question": "Which data structure performs dynamic connectivity queries on a graph?",
+      "correctAnswer": "Link-Cut Tree",
+      "incorrectAnswers": [
+        "Centroid Decomposition",
+        "Heavy-Light Decomposition",
+        "Suffix Array"
+      ],
+      "difficulty": "advance"
+    },
+    {
+      "index": 21,
+      "genre": "Dynamic Programming (Optimizations & Advanced Patterns)",
+      "question": "Which optimization technique speeds up DP recurrences where transitions involve slopes of lines?",
+      "correctAnswer": "Convex Hull Trick",
+      "incorrectAnswers": [
+        "Bitmask DP",
+        "Meet-in-the-Middle DP",
+        "Matrix Exponentiation DP"
+      ],
+      "difficulty": "advance"
+    },
+    {
+      "index": 22,
+      "genre": "Dynamic Programming (Optimizations & Advanced Patterns)",
+      "question": "Which DP technique solves problems involving subsets or bitmasks?",
+      "correctAnswer": "Bitmask DP",
+      "incorrectAnswers": [
+        "Digit DP",
+        "Rerooting DP",
+        "Profile DP"
+      ],
+      "difficulty": "advance"
+    },
+    {
+      "index": 23,
+      "genre": "Dynamic Programming (Optimizations & Advanced Patterns)",
+      "question": "Which optimization technique solves problems by splitting the input into halves and combining results for DP?",
+      "correctAnswer": "Meet-in-the-Middle DP",
+      "incorrectAnswers": [
+        "Convex Hull Trick",
+        "Matrix Exponentiation DP",
+        "Divide and Conquer Optimization for DP"
+      ],
+      "difficulty": "advance"
+    },
+    {
+      "index": 24,
+      "genre": "Dynamic Programming (Optimizations & Advanced Patterns)",
+      "question": "Which technique speeds up DP transitions using a segment tree or similar structure?",
+      "correctAnswer": "Segment Tree Optimization for DP",
+      "incorrectAnswers": [
+        "Bitmask DP",
+        "Digit DP",
+        "Profile DP"
+      ],
+      "difficulty": "advance"
+    },
+    {
+      "index": 25,
+      "genre": "Dynamic Programming (Optimizations & Advanced Patterns)",
+      "question": "Which DP technique is used on trees using re-rooting or specialized traversals?",
+      "correctAnswer": "Rerooting DP",
+      "incorrectAnswers": [
+        "Heavy-Light Decomposition",
+        "Centroid Decomposition",
+        "Binary Lifting"
+      ],
+      "difficulty": "advance"
+    },
+    {
+      "index": 26,
+      "genre": "Dynamic Programming (Optimizations & Advanced Patterns)",
+      "question": "Which DP technique solves problems by iterating through digits of a number?",
+      "correctAnswer": "Digit DP",
+      "incorrectAnswers": [
+        "Bitmask DP",
+        "Profile DP",
+        "Probability DP"
+      ],
+      "difficulty": "advance"
+    },
+    {
+      "index": 27,
+      "genre": "Dynamic Programming (Optimizations & Advanced Patterns)",
+      "question": "Which optimization is applied to DP recurrences with a specific form allowing a divide and conquer strategy?",
+      "correctAnswer": "Divide and Conquer Optimization for DP",
+      "incorrectAnswers": [
+        "Convex Hull Trick",
+        "Matrix Exponentiation DP",
+        "Knuth Optimization"
+      ],
+      "difficulty": "advance"
+    },
+    {
+      "index": 28,
+      "genre": "Dynamic Programming (Optimizations & Advanced Patterns)",
+      "question": "Which DP technique computes states on profiles or broken profiles for grid-based problems?",
+      "correctAnswer": "Profile DP / Broken Profile DP",
+      "incorrectAnswers": [
+        "Bitmask DP",
+        "Digit DP",
+        "Probability DP"
+      ],
+      "difficulty": "advance"
+    },
+    {
+      "index": 29,
+      "genre": "Dynamic Programming (Optimizations & Advanced Patterns)",
+      "question": "Which DP technique solves problems involving expected values where states depend on probabilities?",
+      "correctAnswer": "Probability DP",
+      "incorrectAnswers": [
+        "Bitmask DP",
+        "Digit DP",
+        "Profile DP"
+      ],
+      "difficulty": "advance"
+    },
+    {
+      "index": 30,
+      "genre": "Dynamic Programming (Optimizations & Advanced Patterns)",
+      "question": "Which technique speeds up DP recurrences that involve calculating power of a matrix?",
+      "correctAnswer": "Matrix Exponentiation DP",
+      "incorrectAnswers": [
+        "Convex Hull Trick",
+        "Bitmask DP",
+        "Meet-in-the-Middle DP"
+      ],
+      "difficulty": "advance"
+    },
+    {
+      "index": 31,
+      "genre": "Dynamic Programming (Optimizations & Advanced Patterns)",
+      "question": "Which DP optimization is applicable when the recurrence relation has a specific form exhibiting monotonicity?",
+      "correctAnswer": "Knuth Optimization",
+      "incorrectAnswers": [
+        "Convex Hull Trick",
+        "Li Chao Tree",
+        "Segment Tree Optimization for DP"
+      ],
+      "difficulty": "advance"
+    },
+    {
+      "index": 32,
+      "genre": "Dynamic Programming (Optimizations & Advanced Patterns)",
+      "question": "Which data structure is used to optimize DP recurrences involving line insertion and query for minimum/maximum?",
+      "correctAnswer": "Li Chao Tree",
+      "incorrectAnswers": [
+        "Segment Tree",
+        "Fenwick Tree",
+        "Persistent Segment Tree"
+      ],
+      "difficulty": "advance"
+    },
+    {
+      "index": 33,
+      "genre": "Dynamic Programming (Optimizations & Advanced Patterns)",
+      "question": "Which theorem is applied to solve game theory problems by computing Grundy numbers?",
+      "correctAnswer": "Sprague-Grundy Theorem",
+      "incorrectAnswers": [
+        "Max Flow Min Cut Theorem",
+        "König's Theorem",
+        "Dilworth's Theorem"
+      ],
+      "difficulty": "advance"
+    },
+    {
+      "index": 34,
+      "genre": "Dynamic Programming (Optimizations & Advanced Patterns)",
+      "question": "Which DP technique is used on DAGs for maximum/minimum path problems?",
+      "correctAnswer": "Topological Sort DP",
+      "incorrectAnswers": [
+        "Bitmask DP",
+        "Digit DP",
+        "Profile DP"
+      ],
+      "difficulty": "advance"
+    },
+    {
+      "index": 35,
+      "genre": "Dynamic Programming (Optimizations & Advanced Patterns)",
+      "question": "Which DP technique efficiently computes values for problems involving non-overlapping intervals?",
+      "correctAnswer": "Interval DP",
+      "incorrectAnswers": [
+        "Subset DP",
+        "Partition DP",
+        "Combinatorial DP"
+      ],
+      "difficulty": "advance"
+    },
+    {
+      "index": 36,
+      "genre": "Dynamic Programming (Optimizations & Advanced Patterns)",
+      "question": "Which optimization uses a bitset to speed up subset sum-like problems?",
+      "correctAnswer": "Bitset DP",
+      "incorrectAnswers": [
+        "Meet-in-the-Middle DP",
+        "Matrix Exponentiation DP",
+        "Convex Hull Trick"
+      ],
+      "difficulty": "advance"
+    },
+    {
+      "index": 37,
+      "genre": "Dynamic Programming (Optimizations & Advanced Patterns)",
+      "question": "Which DP technique is used where the DP state represents a partition of a set?",
+      "correctAnswer": "Partition DP",
+      "incorrectAnswers": [
+        "Subset DP",
+        "Combinatorial DP",
+        "Probability DP"
+      ],
+      "difficulty": "advance"
+    },
+    {
+      "index": 38,
+      "genre": "Dynamic Programming (Optimizations & Advanced Patterns)",
+      "question": "Which optimization technique is used for range query based DP, often involving static or dynamic range queries?",
+      "correctAnswer": "Sparse Table Optimization for DP",
+      "incorrectAnswers": [
+        "Convex Hull Trick",
+        "Knuth Optimization",
+        "Li Chao Tree"
+      ],
+      "difficulty": "advance"
+    },
+    {
+      "index": 39,
+      "genre": "Dynamic Programming (Optimizations & Advanced Patterns)",
+      "question": "Which DP approach solves problems where the state space is very large but the active states are few?",
+      "correctAnswer": "Implicit DP",
+      "incorrectAnswers": [
+        "Digit DP",
+        "Bitmask DP",
+        "Profile DP"
+      ],
+      "difficulty": "advance"
+    },
+    {
+      "index": 40,
+      "genre": "Dynamic Programming (Optimizations & Advanced Patterns)",
+      "question": "Which algorithm finds the longest increasing subsequence in O(N log N) time?",
+      "correctAnswer": "LIS with Binary Search",
+      "incorrectAnswers": [
+        "Fenwick Tree",
+        "Segment Tree",
+        "Suffix Array"
+      ],
+      "difficulty": "advance"
+    },
+    {
+      "index": 41,
+      "genre": "Tree Algorithms (Decomposition & Advanced DS on Trees)",
+      "question": "Which technique performs fast path queries and updates on a tree by decomposing it into heavy and light paths?",
+      "correctAnswer": "Heavy-Light Decomposition",
+      "incorrectAnswers": [
+        "Centroid Decomposition",
+        "Binary Lifting",
+        "Link-Cut Tree"
+      ],
+      "difficulty": "advance"
+    },
+    {
+      "index": 42,
+      "genre": "Tree Algorithms (Decomposition & Advanced DS on Trees)",
+      "question": "Which technique decomposes a tree into smaller, balanced components for path queries?",
+      "correctAnswer": "Centroid Decomposition",
+      "incorrectAnswers": [
+        "Heavy-Light Decomposition",
+        "Binary Lifting",
+        "Link-Cut Tree"
+      ],
+      "difficulty": "advance"
+    },
+    {
+      "index": 43,
+      "genre": "Tree Algorithms (Decomposition & Advanced DS on Trees)",
+      "question": "Which technique answers lowest common ancestor queries efficiently for multiple pairs using precomputed jumps?",
+      "correctAnswer": "Binary Lifting",
+      "incorrectAnswers": [
+        "Heavy-Light Decomposition",
+        "Centroid Decomposition",
+        "Link-Cut Tree"
+      ],
+      "difficulty": "advance"
+    },
+    {
+      "index": 44,
+      "genre": "Tree Algorithms (Decomposition & Advanced DS on Trees)",
+      "question": "Which data structure maintains dynamic connectivity information or path operations on a forest of trees?",
+      "correctAnswer": "Link-Cut Tree",
+      "incorrectAnswers": [
+        "Centroid Decomposition",
+        "Heavy-Light Decomposition",
+        "Splay Tree"
+      ],
+      "difficulty": "advance"
+    },
+    {
+      "index": 45,
+      "genre": "Tree Algorithms (Decomposition & Advanced DS on Trees)",
+      "question": "Which method flattens a tree into an array for range queries?",
+      "correctAnswer": "Euler Tour",
+      "incorrectAnswers": [
+        "Binary Lifting",
+        "Heavy-Light Decomposition",
+        "Centroid Decomposition"
+      ],
+      "difficulty": "advance"
+    },
+    {
+      "index": 46,
+      "genre": "Tree Algorithms (Decomposition & Advanced DS on Trees)",
+      "question": "Which algorithm finds the centroid(s) of a tree?",
+      "correctAnswer": "Centroid Finding",
+      "incorrectAnswers": [
+        "Binary Lifting",
+        "Tree Hashing",
+        "Link-Cut Tree"
+      ],
+      "difficulty": "advance"
+    },
+    {
+      "index": 47,
+      "genre": "Tree Algorithms (Decomposition & Advanced DS on Trees)",
+      "question": "Which technique is used to answer k-th ancestor queries in logarithmic time?",
+      "correctAnswer": "Binary Lifting",
+      "incorrectAnswers": [
+        "Heavy-Light Decomposition",
+        "Centroid Decomposition",
+        "Link-Cut Tree"
+      ],
+      "difficulty": "advance"
+    },
+    {
+      "index": 48,
+      "genre": "Tree Algorithms (Decomposition & Advanced DS on Trees)",
+      "question": "Which data structure is used to store and query paths in a tree using persistence?",
+      "correctAnswer": "Persistent Segment Tree on Euler Tour",
+      "incorrectAnswers": [
+        "Segment Tree",
+        "Fenwick Tree",
+        "Splay Tree"
+      ],
+      "difficulty": "advance"
+    },
+    {
+      "index": 49,
+      "genre": "Tree Algorithms (Decomposition & Advanced DS on Trees)",
+      "question": "Which technique computes tree diameters or centers efficiently?",
+      "correctAnswer": "Tree DP",
+      "incorrectAnswers": [
+        "Binary Lifting",
+        "Centroid Decomposition",
+        "Link-Cut Tree"
+      ],
+      "difficulty": "advance"
+    },
+    {
+      "index": 50,
+      "genre": "Tree Algorithms (Decomposition & Advanced DS on Trees)",
+      "question": "Which algorithm determines if two trees are isomorphic?",
+      "correctAnswer": "Tree Hashing",
+      "incorrectAnswers": [
+        "Bron-Kerbosch Algorithm",
+        "Boyer-Myrvold Algorithm",
+        "Tarjan's Algorithm"
+      ],
+      "difficulty": "advance"
+    },
+    {
+      "index": 51,
+      "genre": "Tree Algorithms (Decomposition & Advanced DS on Trees)",
+      "question": "Which data structure handles dynamic path aggregate queries (sum, min, max) on a tree?",
+      "correctAnswer": "Link-Cut Tree",
+      "incorrectAnswers": [
+        "Centroid Decomposition",
+        "Binary Lifting",
+        "Persistent Segment Tree"
+      ],
+      "difficulty": "advance"
+    },
+    {
+      "index": 52,
+      "genre": "Tree Algorithms (Decomposition & Advanced DS on Trees)",
+      "question": "Which technique finds the k-th node on the path between two nodes?",
+      "correctAnswer": "Binary Lifting + LCA",
+      "incorrectAnswers": [
+        "Heavy-Light Decomposition",
+        "Centroid Decomposition",
+        "Link-Cut Tree"
+      ],
+      "difficulty": "advance"
+    },
+    {
+      "index": 53,
+      "genre": "Tree Algorithms (Decomposition & Advanced DS on Trees)",
+      "question": "Which technique optimizes queries on trees with square root decomposition?",
+      "correctAnswer": "Mo's on Trees",
+      "incorrectAnswers": [
+        "Heavy-Light Decomposition",
+        "Centroid Decomposition",
+        "Link-Cut Tree"
+      ],
+      "difficulty": "advance"
+    },
+    {
+      "index": 54,
+      "genre": "Tree Algorithms (Decomposition & Advanced DS on Trees)",
+      "question": "Which data structure supports fast switching of parent-child relationships in a tree?",
+      "correctAnswer": "Link-Cut Tree",
+      "incorrectAnswers": [
+        "Binary Lifting",
+        "Heavy-Light Decomposition",
+        "Centroid Decomposition"
+      ],
+      "difficulty": "advance"
+    },
+    {
+      "index": 55,
+      "genre": "Tree Algorithms (Decomposition & Advanced DS on Trees)",
+      "question": "Which data structure can find the median of a path in a tree?",
+      "correctAnswer": "Persistent Segment Tree on LCA paths",
+      "incorrectAnswers": [
+        "Fenwick Tree",
+        "Segment Tree",
+        "Splay Tree"
+      ],
+      "difficulty": "advance"
+    },
+    {
+      "index": 56,
+      "genre": "Tree Algorithms (Decomposition & Advanced DS on Trees)",
+      "question": "Which technique answers queries about properties of paths crossing the centroid of a tree?",
+      "correctAnswer": "Centroid Decomposition",
+      "incorrectAnswers": [
+        "Heavy-Light Decomposition",
+        "Binary Lifting",
+        "Link-Cut Tree"
+      ],
+      "difficulty": "advance"
+    },
+    {
+      "index": 57,
+      "genre": "Tree Algorithms (Decomposition & Advanced DS on Trees)",
+      "question": "Which data structure supports split and merge operations on trees?",
+      "correctAnswer": "Splay Tree",
+      "incorrectAnswers": [
+        "Link-Cut Tree",
+        "Heavy-Light Decomposition",
+        "Centroid Decomposition"
+      ],
+      "difficulty": "advance"
+    },
+    {
+      "index": 58,
+      "genre": "Tree Algorithms (Decomposition & Advanced DS on Trees)",
+      "question": "Which technique finds the \"center\" of a tree based on minimum maximum distance to any node?",
+      "correctAnswer": "Centroid Finding",
+      "incorrectAnswers": [
+        "Binary Lifting",
+        "Heavy-Light Decomposition",
+        "Tree Hashing"
+      ],
+      "difficulty": "advance"
+    },
+    {
+      "index": 59,
+      "genre": "Tree Algorithms (Decomposition & Advanced DS on Trees)",
+      "question": "Which data structure is used for subtree queries or updates after flattening a tree?",
+      "correctAnswer": "Segment Tree on Euler Tour",
+      "incorrectAnswers": [
+        "Persistent Segment Tree",
+        "Link-Cut Tree",
+        "Splay Tree"
+      ],
+      "difficulty": "advance"
+    },
+    {
+      "index": 60,
+      "genre": "Tree Algorithms (Decomposition & Advanced DS on Trees)",
+      "question": "Which technique is used to compute subtree sums or values with modifications?",
+      "correctAnswer": "Fenwick Tree on Flattened Tree",
+      "incorrectAnswers": [
+        "Binary Lifting",
+        "Centroid Decomposition",
+        "Tree Hashing"
+      ],
+      "difficulty": "advance"
+    },
+    {
+      "index": 61,
+      "genre": "String Algorithms (Suffix Structures & Automata)",
+      "question": "Which automaton efficiently finds all occurrences of multiple patterns in a text?",
+      "correctAnswer": "Aho-Corasick Automaton",
+      "incorrectAnswers": [
+        "Suffix Automaton",
+        "Suffix Tree",
+        "KMP Algorithm"
+      ],
+      "difficulty": "advance"
+    },
+    {
+      "index": 62,
+      "genre": "String Algorithms (Suffix Structures & Automata)",
+      "question": "Which data structure represents all suffixes of a string and their properties, allowing efficient operations?",
+      "correctAnswer": "Suffix Array",
+      "incorrectAnswers": [
+        "Aho-Corasick Automaton",
+        "Palindromic Tree",
+        "KMP Algorithm"
+      ],
+      "difficulty": "advance"
+    },
+    {
+      "index": 63,
+      "genre": "String Algorithms (Suffix Structures & Automata)",
+      "question": "Which generalized structure finds the longest common substring of two or more strings?",
+      "correctAnswer": "Generalized Suffix Tree",
+      "incorrectAnswers": [
+        "Aho-Corasick Automaton",
+        "Palindromic Tree",
+        "Manacher's Algorithm"
+      ],
+      "difficulty": "advance"
+    },
+    {
+      "index": 64,
+      "genre": "String Algorithms (Suffix Structures & Automata)",
+      "question": "Which data structure efficiently searches for patterns and their longest prefixes that match text suffixes?",
+      "correctAnswer": "Suffix Automaton",
+      "incorrectAnswers": [
+        "Suffix Array",
+        "Suffix Tree",
+        "Aho-Corasick Automaton"
+      ],
+      "difficulty": "advance"
+    },
+    {
+      "index": 65,
+      "genre": "String Algorithms (Suffix Structures & Automata)",
+      "question": "Which data structure represents all distinct substrings of a string?",
+      "correctAnswer": "Suffix Automaton",
+      "incorrectAnswers": [
+        "Aho-Corasick Automaton",
+        "KMP Algorithm",
+        "Manacher's Algorithm"
+      ],
+      "difficulty": "advance"
+    },
+    {
+      "index": 66,
+      "genre": "String Algorithms (Suffix Structures & Automata)",
+      "question": "Which algorithm finds all maximal palindromic substrings in linear time?",
+      "correctAnswer": "Manacher's Algorithm",
+      "incorrectAnswers": [
+        "KMP Algorithm",
+        "Aho-Corasick Automaton",
+        "Suffix Automaton"
+      ],
+      "difficulty": "advance"
+    },
+    {
+      "index": 67,
+      "genre": "String Algorithms (Suffix Structures & Automata)",
+      "question": "Which algorithm performs fast string matching with a preprocessed pattern using a \"failure function\"?",
+      "correctAnswer": "Knuth-Morris-Pratt Algorithm (KMP)",
+      "incorrectAnswers": [
+        "Aho-Corasick Automaton",
+        "Z-Algorithm",
+        "Manacher's Algorithm"
+      ],
+      "difficulty": "advance"
+    },
+    {
+      "index": 68,
+      "genre": "String Algorithms (Suffix Structures & Automata)",
+      "question": "Which data structure and its associated array are used to compute the LCP (Longest Common Prefix) for all pairs of suffixes?",
+      "correctAnswer": "Suffix Array + LCP Array",
+      "incorrectAnswers": [
+        "Suffix Automaton",
+        "Palindromic Tree",
+        "KMP Algorithm"
+      ],
+      "difficulty": "advance"
+    },
+    {
+      "index": 69,
+      "genre": "String Algorithms (Suffix Structures & Automata)",
+      "question": "Which algorithm is used to compute the period of a string or its subsegments?",
+      "correctAnswer": "KMP failure function",
+      "incorrectAnswers": [
+        "Manacher's Algorithm",
+        "Aho-Corasick Automaton",
+        "String Hashing"
+      ],
+      "difficulty": "advance"
+    },
+    {
+      "index": 70,
+      "genre": "String Algorithms (Suffix Structures & Automata)",
+      "question": "Which technique efficiently compares cyclic shifts of a string?",
+      "correctAnswer": "Suffix Array construction",
+      "incorrectAnswers": [
+        "KMP Algorithm",
+        "Z-Algorithm",
+        "Manacher's Algorithm"
+      ],
+      "difficulty": "advance"
+    },
+    {
+      "index": 71,
+      "genre": "String Algorithms (Suffix Structures & Automata)",
+      "question": "Which algorithm finds the smallest lexicographical cyclic shift of a string?",
+      "correctAnswer": "Lyndon factorization",
+      "incorrectAnswers": [
+        "Suffix Array",
+        "KMP Algorithm",
+        "Z-Algorithm"
+      ],
+      "difficulty": "advance"
+    },
+    {
+      "index": 72,
+      "genre": "String Algorithms (Suffix Structures & Automata)",
+      "question": "Which data structure constructs a suffix structure to represent all suffixes of multiple strings?",
+      "correctAnswer": "Generalized Suffix Tree",
+      "incorrectAnswers": [
+        "Suffix Automaton",
+        "Palindromic Tree",
+        "Trie"
+      ],
+      "difficulty": "advance"
+    },
+    {
+      "index": 73,
+      "genre": "String Algorithms (Suffix Structures & Automata)",
+      "question": "Which automaton implements a fast text search algorithm by building a finite automaton from patterns?",
+      "correctAnswer": "Aho-Corasick Automaton",
+      "incorrectAnswers": [
+        "Suffix Automaton",
+        "KMP Algorithm",
+        "Manacher's Algorithm"
+      ],
+      "difficulty": "advance"
+    },
+    {
+      "index": 74,
+      "genre": "String Algorithms (Suffix Structures & Automata)",
+      "question": "Which technique finds the longest common prefix of two arbitrary substrings?",
+      "correctAnswer": "Suffix Array + RMQ on LCP array",
+      "incorrectAnswers": [
+        "Suffix Automaton",
+        "KMP Algorithm",
+        "Z-Algorithm"
+      ],
+      "difficulty": "advance"
+    },
+    {
+      "index": 75,
+      "genre": "String Algorithms (Suffix Structures & Automata)",
+      "question": "Which specialized tree is used to solve problems on palindromic properties of a string?",
+      "correctAnswer": "Palindromic Tree",
+      "incorrectAnswers": [
+        "Suffix Tree",
+        "Suffix Automaton",
+        "Trie"
+      ],
+      "difficulty": "advance"
+    },
+    {
+      "index": 76,
+      "genre": "String Algorithms (Suffix Structures & Automata)",
+      "question": "Which technique uses polynomial hashing for fast string comparisons and distinct substring counting?",
+      "correctAnswer": "String Hashing",
+      "incorrectAnswers": [
+        "KMP Algorithm",
+        "Z-Algorithm",
+        "Manacher's Algorithm"
+      ],
+      "difficulty": "advance"
+    },
+    {
+      "index": 77,
+      "genre": "String Algorithms (Suffix Structures & Automata)",
+      "question": "Which algorithm finds all occurrences of a pattern that allows a fixed number of mismatches?",
+      "correctAnswer": "FFT/NTT for string matching",
+      "incorrectAnswers": [
+        "KMP Algorithm",
+        "Aho-Corasick Automaton",
+        "Suffix Automaton"
+      ],
+      "difficulty": "advance"
+    },
+    {
+      "index": 78,
+      "genre": "String Algorithms (Suffix Structures & Automata)",
+      "question": "Which data structure constructs an automaton to represent all prefixes of a set of strings?",
+      "correctAnswer": "Trie",
+      "incorrectAnswers": [
+        "Suffix Tree",
+        "Suffix Automaton",
+        "Palindromic Tree"
+      ],
+      "difficulty": "advance"
+    },
+    {
+      "index": 79,
+      "genre": "String Algorithms (Suffix Structures & Automata)",
+      "question": "Which data structure or algorithm computes the Z-array for a string to find pattern occurrences?",
+      "correctAnswer": "Z-Algorithm",
+      "incorrectAnswers": [
+        "KMP Algorithm",
+        "Manacher's Algorithm",
+        "String Hashing"
+      ],
+      "difficulty": "advance"
+    },
+    {
+      "index": 80,
+      "genre": "String Algorithms (Suffix Structures & Automata)",
+      "question": "Which data structure, often coupled with DFS, is used to efficiently find the k-th lexicographically smallest substring?",
+      "correctAnswer": "Suffix Tree/Automaton with DFS",
+      "incorrectAnswers": [
+        "Suffix Array",
+        "Palindromic Tree",
+        "Aho-Corasick Automaton"
+      ],
+      "difficulty": "advance"
+    },
+    {
+      "index": 81,
+      "genre": "Advanced Data Structures (Specialized & Persistent)",
+      "question": "Which data structure supports range updates and range queries on an array efficiently?",
+      "correctAnswer": "Segment Tree with Lazy Propagation",
+      "incorrectAnswers": [
+        "Fenwick Tree",
+        "Disjoint Set Union",
+        "Sparse Table"
+      ],
+      "difficulty": "advance"
+    },
+    {
+      "index": 82,
+      "genre": "Advanced Data Structures (Specialized & Persistent)",
+      "question": "Which data structure answers range queries for historical versions of an array?",
+      "correctAnswer": "Persistent Segment Tree",
+      "incorrectAnswers": [
+        "Segment Tree",
+        "Fenwick Tree",
+        "KD-Tree"
+      ],
+      "difficulty": "advance"
+    },
+    {
+      "index": 83,
+      "genre": "Advanced Data Structures (Specialized & Persistent)",
+      "question": "Which data structure stores a collection of points and efficiently queries for points within a given rectangle?",
+      "correctAnswer": "KD-Tree",
+      "incorrectAnswers": [
+        "Segment Tree",
+        "Persistent Segment Tree",
+        "Fenwick Tree"
+      ],
+      "difficulty": "advance"
+    },
+    {
+      "index": 84,
+      "genre": "Advanced Data Structures (Specialized & Persistent)",
+      "question": "Which data structure maintains a dynamic set of disjoint sets and performs union and find operations efficiently?",
+      "correctAnswer": "Disjoint Set Union with Path Compression and Union by Rank/Size",
+      "incorrectAnswers": [
+        "Segment Tree",
+        "Fenwick Tree",
+        "Sparse Table"
+      ],
+      "difficulty": "advance"
+    },
+    {
+      "index": 85,
+      "genre": "Advanced Data Structures (Specialized & Persistent)",
+      "question": "Which optimization technique speeds up range queries on an array using square root decomposition?",
+      "correctAnswer": "Sqrt Decomposition",
+      "incorrectAnswers": [
+        "Segment Tree",
+        "Fenwick Tree",
+        "Sparse Table"
+      ],
+      "difficulty": "advance"
+    },
+    {
+      "index": 86,
+      "genre": "Advanced Data Structures (Specialized & Persistent)",
+      "question": "Which data structure is used to query for the K-th smallest element in a range?",
+      "correctAnswer": "Merge Sort Tree",
+      "incorrectAnswers": [
+        "Segment Tree",
+        "Fenwick Tree",
+        "Sparse Table"
+      ],
+      "difficulty": "advance"
+    },
+    {
+      "index": 87,
+      "genre": "Advanced Data Structures (Specialized & Persistent)",
+      "question": "Which balanced binary search tree supports fast insertion, deletion, and search with randomized priorities?",
+      "correctAnswer": "Treap",
+      "incorrectAnswers": [
+        "Splay Tree",
+        "Link-Cut Tree",
+        "KD-Tree"
+      ],
+      "difficulty": "advance"
+    },
+    {
+      "index": 88,
+      "genre": "Advanced Data Structures (Specialized & Persistent)",
+      "question": "Which data structure maintains a collection of lines and queries for minimum/maximum y-value at a given x?",
+      "correctAnswer": "Li Chao Tree",
+      "incorrectAnswers": [
+        "Segment Tree",
+        "Fenwick Tree",
+        "Persistent Segment Tree"
+      ],
+      "difficulty": "advance"
+    },
+    {
+      "index": 89,
+      "genre": "Advanced Data Structures (Specialized & Persistent)",
+      "question": "Which data structure optimizes range queries involving range sums and updates on a 2D grid?",
+      "correctAnswer": "2D Fenwick Tree",
+      "incorrectAnswers": [
+        "KD-Tree",
+        "Persistent Segment Tree",
+        "Segment Tree"
+      ],
+      "difficulty": "advance"
+    },
+    {
+      "index": 90,
+      "genre": "Advanced Data Structures (Specialized & Persistent)",
+      "question": "Which data structure supports range updates and range queries for minimum/maximum on a segment tree with custom operations like range assignments and minimum/maximum updates?",
+      "correctAnswer": "Segment Tree Beats",
+      "incorrectAnswers": [
+        "Segment Tree with Lazy Propagation",
+        "Persistent Segment Tree",
+        "Li Chao Tree"
+      ],
+      "difficulty": "advance"
+    },
+    {
+      "index": 91,
+      "genre": "Advanced Data Structures (Specialized & Persistent)",
+      "question": "Which data structure handles queries on implicit intervals of a very large range?",
+      "correctAnswer": "Implicit Segment Tree",
+      "incorrectAnswers": [
+        "Segment Tree",
+        "Fenwick Tree",
+        "Persistent Segment Tree"
+      ],
+      "difficulty": "advance"
+    },
+    {
+      "index": 92,
+      "genre": "Advanced Data Structures (Specialized & Persistent)",
+      "question": "Which data structure supports fast insertions and deletions at arbitrary positions in a sequence while maintaining balance?",
+      "correctAnswer": "Splay Tree",
+      "incorrectAnswers": [
+        "Segment Tree",
+        "Fenwick Tree",
+        "Disjoint Set Union"
+      ],
+      "difficulty": "advance"
+    },
+    {
+      "index": 93,
+      "genre": "Advanced Data Structures (Specialized & Persistent)",
+      "question": "Which balanced binary search tree self-adjusts based on access patterns, bringing frequently accessed nodes closer to the root?",
+      "correctAnswer": "Splay Tree",
+      "incorrectAnswers": [
+        "Treap",
+        "Link-Cut Tree",
+        "KD-Tree"
+      ],
+      "difficulty": "advance"
+    },
+    {
+      "index": 94,
+      "genre": "Advanced Data Structures (Specialized & Persistent)",
+      "question": "Which data structure queries for order statistics (e.g., k-th element) in a dynamic set, often implemented with a policy-based data structure in GCC?",
+      "correctAnswer": "Order Statistic Tree",
+      "incorrectAnswers": [
+        "Segment Tree",
+        "Fenwick Tree",
+        "Sparse Table"
+      ],
+      "difficulty": "advance"
+    },
+    {
+      "index": 95,
+      "genre": "Advanced Data Structures (Specialized & Persistent)",
+      "question": "Which data structure stores and queries for specific bitwise XOR sums over a range?",
+      "correctAnswer": "XOR Trie",
+      "incorrectAnswers": [
+        "Segment Tree",
+        "Fenwick Tree",
+        "Sqrt Decomposition"
+      ],
+      "difficulty": "advance"
+    },
+    {
+      "index": 96,
+      "genre": "Advanced Data Structures (Specialized & Persistent)",
+      "question": "Which data structure builds a structure to answer queries about the number of elements less than X in a range?",
+      "correctAnswer": "Persistent Segment Tree",
+      "incorrectAnswers": [
+        "Segment Tree",
+        "Fenwick Tree",
+        "Sparse Table"
+      ],
+      "difficulty": "advance"
+    },
+    {
+      "index": 97,
+      "genre": "Advanced Data Structures (Specialized & Persistent)",
+      "question": "Which data structure manages sets of elements that support fast union, intersection, and difference operations?",
+      "correctAnswer": "Disjoint Set Union",
+      "incorrectAnswers": [
+        "Segment Tree",
+        "Fenwick Tree",
+        "KD-Tree"
+      ],
+      "difficulty": "advance"
+    },
+    {
+      "index": 98,
+      "genre": "Advanced Data Structures (Specialized & Persistent)",
+      "question": "Which data structure implements a segment tree that operates on ranges of lines, supporting insertion and query of minimum/maximum?",
+      "correctAnswer": "Li Chao Tree",
+      "incorrectAnswers": [
+        "Segment Tree",
+        "Persistent Segment Tree",
+        "Treap"
+      ],
+      "difficulty": "advance"
+    },
+    {
+      "index": 99,
+      "genre": "Advanced Data Structures (Specialized & Persistent)",
+      "question": "Which general technique creates a persistent version of a data structure to query any past state?",
+      "correctAnswer": "Persistence techniques",
+      "incorrectAnswers": [
+        "Lazy Propagation",
+        "Square Root Decomposition",
+        "Binary Lifting"
+      ],
+      "difficulty": "advance"
+    },
+    {
+      "index": 100,
+      "genre": "Advanced Data Structures (Specialized & Persistent)",
+      "question": "Which data structure constructs a sparse table for static range queries (e.g., RMQ, GCD) with O(1) query time?",
+      "correctAnswer": "Sparse Table",
+      "incorrectAnswers": [
+        "Segment Tree",
+        "Fenwick Tree",
+        "Disjoint Set Union"
+      ],
+      "difficulty": "advance"
+    },
+    {
+      "index": 101,
+      "genre": "Number Theory & Combinatorics (Complex Math)",
+      "question": "Which algorithm computes modular inverse for non-prime moduli or large numbers?",
+      "correctAnswer": "Extended Euclidean Algorithm",
+      "incorrectAnswers": [
+        "Chinese Remainder Theorem",
+        "Miller-Rabin Primality Test",
+        "Pollard's Rho Algorithm"
+      ],
+      "difficulty": "advance"
+    },
+    {
+      "index": 102,
+      "genre": "Number Theory & Combinatorics (Complex Math)",
+      "question": "Which theorem solves systems of linear congruences?",
+      "correctAnswer": "Chinese Remainder Theorem",
+      "incorrectAnswers": [
+        "Fermat's Little Theorem",
+        "Euler's Totient Theorem",
+        "Lucas Theorem"
+      ],
+      "difficulty": "advance"
+    },
+    {
+      "index": 103,
+      "genre": "Number Theory & Combinatorics (Complex Math)",
+      "question": "Which algorithm performs primality testing for very large numbers probabilistically?",
+      "correctAnswer": "Miller-Rabin Primality Test",
+      "incorrectAnswers": [
+        "Extended Euclidean Algorithm",
+        "Pollard's Rho Algorithm",
+        "Baby-step Giant-step Algorithm"
+      ],
+      "difficulty": "advance"
+    },
+    {
+      "index": 104,
+      "genre": "Number Theory & Combinatorics (Complex Math)",
+      "question": "Which algorithm factorizes very large numbers efficiently using a probabilistic approach?",
+      "correctAnswer": "Pollard's Rho Algorithm",
+      "incorrectAnswers": [
+        "Miller-Rabin Primality Test",
+        "Extended Euclidean Algorithm",
+        "Chinese Remainder Theorem"
+      ],
+      "difficulty": "advance"
+    },
+    {
+      "index": 105,
+      "genre": "Number Theory & Combinatorics (Complex Math)",
+      "question": "Which theorem computes combinations (nCr) modulo a prime, especially for large n and small p?",
+      "correctAnswer": "Lucas Theorem",
+      "incorrectAnswers": [
+        "Chinese Remainder Theorem",
+        "Fermat's Little Theorem",
+        "Sprague-Grundy Theorem"
+      ],
+      "difficulty": "advance"
+    },
+    {
+      "index": 106,
+      "genre": "Number Theory & Combinatorics (Complex Math)",
+      "question": "Which technique solves linear recurrence relations using matrix operations?",
+      "correctAnswer": "Matrix Exponentiation",
+      "incorrectAnswers": [
+        "Fast Fourier Transform",
+        "Number Theoretic Transform",
+        "Extended Euclidean Algorithm"
+      ],
+      "difficulty": "advance"
+    },
+    {
+      "index": 107,
+      "genre": "Number Theory & Combinatorics (Complex Math)",
+      "question": "Which algorithm computes polynomial multiplication quickly?",
+      "correctAnswer": "Fast Fourier Transform",
+      "incorrectAnswers": [
+        "Matrix Exponentiation",
+        "Extended Euclidean Algorithm",
+        "Baby-step Giant-step Algorithm"
+      ],
+      "difficulty": "advance"
+    },
+    {
+      "index": 108,
+      "genre": "Number Theory & Combinatorics (Complex Math)",
+      "question": "Which algorithm finds discrete logarithms modulo a prime?",
+      "correctAnswer": "Baby-step Giant-step Algorithm",
+      "incorrectAnswers": [
+        "Extended Euclidean Algorithm",
+        "Miller-Rabin Primality Test",
+        "Pollard's Rho Algorithm"
+      ],
+      "difficulty": "advance"
+    },
+    {
+      "index": 109,
+      "genre": "Number Theory & Combinatorics (Complex Math)",
+      "question": "Which principle is applied for complex counting problems involving overlapping sets?",
+      "correctAnswer": "Inclusion-Exclusion Principle",
+      "incorrectAnswers": [
+        "Lucas Theorem",
+        "Sprague-Grundy Theorem",
+        "Burnside's Lemma"
+      ],
+      "difficulty": "advance"
+    },
+    {
+      "index": 110,
+      "genre": "Number Theory & Combinatorics (Complex Math)",
+      "question": "Which theorem or technique optimizes counting problems using generating functions?",
+      "correctAnswer": "Generating Functions",
+      "incorrectAnswers": [
+        "Lucas Theorem",
+        "Sprague-Grundy Theorem",
+        "Burnside's Lemma"
+      ],
+      "difficulty": "advance"
+    },
+    {
+      "index": 111,
+      "genre": "Number Theory & Combinatorics (Complex Math)",
+      "question": "Which algorithm solves linear Diophantine equations for integer solutions?",
+      "correctAnswer": "Extended Euclidean Algorithm",
+      "incorrectAnswers": [
+        "Chinese Remainder Theorem",
+        "Miller-Rabin Primality Test",
+        "Pollard's Rho Algorithm"
+      ],
+      "difficulty": "advance"
+    },
+    {
+      "index": 112,
+      "genre": "Number Theory & Combinatorics (Complex Math)",
+      "question": "Which theorem applies for counting distinct configurations under symmetry?",
+      "correctAnswer": "Burnside's Lemma",
+      "incorrectAnswers": [
+        "Sprague-Grundy Theorem",
+        "Inclusion-Exclusion Principle",
+        "Lucas Theorem"
+      ],
+      "difficulty": "advance"
+    },
+    {
+      "index": 113,
+      "genre": "Number Theory & Combinatorics (Complex Math)",
+      "question": "Which theorem determines optimal strategies for impartial games?",
+      "correctAnswer": "Sprague-Grundy Theorem",
+      "incorrectAnswers": [
+        "Burnside's Lemma",
+        "Inclusion-Exclusion Principle",
+        "Lucas Theorem"
+      ],
+      "difficulty": "advance"
+    },
+    {
+      "index": 114,
+      "genre": "Number Theory & Combinatorics (Complex Math)",
+      "question": "Which algorithm computes modular exponentiation for very large powers efficiently?",
+      "correctAnswer": "Binary Exponentiation",
+      "incorrectAnswers": [
+        "Extended Euclidean Algorithm",
+        "Miller-Rabin Primality Test",
+        "Pollard's Rho Algorithm"
+      ],
+      "difficulty": "advance"
+    },
+    {
+      "index": 115,
+      "genre": "Number Theory & Combinatorics (Complex Math)",
+      "question": "Which technique optimizes computations involving binomial coefficients modulo a prime power?",
+      "correctAnswer": "Lucas Theorem",
+      "incorrectAnswers": [
+        "Chinese Remainder Theorem",
+        "Inclusion-Exclusion Principle",
+        "Sprague-Grundy Theorem"
+      ],
+      "difficulty": "advance"
+    },
+    {
+      "index": 116,
+      "genre": "Number Theory & Combinatorics (Complex Math)",
+      "question": "Which technique applies meet-in-the-middle for subset sum variants or similar combinatorial problems?",
+      "correctAnswer": "Meet-in-the-Middle",
+      "incorrectAnswers": [
+        "Inclusion-Exclusion Principle",
+        "Generating Functions",
+        "Sprague-Grundy Theorem"
+      ],
+      "difficulty": "advance"
+    },
+    {
+      "index": 117,
+      "genre": "Number Theory & Combinatorics (Complex Math)",
+      "question": "Which technique computes number-theoretic functions efficiently using sieves?",
+      "correctAnswer": "Sieve of Eratosthenes",
+      "incorrectAnswers": [
+        "Miller-Rabin Primality Test",
+        "Pollard's Rho Algorithm",
+        "Baby-step Giant-step Algorithm"
+      ],
+      "difficulty": "advance"
+    },
+    {
+      "index": 118,
+      "genre": "Number Theory & Combinatorics (Complex Math)",
+      "question": "Which algorithm finds primitive roots modulo a prime?",
+      "correctAnswer": "Primitive Root Algorithm",
+      "incorrectAnswers": [
+        "Extended Euclidean Algorithm",
+        "Chinese Remainder Theorem",
+        "Baby-step Giant-step Algorithm"
+      ],
+      "difficulty": "advance"
+    },
+    {
+      "index": 119,
+      "genre": "Number Theory & Combinatorics (Complex Math)",
+      "question": "Which technique computes values for problems involving expected counts/probabilities using combinatorics?",
+      "correctAnswer": "Probability DP",
+      "incorrectAnswers": [
+        "Matrix Exponentiation",
+        "Inclusion-Exclusion Principle",
+        "Lucas Theorem"
+      ],
+      "difficulty": "advance"
+    },
+    {
+      "index": 120,
+      "genre": "Number Theory & Combinatorics (Complex Math)",
+      "question": "Which theorem is crucial for solving problems that involve converting a minimum vertex cover problem in a bipartite graph to a maximum matching problem?",
+      "correctAnswer": "König's Theorem",
+      "incorrectAnswers": [
+        "Dilworth's Theorem",
+        "Menger's Theorem",
+        "Max Flow Min Cut Theorem"
+      ],
+      "difficulty": "advance"
+    },
+    {
+      "index": 121,
+      "genre": "Network Flow & Matching (Complex Flow Models)",
+      "question": "Which algorithm computes the maximum flow in a general network with high efficiency?",
+      "correctAnswer": "Dinic's Algorithm",
+      "incorrectAnswers": [
+        "Min-Cost Max-Flow Algorithm",
+        "Blossom Algorithm",
+        "Hopcroft-Karp Algorithm"
+      ],
+      "difficulty": "advance"
+    },
+    {
+      "index": 122,
+      "genre": "Network Flow & Matching (Complex Flow Models)",
+      "question": "Which algorithm finds the minimum cost to send a certain amount of flow through a network?",
+      "correctAnswer": "Min-Cost Max-Flow Algorithm",
+      "incorrectAnswers": [
+        "Dinic's Algorithm",
+        "Blossom Algorithm",
+        "Hopcroft-Karp Algorithm"
+      ],
+      "difficulty": "advance"
+    },
+    {
+      "index": 123,
+      "genre": "Network Flow & Matching (Complex Flow Models)",
+      "question": "Which algorithm determines a maximum matching in a general (non-bipartite) graph?",
+      "correctAnswer": "Blossom Algorithm",
+      "incorrectAnswers": [
+        "Hopcroft-Karp Algorithm",
+        "Dinic's Algorithm",
+        "Hungarian Algorithm"
+      ],
+      "difficulty": "advance"
+    },
+    {
+      "index": 124,
+      "genre": "Network Flow & Matching (Complex Flow Models)",
+      "question": "Which algorithm solves problems that involve assigning tasks to workers with specific costs?",
+      "correctAnswer": "Hungarian Algorithm",
+      "incorrectAnswers": [
+        "Hopcroft-Karp Algorithm",
+        "Blossom Algorithm",
+        "Dinic's Algorithm"
+      ],
+      "difficulty": "advance"
+    },
+    {
+      "index": 125,
+      "genre": "Network Flow & Matching (Complex Flow Models)",
+      "question": "Which theorem models a problem as a minimum cut to find the optimal separation?",
+      "correctAnswer": "Max Flow Min Cut Theorem",
+      "incorrectAnswers": [
+        "Dilworth's Theorem",
+        "König's Theorem",
+        "Menger's Theorem"
+      ],
+      "difficulty": "advance"
+    },
+    {
+      "index": 126,
+      "genre": "Network Flow & Matching (Complex Flow Models)",
+      "question": "Which theorem finds the minimum number of vertex disjoint paths to cover all vertices in a DAG?",
+      "correctAnswer": "Dilworth's Theorem",
+      "incorrectAnswers": [
+        "Max Flow Min Cut Theorem",
+        "König's Theorem",
+        "Menger's Theorem"
+      ],
+      "difficulty": "advance"
+    },
+    {
+      "index": 127,
+      "genre": "Network Flow & Matching (Complex Flow Models)",
+      "question": "Which technique solves problems with lower bounds on flow through edges?",
+      "correctAnswer": "Circulation with Demands",
+      "incorrectAnswers": [
+        "Dinic's Algorithm",
+        "Min-Cost Max-Flow Algorithm",
+        "Max Flow Min Cut Theorem"
+      ],
+      "difficulty": "advance"
+    },
+    {
+      "index": 128,
+      "genre": "Network Flow & Matching (Complex Flow Models)",
+      "question": "Which theorem determines the maximum number of edge-disjoint paths between two nodes?",
+      "correctAnswer": "Menger's Theorem",
+      "incorrectAnswers": [
+        "Max Flow Min Cut Theorem",
+        "Dilworth's Theorem",
+        "König's Theorem"
+      ],
+      "difficulty": "advance"
+    },
+    {
+      "index": 129,
+      "genre": "Network Flow & Matching (Complex Flow Models)",
+      "question": "Which algorithm solves problems involving bipartite graphs where a maximum matching is needed?",
+      "correctAnswer": "Hopcroft-Karp Algorithm",
+      "incorrectAnswers": [
+        "Blossom Algorithm",
+        "Dinic's Algorithm",
+        "Hungarian Algorithm"
+      ],
+      "difficulty": "advance"
+    },
+    {
+      "index": 130,
+      "genre": "Network Flow & Matching (Complex Flow Models)",
+      "question": "Which problem type, often solved by Min-Cost Max-Flow, models resource allocation problems?",
+      "correctAnswer": "Min-Cost Max-Flow",
+      "incorrectAnswers": [
+        "Max Flow",
+        "Bipartite Matching",
+        "General Matching"
+      ],
+      "difficulty": "advance"
+    },
+    {
+      "index": 131,
+      "genre": "Network Flow & Matching (Complex Flow Models)",
+      "question": "Which technique solves problems like project selection with dependencies by reducing them to a graph problem?",
+      "correctAnswer": "Min Cut",
+      "incorrectAnswers": [
+        "Max Flow",
+        "Min-Cost Max-Flow",
+        "Bipartite Matching"
+      ],
+      "difficulty": "advance"
+    },
+    {
+      "index": 132,
+      "genre": "Network Flow & Matching (Complex Flow Models)",
+      "question": "Which theorem finds a minimum vertex cover in a bipartite graph by leveraging maximum matching?",
+      "correctAnswer": "König's Theorem",
+      "incorrectAnswers": [
+        "Dilworth's Theorem",
+        "Menger's Theorem",
+        "Max Flow Min Cut Theorem"
+      ],
+      "difficulty": "advance"
+    },
+    {
+      "index": 133,
+      "genre": "Network Flow & Matching (Complex Flow Models)",
+      "question": "Which technique determines if a set of demands can be satisfied by a supply network?",
+      "correctAnswer": "Circulation with Demands",
+      "incorrectAnswers": [
+        "Max Flow",
+        "Min-Cost Max-Flow",
+        "Bipartite Matching"
+      ],
+      "difficulty": "advance"
+    },
+    {
+      "index": 134,
+      "genre": "Network Flow & Matching (Complex Flow Models)",
+      "question": "Which algorithm finds the maximum matching in a non-bipartite graph?",
+      "correctAnswer": "Blossom Algorithm",
+      "incorrectAnswers": [
+        "Hopcroft-Karp Algorithm",
+        "Dinic's Algorithm",
+        "Hungarian Algorithm"
+      ],
+      "difficulty": "advance"
+    },
+    {
+      "index": 135,
+      "genre": "Network Flow & Matching (Complex Flow Models)",
+      "question": "Which technique finds the minimum path cover in a directed acyclic graph?",
+      "correctAnswer": "Bipartite Matching on DAGs",
+      "incorrectAnswers": [
+        "Max Flow",
+        "Min Cut",
+        "Min-Cost Max-Flow"
+      ],
+      "difficulty": "advance"
+    },
+    {
+      "index": 136,
+      "genre": "Network Flow & Matching (Complex Flow Models)",
+      "question": "Which technique solves image segmentation problems by reducing them to a graph problem?",
+      "correctAnswer": "Graph Cut",
+      "incorrectAnswers": [
+        "Max Flow",
+        "Min-Cost Max-Flow",
+        "Bipartite Matching"
+      ],
+      "difficulty": "advance"
+    },
+    {
+      "index": 137,
+      "genre": "Network Flow & Matching (Complex Flow Models)",
+      "question": "Which technique determines the maximum weight closure in a directed graph?",
+      "correctAnswer": "Min Cut",
+      "incorrectAnswers": [
+        "Max Flow",
+        "Min-Cost Max-Flow",
+        "Bipartite Matching"
+      ],
+      "difficulty": "advance"
+    },
+    {
+      "index": 138,
+      "genre": "Network Flow & Matching (Complex Flow Models)",
+      "question": "Which optimization technique solves selection problems where choosing an item requires choosing its prerequisites?",
+      "correctAnswer": "Min Cut",
+      "incorrectAnswers": [
+        "Max Flow",
+        "Min-Cost Max-Flow",
+        "Bipartite Matching"
+      ],
+      "difficulty": "advance"
+    },
+    {
+      "index": 139,
+      "genre": "Network Flow & Matching (Complex Flow Models)",
+      "question": "Which theorem/algorithm is used to find the maximum number of vertex-disjoint paths in a general graph?",
+      "correctAnswer": "Max Flow",
+      "incorrectAnswers": [
+        "Min Cut",
+        "Min-Cost Max-Flow",
+        "Hopcroft-Karp Algorithm"
+      ],
+      "difficulty": "advance"
+    },
+    {
+      "index": 140,
+      "genre": "Network Flow & Matching (Complex Flow Models)",
+      "question": "Which technique determines if a feasible circulation exists in a network with demands?",
+      "correctAnswer": "Circulation with Demands",
+      "incorrectAnswers": [
+        "Max Flow",
+        "Min Cut",
+        "Min-Cost Max-Flow"
+      ],
+      "difficulty": "advance"
+    }
+  ]
+}

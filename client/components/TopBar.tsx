@@ -2,27 +2,11 @@
 import { User } from '@/types/types';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
+import { useAppContext } from '@/Context';
 
 export default function TopBar() {
-  const [user, setUser] = useState<User | null>(null);
-  useEffect(() => {
-    const storedState = localStorage.getItem('app-state');
-    let tempUser: User | null = null;
-    if (storedState) {
-      try {
-        const state = JSON.parse(storedState);
-        tempUser = state?.user || null;
-        setUser(tempUser);
-      } catch (e) {
-        console.error("Could not parse stored app state:", e);
-      }
-    }
-  }, []);
-  
-  const logout = () => {
-    localStorage.removeItem('app-state');
-    window.location.href = '/';
-  };
+  const { user, logout } = useAppContext();
+
 
   if (!user) {
     return (

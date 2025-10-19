@@ -14,46 +14,13 @@ import TopBar from '../../components/TopBar';
 import Row from '../../components/Row';
 import CreateSetModal from '../../components/CreateSetModal';
 import { CardSet, User } from '@/types/types';
-import { getAllSetsByUser } from '@/api/api';
 import './page.css';
+import { useAppContext } from '@/Context';
 
 export default function DashboardPage() {
   const router = useRouter();
-  const [user, setUser] = useState<User | null>(null);
   const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
-  const [userCreatedSets, setUserCreatedSets] = useState<CardSet[]>([]);
-  const [firstName, setFirstName] = useState<string>('');
-
-  // Initial render
-  useEffect(() => {
-    const storedState = localStorage.getItem('app-state');
-    let tempUser: User | null = null;
-    let tempFirstName: string = '';
-    if (storedState) {
-      try {
-        const state = JSON.parse(storedState);
-        tempUser = state?.user || null;
-        tempFirstName = tempUser?.name.split(' ')[0] || '';
-        setFirstName(tempFirstName);
-        setUser(tempUser);
-      } catch (e) {
-        console.error("Could not parse stored app state:", e);
-      }
-    }
-    if (!tempUser) {
-      // Redirect to login if not authenticated
-      router.push('/login');
-    } 
-  }, [router]);
-
-  // Fetch user-created sets 
-  useEffect(() => {
-    if (user) {
-      getAllSetsByUser().then((data) => {
-        setUserCreatedSets(data || []);
-      });
-    }
-  }, [user, isCreateModalOpen]);
+  const { user, sets } = useAppContext();
 
   return (
     <div className="min-h-screen flex flex-col overflow-x-hidden">
@@ -83,7 +50,7 @@ export default function DashboardPage() {
                     color: 'var(--fg)',
                   }}
                 >
-                  Lock in, {firstName}.
+                  {`Lock in, ${user?.name.split(' ')[0] || 'Bruh'}.`}
                 </h1>
                 <p
                   className="mt-2 text-sm md:text-base"
@@ -121,7 +88,7 @@ export default function DashboardPage() {
           </div>
 
           {/* Keep Row component untouched */}
-          <Row items={userCreatedSets} />
+          <Row items={sets} />
         </section>
 
         {/* Example Sets */}

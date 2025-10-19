@@ -3,6 +3,7 @@ import { getCardsFromSet } from '@/api/api';
 import { Card } from '@/types/types';
 import { useParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
+import shuffle from 'shuffle-array';
 
 export default function PlayPage() {
   const params = useParams();
@@ -12,7 +13,7 @@ export default function PlayPage() {
 
   useEffect(() => {
     getCardsFromSet(setId).then((data) => {
-      setCards(data.cards || []);
+      setCards(shuffle(data.cards) || []);
     });
   }, [setId]);
 

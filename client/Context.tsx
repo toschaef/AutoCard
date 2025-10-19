@@ -6,12 +6,16 @@ import React, {
   useReducer,
   useEffect,
   ReactNode,
+  useCallback
 } from 'react';
-import { User } from '@/types/types';
+import { Card, User, CardSet } from '@/types/types';
+import { getAllSetsByUser } from '@/api/api';
 
 interface AppState {
   token: string | null;
   user: User | null;
+  sets: CardSet[] | null;
+  currentSet: CardSet | null;
 }
 
 type AppAction = {
@@ -22,6 +26,7 @@ type AppAction = {
 interface AppContextType extends AppState {
   setState: (payload: Partial<AppState>) => void;
   logout: () => void;
+  refreshSets: () => void;
 }
 
 interface ProviderProps {
@@ -44,6 +49,8 @@ export const Provider = ({ children }: ProviderProps) => {
   const [state, dispatch] = useReducer(appReducer, {
     token: null,
     user: null,
+    sets: null,
+    currentSet: null,
   });
 
   // Effect to rehydrate state from localStorage on initial load
@@ -82,12 +89,22 @@ export const Provider = ({ children }: ProviderProps) => {
     dispatch({ type: 'SET_STATE', payload });
   };
 
+  // Fetch user-created sets 
+  const refreshSets = useCallback(() => {
+    if (state.user) {
+      getAllSetsByUser().then((data) => {
+        // console.log("Fetched sets:", data);
+        setState({ sets: data || [] });
+      });
+    }
+  }, [state.user]);
+
   const logout = () => {
-    dispatch({ type: 'SET_STATE', payload: { token: null, user: null } });
+    dispatch({ type: 'SET_STATE', payload: { token: null, user: null, sets: null, currentSet: null } });
   };
 
   return (
-    <AppContext.Provider value={{ ...state, setState, logout }}>
+    <AppContext.Provider value={{ ...state, setState, refreshSets, logout }}>
       {children}
     </AppContext.Provider>
   );

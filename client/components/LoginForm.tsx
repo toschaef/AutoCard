@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { loginUser } from '@/api/api';
+import { useAppContext } from '@/Context'
 
 export default function LoginForm() {
   const [email, setEmail] = useState('');
@@ -11,6 +12,7 @@ export default function LoginForm() {
   const [error, setError] = useState('');
   const [isLoading, setLoading] = useState(false);
   const router = useRouter();
+  const { setState, refreshSets } = useAppContext();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -28,7 +30,10 @@ export default function LoginForm() {
         const { token, user } = res;
 
         // Store token and user info in localStorage
-        localStorage.setItem('app-state', JSON.stringify({ token, user }));
+        // localStorage.setItem('app-state', JSON.stringify({ token, user }));
+
+        setState({ token, user });
+        refreshSets();
         
         // Redirect to dashboard or home page
         router.push('/dashboard');

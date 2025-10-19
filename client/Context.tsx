@@ -57,20 +57,21 @@ export const Provider = ({ children }: ProviderProps) => {
   useEffect(() => {
     const storedToken = localStorage.getItem('authToken');
     const storedUser = localStorage.getItem('user');
+    const storedSets = localStorage.getItem('sets');
 
-    if (storedToken || storedUser) {
+    if (storedToken || storedUser || storedSets) {
       dispatch({
         type: 'SET_STATE',
         payload: {
           token: storedToken,
           user: storedUser ? JSON.parse(storedUser) : null,
+          sets: storedSets ? JSON.parse(storedSets) : null,
         },
       });
     }
   }, []);
 
-  // This effect runs whenever state.token or state.user changes,
-  // syncing the new state TO localStorage.
+  // sync state changes to localStorage
   useEffect(() => {
     if (state.token) {
       localStorage.setItem('authToken', state.token);
@@ -83,7 +84,13 @@ export const Provider = ({ children }: ProviderProps) => {
     } else {
       localStorage.removeItem('user');
     }
-  }, [state.token, state.user]);
+
+    if (state.sets) {
+      localStorage.setItem('sets', JSON.stringify(state.sets));
+    } else {
+      localStorage.removeItem('sets');
+    }
+  }, [state.token, state.user, state.sets]);
 
   const setState = (payload: Partial<AppState>) => {
     dispatch({ type: 'SET_STATE', payload });

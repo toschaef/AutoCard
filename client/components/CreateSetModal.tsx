@@ -2,6 +2,7 @@
 
 import { createSet } from '@/api/api';
 import { useState } from 'react';
+import { useAppContext } from '@/Context';
 
 interface CreateSetModalProps {
   isOpen: boolean;
@@ -14,6 +15,7 @@ export default function CreateSetModal({ isOpen, onClose }: CreateSetModalProps)
     description: ''
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const { refreshSets } = useAppContext();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -35,6 +37,9 @@ export default function CreateSetModal({ isOpen, onClose }: CreateSetModalProps)
         setFormData({ title: '', description: '' });
         onClose();
       });
+      
+      // refresh sets in context
+      refreshSets();
     } catch (error) {
       console.error('Error creating set:', error);
     } finally {

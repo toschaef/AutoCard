@@ -9,6 +9,7 @@ import CardListEditor from '@/components/CardListEditor';
 import ConfirmDialog from '@/components/ConfirmDialog';
 import GenerateQuestionsModal from '@/components/GenerateQuestionsModal';
 import { createBatchOfCards, createCard, deleteCard, getCardsFromSet, getSetById, updateCard, updateSet } from '@/api/api';
+import { useAppContext } from '@/Context';
 
 export default function EditSetPage() {
   const [cardSet, setCardSet] = useState<CardSet | null>(null);
@@ -22,6 +23,7 @@ export default function EditSetPage() {
   const [showGenerateModal, setShowGenerateModal] = useState(false);
   const params = useParams();
   const router = useRouter();
+  const { refreshSets } = useAppContext();
   
   // Fetch set data
   useEffect(() => {
@@ -63,6 +65,8 @@ export default function EditSetPage() {
         }
       } 
     });
+
+    refreshSets();
   };
 
   const handleGoToDashboard = () => {
@@ -125,6 +129,8 @@ export default function EditSetPage() {
       ...cardSet!,
       cards: [...cardSet!.cards, newCard._id!],
     });
+
+    refreshSets();
   };
 
   const handleDeleteCard = async (cardId: string) => {
@@ -143,6 +149,8 @@ export default function EditSetPage() {
 
     // Remove from originalCards for change tracking
     setOriginalCards((prevOriginals) => prevOriginals.filter(card => card._id !== cardId));
+
+    refreshSets();
   };
 
   const handleUpdateCard = async (updatedCard: Partial<Card>) => {

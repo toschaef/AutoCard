@@ -11,18 +11,7 @@ const apiClient = axios.create({
 // Use an interceptor to add the token to every request
 apiClient.interceptors.request.use(
   (config) => {
-    const storedState = localStorage.getItem('app-state');
-    
-    let token = null;
-    if (storedState) {
-        try {
-            // Parse the JSON string to get the state object
-            const state = JSON.parse(storedState);
-            token = state?.token;
-        } catch (e) {
-            console.error("Could not parse stored app state:", e);
-        }
-    }
+    const token = localStorage.getItem('authToken');
     
     // If the token exists, add it to the Authorization header
     if (token) {

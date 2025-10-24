@@ -8,7 +8,7 @@
  * - Horizontal overflow removed.
  */
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, use } from 'react';
 import { useRouter } from 'next/navigation';
 import TopBar from '../../components/TopBar';
 import Row from '../../components/Row';

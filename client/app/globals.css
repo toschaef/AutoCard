@@ -3,134 +3,21 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
-}
+  --green:#283618; 
+  --olive:#606c38; 
+  --cream:#f7f5e5; 
+  --amber:#dda15e; 
+  --burnt:#bc6c25;
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
-body {
-  color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
 
-/* Vibrant flowing gradient palette */
-:root {
-  --grad-from: #F9F6E7;
-  --grad-via: #F4F0DE;
-  --grad-to: #EDE7CF;
-  
-  /* Vibrant multi-color gradients */
-  --grad-color-1: #fefae0;
-  --grad-color-2: #dda15e;
-  --grad-color-3: #bc6c25;
-  --grad-color-4: #606c38;
-  --grad-color-5: #283618;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --grad-from: #1A1D15;
-    --grad-via: #161910;
-    --grad-to: #13160E;
-  }
-}
-
-/* Animated gradient text effect */
-@keyframes gradient-move {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
-}
-
-.gradient-text {
-  background: linear-gradient(
-    45deg,
-    #3b82f6,
-    #8b5cf6,
-    #ec4899,
-    #f59e0b,
-    #10b981,
-    #06b6d4,
-    #3b82f6
-  );
-  background-size: 400% 400%;
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: gradient-move 12s ease-in-out infinite;
-}
-
-/* Flowing gradient animation */
-@layer utilities {
-  @media (prefers-reduced-motion: no-preference) {
-    .animate-gradient-flow {
-      animation: gradient-flow 16s linear infinite;
-      background-size: 200% 200%;
-    }
-    .animate-gradient-flow-fast {
-      animation: gradient-flow 8s linear infinite;
-      background-size: 200% 200%;
-    }
-  }
-  @media (prefers-reduced-motion: reduce) {
-    .animate-gradient-flow,
-    .animate-gradient-flow-fast {
-      animation: none;
-    }
-  }
-  @keyframes gradient-flow {
-    0% {
-      background-position: 0% 50%;
-    }
-    50% {
-      background-position: 100% 50%;
-    }
-    100% {
-      background-position: 0% 50%;
-    }
-  }
-}
-
-/* Scroll snap utilities */
-.scroll-snap-type-x-mandatory {
-  scroll-snap-type: x mandatory;
-}
-
-.scroll-snap-align-start {
-  scroll-snap-align: start;
-}
-
-/* Thin scrollbar */
-.overflow-x-auto::-webkit-scrollbar {
-  height: 4px;
-}
-
-.overflow-x-auto::-webkit-scrollbar-track {
-  background: #f1f5f9;
-}
-
-.overflow-x-auto::-webkit-scrollbar-thumb {
-  background: #cbd5e1;
-  border-radius: 2px;
-}
-
-.overflow-x-auto::-webkit-scrollbar-thumb:hover {
-  background: #94a3b8;
+body {
+  background-color: var(--cream);
+  color: var(--green);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
 }

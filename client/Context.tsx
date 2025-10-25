@@ -8,7 +8,7 @@ import React, {
   ReactNode,
   useCallback
 } from 'react';
-import { Card, User, CardSet } from '@/types/types';
+import { User, CardSet } from '@/types/types';
 import { getAllSetsByUser } from '@/api/api';
 
 interface AppState {
@@ -53,6 +53,23 @@ export const Provider = ({ children }: ProviderProps) => {
     currentSet: null,
   });
 
+  const setState = (payload: Partial<AppState>) => {
+    dispatch({ type: 'SET_STATE', payload });
+  };
+
+  // Fetch user-created sets 
+  const refreshSets = useCallback(() => {
+    if (state.user) {
+      getAllSetsByUser().then((data) => {
+        setState({ sets: data || [] });
+      });
+    }
+  }, [state.user]);
+
+  const logout = () => {
+    dispatch({ type: 'SET_STATE', payload: { token: null, user: null, sets: null, currentSet: null } });
+  };
+
   // Effect to rehydrate state from localStorage on initial load
   useEffect(() => {
     const storedToken = localStorage.getItem('authToken');
@@ -81,6 +98,9 @@ export const Provider = ({ children }: ProviderProps) => {
 
     if (state.user) {
       localStorage.setItem('user', JSON.stringify(state.user));
+      if (!state.sets) {
+        refreshSets();
+      }
     } else {
       localStorage.removeItem('user');
     }
@@ -90,25 +110,7 @@ export const Provider = ({ children }: ProviderProps) => {
     } else {
       localStorage.removeItem('sets');
     }
-  }, [state.token, state.user, state.sets]);
-
-  const setState = (payload: Partial<AppState>) => {
-    dispatch({ type: 'SET_STATE', payload });
-  };
-
-  // Fetch user-created sets 
-  const refreshSets = useCallback(() => {
-    if (state.user) {
-      getAllSetsByUser().then((data) => {
-        // console.log("Fetched sets:", data);
-        setState({ sets: data || [] });
-      });
-    }
-  }, [state.user]);
-
-  const logout = () => {
-    dispatch({ type: 'SET_STATE', payload: { token: null, user: null, sets: null, currentSet: null } });
-  };
+  }, [state.token, state.user, state.sets, refreshSets]);
 
   return (
     <AppContext.Provider value={{ ...state, setState, refreshSets, logout }}>

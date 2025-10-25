@@ -37,7 +37,7 @@ export default function PlayPage() {
       }
 
       // replace all commas in question and answers with hyphens to avoid CSV issues
-      return `${idx+1},"${card.question.replace(/,/g, '-')}",${card.correctAnswer.replace(/,/g, '-')},${incorrectAnswersString}20,1,,${card.incorrectAnswers.length === 0 || card.incorrectAnswers[0].length === 0 ? "typing" : ""},,,,,,,,,,,,,,,,` + '\n';
+      return `${idx+1},"${card.question.replace(/,/g, '-').replace(/"/g, '\'').replace(/\n/g, ' ')}",${card.correctAnswer.replace(/,/g, '-').replace(/"/g, '\'').replace(/\n/g, ' ')},${incorrectAnswersString.replace(/"/g, '\'').replace(/\n/g, ' ')}20,1,,${card.incorrectAnswers.length === 0 || card.incorrectAnswers[0].length === 0 ? "typing" : ""},,,,,,,,,,,,,,,,` + '\n';
     }).join('');
 
     // replace all < with &lt; and > with &gt; to avoid CSV issues

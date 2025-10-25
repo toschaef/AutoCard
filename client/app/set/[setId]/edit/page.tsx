@@ -4,10 +4,10 @@
 import { useState, useEffect } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import { Card, CardSet, Prompt } from '@/types/types';
-import SetDetailsForm from '@/components/SetDetailsForm';
-import CardListEditor from '@/components/CardListEditor';
-import ConfirmDialog from '@/components/ConfirmDialog';
-import GenerateQuestionsModal from '@/components/GenerateQuestionsModal';
+import SetDetailsForm from './components/SetDetailsForm';
+import CardListEditor from './components/CardListEditor';
+// import ConfirmDialog from './components/ConfirmDialog';
+import GenerateQuestionsModal from './components/GenerateQuestionsModal';
 import { createBatchOfCards, createCard, deleteCard, getCardsFromSet, getSetById, updateCard, updateSet } from '@/api/api';
 import { useAppContext } from '@/Context';
 
@@ -18,8 +18,8 @@ export default function EditSetPage() {
   const [AIGeneratedCards, setAIGeneratedCards] = useState<Card[]>([]);
   const [isGenerating, setIsGenerating] = useState<boolean>(false);
   const [isSaved, setIsSaved] = useState(true);
-  const [showExitDialog, setShowExitDialog] = useState(false);
-  const [showPlayDialog, setShowPlayDialog] = useState(false);
+  // const [showExitDialog, setShowExitDialog] = useState(false);
+  // const [showPlayDialog, setShowPlayDialog] = useState(false);
   const [showGenerateModal, setShowGenerateModal] = useState(false);
   const params = useParams();
   const router = useRouter();
@@ -69,6 +69,8 @@ export default function EditSetPage() {
     refreshSets();
   };
 
+  // TODO: Prompt user to ensure they want to leave without saving changes
+  /*
   const handleGoToDashboard = () => {
     if (!isSaved) {
       setShowExitDialog(true);
@@ -87,25 +89,22 @@ export default function EditSetPage() {
     setShowExitDialog(false);
     router.push('/dashboard');
   };
+  */
 
   const handlePlaySet = () => {
-    if (!isSaved) {
-      setShowPlayDialog(true);
-    } else {
-      router.push(`/play/${cardSet?._id}`);
-    }
-  };
-
-  const handleConfirmPlay = () => {
-    handleSetSaveChanges();
-    setShowPlayDialog(false);
-    setTimeout(() => router.push(`/play/${cardSet?._id}`), 100);
-  };
-
-  const handleCancelPlay = () => {
-    setShowPlayDialog(false);
     router.push(`/play/${cardSet?._id}`);
   };
+
+  // const handleConfirmPlay = () => {
+  //   handleSetSaveChanges();
+  //   setShowPlayDialog(false);
+  //   setTimeout(() => router.push(`/play/${cardSet?._id}`), 100);
+  // };
+
+  // const handleCancelPlay = () => {
+  //   setShowPlayDialog(false);
+  //   router.push(`/play/${cardSet?._id}`);
+  // };
 
   // Card management functions
   const handleAddCard = async (newCard: Partial<Card>) => {
@@ -251,138 +250,100 @@ export default function EditSetPage() {
     }
   }
   return (
-    <div className="min-h-screen bg-gray-50">
-      {/* Navbar - sticky */}
-      <nav className="sticky top-0 z-50 bg-white border-b border-slate-200">
-        <style
-          dangerouslySetInnerHTML={{
-            __html: `
-              :root{
-                --green:#283618; --olive:#606c38; --cream:#fefae0; --amber:#dda15e; --burnt:#bc6c25;
-              }
-            `,
-          }}
-        />
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            {/* Left: AutoCard branding (clickable with save prompt) */}
-            <button
-              onClick={handleGoToDashboard}
-              className="flex items-center gap-3 hover:opacity-80 transition-opacity"
-            >
-              <div
-                className="h-10 w-6 rounded-md shadow"
-                style={{ backgroundColor: "var(--green)" }}
-                aria-label="AutoCard logo"
-              />
-              <span className="text-2xl font-extrabold tracking-tight" style={{ color: "var(--green)" }}>
-                AutoCard
-              </span>
-            </button>
-            
-            {/* Right: Save status indicator */}
-            <div className="flex items-center gap-3">
-              <span className={`text-sm font-medium ${isSaved ? 'text-green-600' : 'text-red-600'}`}>
-                {isSaved ? 'All changes saved' : 'Unsaved changes'}
-              </span>
-            </div>
-          </div>
-        </div>
-      </nav>
-
+    <div>
       <div className="container mx-auto max-w-8xl p-6">
-        {/* Header */}
-        <div className="mb-8">
-          <h1 className="text-4xl font-bold text-gray-900 mb-2">Edit Card Set</h1>
-          <p className="text-gray-600">Manage your flashcard set details and content</p>
-        </div>
 
         {/* Main Content Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-8 h-[calc(100vh-200px)]">
           {/* Left Column - Set Details */}
           <div className="lg:col-span-2">
-            <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6 h-fit">
+            <div className="bg-gray-50 rounded-xl shadow-sm border border-gray-200 p-6 h-fit">
               <h2 className="text-xl font-semibold text-gray-900 mb-6">Set Information</h2>
               <SetDetailsForm cardSet={cardSet} setCardSet={setCardSet} setIsSaved={setIsSaved} />
             </div>
 
-            
-            {/* Save Button */}
-            <div className="mt-6">
-              <button
-                onClick={handleSetSaveChanges}
-                disabled={isSaved}
-                className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-4 px-6 rounded-lg transition-colors duration-200 shadow-lg hover:shadow-xl text-lg disabled:opacity-50 disabled:cursor-not-allowed"
-              >
-                {isSaved ? 'All Changes Saved' : 'Save All Changes'}
-              </button>
-            </div>
+            <div className='flex flex-row justify-between mt-3'>
+              {/* Save Button */}
+              <div>
+                <button
+                  onClick={handleSetSaveChanges}
+                  disabled={isSaved}
+                  className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-4 px-6 rounded-lg transition-colors duration-200 shadow-lg hover:shadow-xl text-lg disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
+                >
+                  {isSaved ? 'All Changes Saved' : 'Save All Changes'}
+                </button>
+              </div>
 
-            {/* Generate Questions Button */}
-            <div className="mt-3">
-              {/* Make it out of focus when generating */}
-              <button
-                onClick={() => setShowGenerateModal(true)}
-                className={`w-full bg-purple-600 hover:bg-purple-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 ${isGenerating ? 'opacity-50 cursor-not-allowed' : ''}`}
-                disabled={isGenerating}
-              >
-                Generate Questions with AI
-              </button>
-            </div>
+              {/* Generate Questions Button */}
+              <div>
+                {/* Make it out of focus when generating */}
+                <button
+                  onClick={() => setShowGenerateModal(true)}
+                  className={`w-full bg-purple-600 hover:bg-purple-700 text-white font-semibold py-4 px-6 rounded-lg transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 cursor-pointer ${isGenerating ? 'opacity-50 cursor-not-allowed' : ''}`}
+                  disabled={isGenerating}
+                >
+                  Generate Questions with AI
+                </button>
+              </div>
 
-            {/* Play Button */}
-            <div className="mt-3">
-              <button
-                onClick={handlePlaySet}
-                className="w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2"
-              >
-                Play This Set
-              </button>
+              {/* Play Button */}
+              <div>
+                <button
+                  onClick={handlePlaySet}
+                  className="w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-4 px-6 rounded-lg transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 cursor-pointer"
+                >
+                  Play This Set
+                </button>
+              </div>
             </div>
 
             {/* AI Generated Cards */}
-            <div className="mt-6 bg-yellow-50 border border-yellow-200 rounded-lg p-4">
-              <h2 className="text-lg font-semibold text-yellow-900 mb-3">AI Generated Cards</h2>
+            <div className="mt-6 bg-gray-50 border border-gray-200 rounded-lg p-4">
               {AIGeneratedCards.length === 0 ? (
-                <p className="text-yellow-800">No AI generated cards yet. Use the button above to generate some!</p>
+                <p className="text-purple-800">No AI generated cards yet. Use the button above to generate some!</p>
               ) : (
-                <ul className="space-y-2 max-h-96 overflow-y-auto">
-                  <li className="text-sm text-gray-500">
-                    <button onClick={handleAddAllAICardsToSet} className="mt-2 bg-yellow-400 hover:bg-yellow-500 text-yellow-900 font-semibold py-1 px-3 rounded-lg transition-colors duration-200">Add all cards to set</button>
-                  </li>
+                <ul className="space-y-2 max-h-108 overflow-y-auto">
                   {AIGeneratedCards.map((card, idx) => (
                     // Add a genre header for each unique genre and group cards under it
-                    <li key={card._id}>
+                    <li key={`card-${idx}`}>
                       {idx === 0 || (idx !== 0 && card.genre !== AIGeneratedCards[idx - 1].genre) ? (
-                        <li key={card.genre} className="mt-4 mb-2">
-                          <h3 className="text-4xl font-bold text-yellow-900 border-b border-yellow-300 pb-1 text-center">{card.genre}</h3>
-                        </li>
+                        <div key={card.genre} className="mt-4 mb-2">
+                          <h3 className="text-4xl font-bold text-[color:var(--green)] border-b border-gray-200 pb-1 text-center">{card.genre}</h3>
+                        </div>
                       ) : null}
-                      <li key={idx} className="bg-yellow-100 border border-yellow-300 rounded-md p-3">
-                        <p className="font-medium text-yellow-900">Q: {card.question}</p>
-                        <p className="text-yellow-800 mt-1">✓ A: {card.correctAnswer}</p>
+                      <div className="bg-gray-50 border border-gray-200 rounded-md p-3">
+                        <p className="font-medium text-[color:var(--green)]">Q: {card.question}</p>
+                        <p className="text-[color:var(--green)] mt-1">✓ Correct Answer: {card.correctAnswer}</p>
+                        {
+                          card.incorrectAnswers && card.incorrectAnswers.length > 0 ? card.incorrectAnswers.map((answer, i) => (
+                            <p key={i} className="text-[color:var(--green)] mt-1">✗ Incorrect Answer #{i + 1}: {answer}</p>
+                          )) : null
+                        }
                         <button
                           onClick={() => addAICardToSet(card)}
-                          className="mt-2 bg-yellow-400 hover:bg-yellow-500 text-yellow-900 font-semibold py-1 px-3 rounded-lg transition-colors duration-200"
+                          className="mt-2 bg-purple-600 hover:bg-purple-700 text-white font-semibold py-1 px-3 rounded-lg transition-colors duration-200 cursor-pointer"
                         >
                           Add to Set
                         </button>
-                      </li>
+                      </div>
                     </li>
                   ))}
+                  <li className="text-sm text-gray-500 flex items-center justify-center mt-4">
+                    <button onClick={handleAddAllAICardsToSet} className="mt-2 bg-purple-600 hover:bg-purple-700 text-white font-semibold py-1 px-3 rounded-lg transition-colors duration-200 cursor-pointer">Add all cards to set</button>
+                  </li>
                 </ul>
               )}
             </div>
+
+            
+        
+            
+            
           </div>
 
           {/* Right Column - Cards */}
           <div className="lg:col-span-2">
-            <div className="bg-white rounded-xl shadow-sm border border-gray-200 h-full flex flex-col">
-              <div className="p-6 border-b border-gray-200">
-                <h2 className="text-xl font-semibold text-gray-900">Cards ({cardSet && cardSet.cards ? cardSet.cards.length : ''})</h2>
-                <p className="text-gray-600 mt-1">Add and edit flashcards for this set</p>
-              </div>
-              
+            <div className="bg-white rounded-xl shadow-sm border border-gray-200 h-full flex flex-col">              
               <div className="flex-1 overflow-hidden">
                 <div className="h-full overflow-y-auto p-6">
                 <CardListEditor 
@@ -399,7 +360,7 @@ export default function EditSetPage() {
       </div>
 
       {/* Exit Confirmation Dialog */}
-      <ConfirmDialog
+      {/* <ConfirmDialog
         isOpen={showExitDialog}
         title="Save changes before leaving?"
         message="You have unsaved changes. Would you like to save them before going to the dashboard?"
@@ -407,10 +368,10 @@ export default function EditSetPage() {
         cancelLabel="No, Discard"
         onConfirm={handleConfirmExit}
         onCancel={handleCancelExit}
-      />
+      /> */}
 
       {/* Play Confirmation Dialog */}
-      <ConfirmDialog
+      {/* <ConfirmDialog
         isOpen={showPlayDialog}
         title="Save changes before playing?"
         message="You have unsaved changes. Would you like to save them before playing this set?"
@@ -418,7 +379,7 @@ export default function EditSetPage() {
         cancelLabel="No, Play Anyway"
         onConfirm={handleConfirmPlay}
         onCancel={handleCancelPlay}
-      />
+      /> */}
 
       {/* Generate Questions Modal */}
       <GenerateQuestionsModal

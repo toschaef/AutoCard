@@ -1,5 +1,6 @@
 // components/CardListEditor.tsx
-
+'use client';
+import { useEffect, useState } from 'react';
 import { Card } from '@/types/types';
 
 type Props = {
@@ -10,6 +11,7 @@ type Props = {
 };
 
 const CardListEditor = ({ cards, onAddCard, onDeleteCard, onCardChange }: Props) => {
+  const [cardsOpen, setCardsOpen] = useState<boolean[]>([]);
   
   const handleCardChange = (cardId: string, updatedField: Partial<Card>) => {
     const originalCard = cards.find(c => c._id === cardId);
@@ -27,19 +29,34 @@ const CardListEditor = ({ cards, onAddCard, onDeleteCard, onCardChange }: Props)
     };
     onAddCard(newCard);
   };
-  
+
+  useEffect(() => {
+    setCardsOpen(new Array(cards.length).fill(false));
+  }, [cards.length]);
+
   return (
-    <div className="space-y-4">
+    <div className="space-y-4 max-h-[80vh] overflow-y-auto">
       {cards && cards.length ? cards.map((card, index) => {
         if (!card._id || card._id === undefined) {
           return null;
         }
 
+        if (!cardsOpen[index]) {
+          return (
+            <div key={card._id} className="rounded-lg border bg-gray-50 p-4 shadow-sm cursor-pointer" onClick={(()=>{
+                setCardsOpen(prev=>prev.map((isOpen, i) => i === index ? !isOpen : isOpen))
+              })}>
+              <h3>{card.question}</h3>
+            </div> 
+          )
+        }
+
         return (
         <div key={card._id} className="rounded-lg border bg-gray-50 p-4 shadow-sm">
-          <div className="flex justify-between items-center mb-4">
-            <h3 className="font-bold text-lg text-black">Card #{index + 1}</h3>
-            <button onClick={() => onDeleteCard(card._id)} className="text-red-500 font-semibold">Delete</button>
+          <div className="flex justify-end items-center mb-4 cursor-pointer" onClick={(()=>{
+                setCardsOpen(prev=>prev.map((isOpen, i) => i === index ? !isOpen : isOpen))
+              })}>
+            <button onClick={() => onDeleteCard(card._id)} className="text-red-500 font-semibold hover:text-red-700 hover:cursor-pointer">Delete</button>
           </div>
           <div className="space-y-3">
             {/* Question */}
@@ -61,8 +78,7 @@ const CardListEditor = ({ cards, onAddCard, onDeleteCard, onCardChange }: Props)
               <label className="block text-sm font-medium text-black mb-1">
                 ✓ Correct Answer
               </label>
-              <input
-                type="text"
+              <textarea
                 placeholder="Enter the correct answer..."
                 value={card.correctAnswer}
                 onChange={(e) => handleCardChange(card._id, { correctAnswer: e.target.value })}
@@ -77,9 +93,8 @@ const CardListEditor = ({ cards, onAddCard, onDeleteCard, onCardChange }: Props)
               </label>
               <div className="space-y-2">
                 {card.incorrectAnswers ? card.incorrectAnswers.map((answer, idx) => (
-                  <input
+                  <textarea
                     key={idx}
-                    type="text"
                     placeholder={`Incorrect answer #${idx + 1}...`}
                     value={answer}
                     onChange={(e) => {

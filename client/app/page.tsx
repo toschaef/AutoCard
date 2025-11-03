@@ -1,7 +1,24 @@
-// app/page.tsx
+'use client'
 import Link from "next/link";
+import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
+import { useAppContext } from "@/Context";
 
 export default function Home() {
+  const router = useRouter();
+  const { user } = useAppContext();
+  const [hydrated, setHydrated] = useState<Boolean>(false);
+
+  useEffect(() => {
+    setHydrated(true);
+  }, []);
+
+  useEffect(() => {
+    if (hydrated && user) router.push('/dashboard');
+  }, [hydrated, user, router]);
+
+  if (!hydrated) return null;
+
   return (
     <div className="min-h-screen flex flex-col">
       
